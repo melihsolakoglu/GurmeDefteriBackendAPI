@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5/wmLQJbWS7/j3MTWM5wPgLSYs/MTmrBVIqf+4FFU5oO9/keK6spCSTNBiBm3vF79qOPDE0gIl6Ms3VsC/u+hw==",
+  "dgSpecHash": "gpQfQHK8GLIC+S012XzoR5chNakxjnbLC682vi795jFm/NTDzBkOaMVI6atiGxl+y49y0qNthAF5ijjju3/8kQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\BackendNet\\GurmeDefteriBackEndAPI\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj",
+  "projectFilePath": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alisa\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\alisa\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
@@ -24,6 +24,7 @@
     "C:\\Users\\alisa\\.nuget\\packages\\mongodb.driver.core\\2.25.0\\mongodb.driver.core.2.25.0.nupkg.sha512",
     "C:\\Users\\alisa\\.nuget\\packages\\mongodb.libmongocrypt\\1.8.2\\mongodb.libmongocrypt.1.8.2.nupkg.sha512",
     "C:\\Users\\alisa\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
+    "C:\\Users\\alisa\\.nuget\\packages\\sixlabors.imagesharp\\3.1.4\\sixlabors.imagesharp.3.1.4.nupkg.sha512",
     "C:\\Users\\alisa\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\alisa\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\alisa\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",

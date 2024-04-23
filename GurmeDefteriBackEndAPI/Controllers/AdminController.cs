@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
+﻿
 using GurmeDefteriBackEndAPI.Models;
+using GurmeDefteriBackEndAPI.Models.ViewModel;
 using GurmeDefteriBackEndAPI.Services;
 using GurmeDefteriWebUI.Models.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 namespace GurmeDefteriBackEndAPI.Controllers
 {
@@ -26,10 +26,28 @@ namespace GurmeDefteriBackEndAPI.Controllers
             return Ok(users);
         }
         [HttpGet("foods")]
-        public ActionResult<List<User>> GetAllFoods()
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetAllFoodsAsync()
         {
             var foods = _adminService.GetFoods();
-            return Ok(foods);
+
+            // Yiyecek öğeleri üzerinde paralel işlemler yaparak işlemi hızlandırma
+            var tasks = foods.Select(async foodItem =>
+            {
+
+                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
+                string base64String = Convert.ToBase64String(imageBytes);
+
+                return new FoodItemWithImageBytes
+                {
+                    Name = foodItem.Name,
+                    Country = foodItem.Country,
+                    ImageBytes = base64String
+                };
+            });
+
+            var foodListWithImages = await Task.WhenAll(tasks);
+
+            return Ok(foodListWithImages.ToList());
         }
         [HttpGet("scoredfoods")]
         public ActionResult<List<User>> GetAllScoredFoods()
@@ -98,13 +116,18 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "FoodImages");
                 if (!Directory.Exists(uploadsFolder))
                     Directory.CreateDirectory(uploadsFolder);
-                var filePath = Path.Combine(uploadsFolder, foodTemp.Name + ".png");
+                var filePath = Path.Combine(uploadsFolder, foodTemp.Name + ".jpeg");
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                using (var image = Image.Load(foodTemp.Image.OpenReadStream()))
                 {
-                    await foodTemp.Image.CopyToAsync(stream);
+                    // Resmi sıkıştırör
+                    image.Mutate(x => x.Resize(800, 600)); 
+
+                    // JPEG olarak kaydet
+                    image.Save(filePath, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 75 }); // Kaliteyi gereksinimlerinize göre ayarlayabilirsiniz
                 }
-                _adminService.AddFood(foodTemp.Name, foodTemp.Country, Directory.GetCurrentDirectory()+"/" + foodTemp.Name + ".png");
+
+                _adminService.AddFood(foodTemp.Name, foodTemp.Country, Directory.GetCurrentDirectory() + "/FoodImages/" + foodTemp.Name + ".jpeg");
                 return Ok("Food added successfully");
             }
             catch (Exception ex)

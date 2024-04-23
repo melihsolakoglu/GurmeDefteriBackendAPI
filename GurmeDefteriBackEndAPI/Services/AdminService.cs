@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using GurmeDefteriBackEndAPI.DatabaseContext;
@@ -10,38 +11,40 @@ namespace GurmeDefteriBackEndAPI.Services
 {
     public class AdminService
     {
-        private Database database;
+        private readonly Database _database;
 
+        public AdminService()
+        {
+            _database = new Database();
+        }
 
         public List<User> GetAllUsers()
         {
-            var database = new Database();
-            var _users = database.CollectionPerson;
+            var _users = _database.CollectionPerson;
             return _users.Find(user => true).ToList();
         }
+
         public List<Food> GetFoods()
         {
-            var database = new Database();
-            var _foods = database.CollectionFood;
+            var _foods = _database.CollectionFood;
             return _foods.Find(food => true).ToList();
         }
+
         public List<ScoredFoods> GetScoredFoods()
         {
-            var database = new Database();
-            var _scoredFoods = database.CollectionScoredFoods;
+            var _scoredFoods = _database.CollectionScoredFoods;
             return _scoredFoods.Find(ScoredFoods => true).ToList();
         }
+
         public User GetUserWithId(string id)
         {
-            var database = new Database();
             var objectId = new ObjectId(id);
-            var user = database.CollectionPerson.Find(u => u.Id == objectId).FirstOrDefault();
+            var user = _database.CollectionPerson.Find(u => u.Id == objectId).FirstOrDefault();
             return user;
         }
+
         public void UpdateUser(string userId, User updatedUser)
         {
-            var database = new Database();
-
             var objectId = new ObjectId(userId);
             var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
             var update = Builders<User>.Update
@@ -51,16 +54,16 @@ namespace GurmeDefteriBackEndAPI.Services
                 .Set(u => u.Password, updatedUser.Password)
                 .Set(u => u.Role, updatedUser.Role);
 
-            database.CollectionPerson.UpdateOne(filter, update);
+            _database.CollectionPerson.UpdateOne(filter, update);
         }
+
         public void DeleteUser(string userId)
         {
-            var database = new Database();
             try
             {
                 var objectId = new ObjectId(userId);
                 var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
-                database.CollectionPerson.DeleteOne(filter);
+                _database.CollectionPerson.DeleteOne(filter);
             }
             catch (Exception ex)
             {
@@ -68,13 +71,12 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
+
         public void AddUser(User newUser)
         {
-            var database = new Database();
             try
             {
-                
-                database.CollectionPerson.InsertOne(newUser);
+                _database.CollectionPerson.InsertOne(newUser);
             }
             catch (Exception ex)
             {
@@ -82,11 +84,11 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
+
         public void AddFood([Required, StringLength(70, MinimumLength = 2, ErrorMessage = "İsim en az 2, en fazla 70 karakter olmalıdır.")] string name,
                              [Required(ErrorMessage = "Ülke alanı girilmelidir.")] string country,
                              [Required(ErrorMessage = "Resim alanı girilmelidir.")] string imagePath)
         {
-            var database = new Database();
             try
             {
                 var food = new Food
@@ -96,7 +98,7 @@ namespace GurmeDefteriBackEndAPI.Services
                     Image = imagePath  // You might want to store the image in a file system or a cloud storage service and store the URL here instead
                 };
 
-                database.CollectionFood.InsertOne(food);
+                _database.CollectionFood.InsertOne(food);
             }
             catch (Exception ex)
             {
@@ -104,7 +106,5 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
-
     }
 }
-
