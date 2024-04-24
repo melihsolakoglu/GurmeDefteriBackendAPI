@@ -19,13 +19,13 @@ namespace GurmeDefteriBackEndAPI.Controllers
         {
             _adminService = new AdminService();
         }
-        [HttpGet("users")]
+        [HttpGet("GetAllUser")]
         public ActionResult<List<User>> GetAllUsers()
         {
             var users = _adminService.GetAllUsers();
             return Ok(users);
         }
-        [HttpGet("foods")]
+        [HttpGet("GetAllFoods")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetAllFoodsAsync()
         {
             var foods = _adminService.GetFoods();
@@ -49,13 +49,110 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             return Ok(foodListWithImages.ToList());
         }
-        [HttpGet("scoredfoods")]
-        public ActionResult<List<User>> GetAllScoredFoods()
+        [HttpGet("GetFoodsWithPagebyPage")]
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page = 1, int pageSize = 30)
+        {
+            var foods = _adminService.GetFoods();
+
+            var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
+
+            var tasks = pagedFoods.Select(async foodItem =>
+            {
+                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
+                string base64String = Convert.ToBase64String(imageBytes);
+
+                return new FoodItemWithImageBytes
+                {
+                    Name = foodItem.Name,
+                    Country = foodItem.Country,
+                    ImageBytes = base64String
+                };
+            });
+
+            var foodListWithImages = await Task.WhenAll(tasks);
+
+            return Ok(foodListWithImages.ToList());
+        }
+        [HttpGet("GetFoodByName")]
+        public async Task<ActionResult<FoodItemWithImageBytes>> GetFoodByNameAsync(string name)
+        {
+            var foodItem = _adminService.GetFoods().FirstOrDefault(f => f.Name == name);
+
+            if (foodItem == null)
+            {
+                return NotFound();
+            }
+
+            byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
+            string base64String = Convert.ToBase64String(imageBytes);
+
+            var foodItemWithImage = new FoodItemWithImageBytes
+            {
+                Name = foodItem.Name,
+                Country = foodItem.Country,
+                ImageBytes = base64String
+            };
+
+            return Ok(foodItemWithImage);
+        }
+        [HttpGet("GetFoodByNameWithPagination")]
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodByNameWithPaginationAsync(string foodName, int page = 1, int pageSize = 30)
+        {
+            var foods = _adminService.GetFoods().Where(f => f.Name.Contains(foodName));
+
+            var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
+
+            var tasks = pagedFoods.Select(async foodItem =>
+            {
+                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
+                string base64String = Convert.ToBase64String(imageBytes);
+
+                return new FoodItemWithImageBytes
+                {
+                    Name = foodItem.Name,
+                    Country = foodItem.Country,
+                    ImageBytes = base64String
+                };
+            });
+
+            var foodListWithImages = await Task.WhenAll(tasks);
+
+            return Ok(foodListWithImages.ToList());
+        }
+        [HttpGet("FoodSearch")]
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> FoodSearchAsync(string query, int page = 1, int pageSize = 30)
+        {
+            var foods = _adminService.GetFoods().Where(f => f.Name.Contains(query));
+
+            var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
+
+            var tasks = pagedFoods.Select(async foodItem =>
+            {
+                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
+                string base64String = Convert.ToBase64String(imageBytes);
+
+                return new FoodItemWithImageBytes
+                {
+                    Name = foodItem.Name,
+                    Country = foodItem.Country,
+                    ImageBytes = base64String
+                };
+            });
+
+            var foodListWithImages = await Task.WhenAll(tasks);
+
+            return Ok(foodListWithImages.ToList());
+        }
+
+
+
+        [HttpGet("GetAllScoredFoods")]
+        public ActionResult<List<ScoredFoods>> GetAllScoredFoods()
         {
             var scoredFoods = _adminService.GetScoredFoods();
             return Ok(scoredFoods);
         }
-        [HttpGet("users/{userId}")]
+        [HttpGet("GetUserById/{userId}")]
         public IActionResult GetUserById(string userId)
         {
             var user = _adminService.GetUserWithId(userId);
@@ -67,8 +164,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             return Ok(user);
         }
-        [HttpPut("users/{userId}")]
-        public IActionResult UpdateUser(string userId, User updatedUser) 
+        [HttpPut("UpdateUser/{userId}")]
+        public IActionResult UpdateUser(string userId, User updatedUser)
         {
             try
             {
@@ -80,7 +177,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("users/{userId}")]
+        [HttpDelete("DeleteUser/{userId}")]
         public IActionResult DeleteUser(string userId)
         {
             try
@@ -94,7 +191,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        [HttpPost("users")]
+        [HttpPost("AddUser")]
         public IActionResult AddUser(User newUser)
         {
             try
@@ -108,7 +205,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        [HttpPost("foods")]
+        [HttpPost("AddFood")]
         public async Task<IActionResult> AddFoodAsync([FromForm] FoodTemp foodTemp)
         {
             try
@@ -121,7 +218,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 using (var image = Image.Load(foodTemp.Image.OpenReadStream()))
                 {
                     // Resmi sıkıştırör
-                    image.Mutate(x => x.Resize(800, 600)); 
+                    image.Mutate(x => x.Resize(800, 600));
 
                     // JPEG olarak kaydet
                     image.Save(filePath, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 75 }); // Kaliteyi gereksinimlerinize göre ayarlayabilirsiniz
@@ -136,6 +233,35 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+        [HttpDelete("DeleteFood/{foodId}")]
+        public IActionResult DeleteFood(string foodId)
+        {
+            try
+            {
+                _adminService.DeleteFood(foodId);
+                return Ok("Food deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("UpdateFood/{foodId}")]
+        public IActionResult UpdateFood(string foodId, Food updatedFood)
+        {
+            try
+            {
+                _adminService.UpdateFood(foodId, updatedFood);
+                return Ok("Food updated successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
 
 
 

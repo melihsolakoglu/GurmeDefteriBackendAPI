@@ -106,5 +106,46 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
+        public void UpdateFood(string foodId, Food updatedFood)
+        {
+            if (!ObjectId.TryParse(foodId, out var objectId))
+            {
+                throw new ArgumentException("Invalid ObjectId format", nameof(foodId));
+            }
+
+            var filter = Builders<Food>.Filter.Eq(f => f.Id, objectId);
+            var update = Builders<Food>.Update
+                .Set(f => f.Name, updatedFood.Name)
+                .Set(f => f.Country, updatedFood.Country)
+                .Set(f => f.Image, updatedFood.Image); // Image'i değiştirmek istiyorsanız gerekli değişikliği yapabilirsiniz
+
+            _database.CollectionFood.UpdateOne(filter, update);
+        }
+        public void DeleteFood(string foodId)
+        {
+            if (!ObjectId.TryParse(foodId, out var objectId))
+            {
+                throw new ArgumentException("Invalid ObjectId format", nameof(foodId));
+            }
+
+            var filter = Builders<Food>.Filter.Eq(f => f.Id, objectId);
+            var food = _database.CollectionFood.Find(filter).FirstOrDefault();
+            if (food != null)
+            {
+                _database.CollectionFood.DeleteOne(filter);
+
+                // JPEG dosyasını sil
+                if (!string.IsNullOrEmpty(food.Image))
+                {
+                    var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "FoodImages", food.Image);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+            }
+        }
+
+
     }
 }
