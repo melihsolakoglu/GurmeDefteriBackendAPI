@@ -30,18 +30,15 @@ namespace GurmeDefteriBackEndAPI.Controllers
         {
             var foods = _adminService.GetFoods();
 
-            // Yiyecek öğeleri üzerinde paralel işlemler yaparak işlemi hızlandırma
             var tasks = foods.Select(async foodItem =>
             {
-
-                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
-                string base64String = Convert.ToBase64String(imageBytes);
 
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
-                    ImageBytes = base64String
+                    ImageBytes = foodItem.Image,
+                    Id = foodItem.Id.ToString()
                 };
             });
 
@@ -50,7 +47,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             return Ok(foodListWithImages.ToList());
         }
         [HttpGet("GetFoodsWithPagebyPage")]
-        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page = 1, int pageSize = 30)
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page , int pageSize)
         {
             var foods = _adminService.GetFoods();
 
@@ -58,14 +55,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             var tasks = pagedFoods.Select(async foodItem =>
             {
-                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
-                string base64String = Convert.ToBase64String(imageBytes);
-
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
-                    ImageBytes = base64String
+                    ImageBytes = foodItem.Image,
+                    Id = foodItem.Id.ToString()
                 };
             });
 
@@ -83,14 +78,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return NotFound();
             }
 
-            byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
-            string base64String = Convert.ToBase64String(imageBytes);
-
             var foodItemWithImage = new FoodItemWithImageBytes
             {
                 Name = foodItem.Name,
                 Country = foodItem.Country,
-                ImageBytes = base64String
+                ImageBytes = foodItem.Image,
+                Id = foodItem.Id.ToString()
             };
 
             return Ok(foodItemWithImage);
@@ -98,26 +91,44 @@ namespace GurmeDefteriBackEndAPI.Controllers
         [HttpGet("GetFoodByNameWithPagination")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodByNameWithPaginationAsync(string foodName, int page = 1, int pageSize = 30)
         {
-            var foods = _adminService.GetFoods().Where(f => f.Name.Contains(foodName));
+            var foods = _adminService.GetFoods().Where(f => f.Name.ToUpper().Contains(foodName.ToUpper()));
 
             var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
 
             var tasks = pagedFoods.Select(async foodItem =>
             {
-                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
-                string base64String = Convert.ToBase64String(imageBytes);
+              
 
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
-                    ImageBytes = base64String
+                    ImageBytes = foodItem.Image,
+                     Id = foodItem.Id.ToString()
                 };
             });
 
             var foodListWithImages = await Task.WhenAll(tasks);
 
             return Ok(foodListWithImages.ToList());
+        }
+        [HttpGet("GetPageCountFood")]
+        public  int GetPageCountFood( int pageSize = 30)
+        {
+            int totalFoodCount = _adminService.GetFoodCount();
+            int pageCount = totalFoodCount / pageSize;
+            pageCount += (totalFoodCount % pageSize) != 0 ? 1 : 0;
+            return pageCount;
+        }
+
+        [HttpGet("GetPageCountFoodByName")]
+        public int GetPageCountFoodByName(int pageSize = 30,string name="")
+        {
+            int totalFoodCount = _adminService.GetFoodCountByName(name);
+
+            int pageCount = totalFoodCount / pageSize;
+            pageCount += (totalFoodCount % pageSize) != 0 ? 1 : 0;
+            return pageCount;
         }
         [HttpGet("FoodSearch")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> FoodSearchAsync(string query, int page = 1, int pageSize = 30)
@@ -128,14 +139,13 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             var tasks = pagedFoods.Select(async foodItem =>
             {
-                byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(foodItem.Image);
-                string base64String = Convert.ToBase64String(imageBytes);
-
+        
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
-                    ImageBytes = base64String
+                    ImageBytes = foodItem.Image,
+                    Id = foodItem.Id.ToString()
                 };
             });
 
@@ -208,23 +218,10 @@ namespace GurmeDefteriBackEndAPI.Controllers
         [HttpPost("AddFood")]
         public async Task<IActionResult> AddFoodAsync([FromForm] FoodTemp foodTemp)
         {
-            try
-            {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "FoodImages");
-                if (!Directory.Exists(uploadsFolder))
-                    Directory.CreateDirectory(uploadsFolder);
-                var filePath = Path.Combine(uploadsFolder, foodTemp.Name + ".jpeg");
+            try { 
+                    
 
-                using (var image = Image.Load(foodTemp.Image.OpenReadStream()))
-                {
-                    // Resmi sıkıştırör
-                    image.Mutate(x => x.Resize(800, 600));
-
-                    // JPEG olarak kaydet
-                    image.Save(filePath, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 75 }); // Kaliteyi gereksinimlerinize göre ayarlayabilirsiniz
-                }
-
-                _adminService.AddFood(foodTemp.Name, foodTemp.Country, Directory.GetCurrentDirectory() + "/FoodImages/" + foodTemp.Name + ".jpeg");
+                _adminService.AddFood(foodTemp.Name, foodTemp.Country,foodTemp.Image);
                 return Ok("Food added successfully");
             }
             catch (Exception ex)
@@ -233,7 +230,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        [HttpDelete("DeleteFood/{foodId}")]
+        [HttpDelete("DeleteFood")]
         public IActionResult DeleteFood(string foodId)
         {
             try
@@ -246,12 +243,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("UpdateFood/{foodId}")]
-        public IActionResult UpdateFood(string foodId, Food updatedFood)
+        [HttpPut("UpdateFood/")]
+        public IActionResult UpdateFood([FromForm] FoodItemWithImageBytes foodTemp)
         {
             try
             {
-                _adminService.UpdateFood(foodId, updatedFood);
+                _adminService.UpdateFood(foodTemp);
                 return Ok("Food updated successfully");
             }
             catch (Exception ex)
@@ -264,6 +261,6 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
 
 
-
+        
     }
 }

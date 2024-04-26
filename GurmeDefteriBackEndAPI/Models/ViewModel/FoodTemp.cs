@@ -11,6 +11,8 @@ namespace GurmeDefteriWebUI.Models.ViewModel
         [Required(ErrorMessage = "Ülke alanı girilmelidir.\n")]
         public string Country { get; set; }
         [Required(ErrorMessage = "Resim alanı girilmelidir.\n")]
-        public IFormFile Image { get; set; }
+        public string Image { get; set; }
+
+
     }
 }

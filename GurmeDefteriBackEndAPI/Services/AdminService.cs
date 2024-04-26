@@ -4,9 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using GurmeDefteriBackEndAPI.DatabaseContext;
 using GurmeDefteriBackEndAPI.Models;
+using GurmeDefteriBackEndAPI.Models.ViewModel;
+using GurmeDefteriWebUI.Models.ViewModel;
 using MongoDB.Bson;
 using MongoDB.Driver;
-
+using SharpCompress.Common;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Drawing;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 namespace GurmeDefteriBackEndAPI.Services
 {
     public class AdminService
@@ -28,6 +36,21 @@ namespace GurmeDefteriBackEndAPI.Services
         {
             var _foods = _database.CollectionFood;
             return _foods.Find(food => true).ToList();
+        }
+        public int GetFoodCount()
+        {
+            var foodCount = _database.CollectionFood.CountDocuments(new BsonDocument());
+            int documentCountInt = Convert.ToInt32(foodCount);
+            return documentCountInt;
+        }
+
+        public int GetFoodCountByName(string name)
+        {
+            FilterDefinition<Food> filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
+
+            var foodCount = _database.CollectionFood.CountDocuments(filter);
+            int documentCountInt = Convert.ToInt32(foodCount);
+            return documentCountInt;
         }
 
         public List<ScoredFoods> GetScoredFoods()
@@ -67,7 +90,6 @@ namespace GurmeDefteriBackEndAPI.Services
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 throw;
             }
         }
@@ -87,39 +109,35 @@ namespace GurmeDefteriBackEndAPI.Services
 
         public void AddFood([Required, StringLength(70, MinimumLength = 2, ErrorMessage = "İsim en az 2, en fazla 70 karakter olmalıdır.")] string name,
                              [Required(ErrorMessage = "Ülke alanı girilmelidir.")] string country,
-                             [Required(ErrorMessage = "Resim alanı girilmelidir.")] string imagePath)
+                             [Required(ErrorMessage = "Resim alanı girilmelidir.")] string imagefile)
         {
             try
-            {
+            {     
                 var food = new Food
                 {
                     Name = name,
                     Country = country,
-                    Image = imagePath  // You might want to store the image in a file system or a cloud storage service and store the URL here instead
+                    Image = imagefile
                 };
-
+               
                 _database.CollectionFood.InsertOne(food);
+        
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 throw;
             }
         }
-        public void UpdateFood(string foodId, Food updatedFood)
+        public void UpdateFood(FoodItemWithImageBytes foodTemp)
         {
-            if (!ObjectId.TryParse(foodId, out var objectId))
-            {
-                throw new ArgumentException("Invalid ObjectId format", nameof(foodId));
-            }
 
-            var filter = Builders<Food>.Filter.Eq(f => f.Id, objectId);
+            var filter = Builders<Food>.Filter.Eq(f => f.Id, ObjectId.Parse(foodTemp.Id));
             var update = Builders<Food>.Update
-                .Set(f => f.Name, updatedFood.Name)
-                .Set(f => f.Country, updatedFood.Country)
-                .Set(f => f.Image, updatedFood.Image); // Image'i değiştirmek istiyorsanız gerekli değişikliği yapabilirsiniz
-
+                .Set(f => f.Name, foodTemp.Name)
+                .Set(f => f.Country, foodTemp.Country)
+                 .Set(f => f.Image, foodTemp.ImageBytes);
             _database.CollectionFood.UpdateOne(filter, update);
+       
         }
         public void DeleteFood(string foodId)
         {
@@ -132,17 +150,7 @@ namespace GurmeDefteriBackEndAPI.Services
             var food = _database.CollectionFood.Find(filter).FirstOrDefault();
             if (food != null)
             {
-                _database.CollectionFood.DeleteOne(filter);
-
-                // JPEG dosyasını sil
-                if (!string.IsNullOrEmpty(food.Image))
-                {
-                    var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "FoodImages", food.Image);
-                    if (File.Exists(imagePath))
-                    {
-                        File.Delete(imagePath);
-                    }
-                }
+                _database.CollectionFood.DeleteOne(filter);         
             }
         }
 
