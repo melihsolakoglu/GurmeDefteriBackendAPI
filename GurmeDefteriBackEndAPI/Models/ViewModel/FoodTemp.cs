@@ -12,7 +12,8 @@ namespace GurmeDefteriWebUI.Models.ViewModel
         public string Country { get; set; }
         [Required(ErrorMessage = "Resim alanı girilmelidir.\n")]
         public string Image { get; set; }
-
+        [Required(ErrorMessage = "Kategori alanı girilmelidir.\n")]
+        public string Category { get; set; }
 
     }
 }

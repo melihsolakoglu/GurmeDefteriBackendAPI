@@ -31,6 +31,12 @@ namespace GurmeDefteriBackEndAPI.Services
             var _users = _database.CollectionPerson;
             return _users.Find(user => true).ToList();
         }
+        public User GetUserById(string userId)
+        {
+            var user = _database.CollectionPerson.Find(u => u.Id == new ObjectId(userId)).FirstOrDefault();
+            return user;
+        }
+
 
         public List<Food> GetFoods()
         {
@@ -107,21 +113,19 @@ namespace GurmeDefteriBackEndAPI.Services
             }
         }
 
-        public void AddFood([Required, StringLength(70, MinimumLength = 2, ErrorMessage = "İsim en az 2, en fazla 70 karakter olmalıdır.")] string name,
-                             [Required(ErrorMessage = "Ülke alanı girilmelidir.")] string country,
-                             [Required(ErrorMessage = "Resim alanı girilmelidir.")] string imagefile)
+        public void AddFood(string name, string country, string imagefile, string category)
         {
             try
-            {     
+            {
                 var food = new Food
                 {
                     Name = name,
                     Country = country,
-                    Image = imagefile
+                    Image = imagefile,
+                    Category = category
                 };
-               
+
                 _database.CollectionFood.InsertOne(food);
-        
             }
             catch (Exception ex)
             {
@@ -153,6 +157,22 @@ namespace GurmeDefteriBackEndAPI.Services
                 _database.CollectionFood.DeleteOne(filter);         
             }
         }
+        public int GetUserCount()
+        {
+            var userCount = _database.CollectionPerson.CountDocuments(new BsonDocument());
+            int documentCountInt = Convert.ToInt32(userCount);
+            return documentCountInt;
+        }
+
+        public int GetUserCountByName(string name)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
+
+            var userCount = _database.CollectionPerson.CountDocuments(filter);
+            int documentCountInt = Convert.ToInt32(userCount);
+            return documentCountInt;
+        }
+
 
 
     }

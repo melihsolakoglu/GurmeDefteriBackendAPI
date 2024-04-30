@@ -19,12 +19,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
         {
             _adminService = new AdminService();
         }
-        [HttpGet("GetAllUser")]
-        public ActionResult<List<User>> GetAllUsers()
-        {
-            var users = _adminService.GetAllUsers();
-            return Ok(users);
-        }
+
+
         [HttpGet("GetAllFoods")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetAllFoodsAsync()
         {
@@ -32,13 +28,13 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             var tasks = foods.Select(async foodItem =>
             {
-
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
-                    Id = foodItem.Id.ToString()
+                    Id = foodItem.Id.ToString(),
+                    Category = foodItem.Category
                 };
             });
 
@@ -46,9 +42,14 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             return Ok(foodListWithImages.ToList());
         }
+
         [HttpGet("GetFoodsWithPagebyPage")]
-        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page , int pageSize)
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page = 1, int pageSize = 30)
         {
+            if (page < 1 || pageSize < 1)
+            {
+                return BadRequest("Page or page size cannot be lower than one.");
+            }
             var foods = _adminService.GetFoods();
 
             var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
@@ -60,7 +61,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Name = foodItem.Name,
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
-                    Id = foodItem.Id.ToString()
+                    Id = foodItem.Id.ToString(),
+                    Category = foodItem.Category
                 };
             });
 
@@ -68,6 +70,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             return Ok(foodListWithImages.ToList());
         }
+
         [HttpGet("GetFoodByName")]
         public async Task<ActionResult<FoodItemWithImageBytes>> GetFoodByNameAsync(string name)
         {
@@ -75,7 +78,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             if (foodItem == null)
             {
-                return NotFound();
+                return NotFound("No food found with this query.");
             }
 
             var foodItemWithImage = new FoodItemWithImageBytes
@@ -83,11 +86,13 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 Name = foodItem.Name,
                 Country = foodItem.Country,
                 ImageBytes = foodItem.Image,
-                Id = foodItem.Id.ToString()
+                Id = foodItem.Id.ToString(),
+                Category = foodItem.Category
             };
 
             return Ok(foodItemWithImage);
         }
+
         [HttpGet("GetFoodByNameWithPagination")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodByNameWithPaginationAsync(string foodName, int page = 1, int pageSize = 30)
         {
@@ -97,14 +102,15 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             var tasks = pagedFoods.Select(async foodItem =>
             {
-              
+
 
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
-                     Id = foodItem.Id.ToString()
+                    Id = foodItem.Id.ToString(),
+                    Category = foodItem.Category
                 };
             });
 
@@ -112,8 +118,9 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             return Ok(foodListWithImages.ToList());
         }
+
         [HttpGet("GetPageCountFood")]
-        public  int GetPageCountFood( int pageSize = 30)
+        public int GetPageCountFood(int pageSize = 30)
         {
             int totalFoodCount = _adminService.GetFoodCount();
             int pageCount = totalFoodCount / pageSize;
@@ -122,7 +129,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
         }
 
         [HttpGet("GetPageCountFoodByName")]
-        public int GetPageCountFoodByName(int pageSize = 30,string name="")
+        public int GetPageCountFoodByName(int pageSize = 30, string name = "")
         {
             int totalFoodCount = _adminService.GetFoodCountByName(name);
 
@@ -130,28 +137,75 @@ namespace GurmeDefteriBackEndAPI.Controllers
             pageCount += (totalFoodCount % pageSize) != 0 ? 1 : 0;
             return pageCount;
         }
+
         [HttpGet("FoodSearch")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> FoodSearchAsync(string query, int page = 1, int pageSize = 30)
         {
+            if (page < 1 || pageSize < 1)
+            {
+                return BadRequest("Page or page size cannot be lower than one.");
+            }
             var foods = _adminService.GetFoods().Where(f => f.Name.Contains(query));
 
             var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
 
             var tasks = pagedFoods.Select(async foodItem =>
             {
-        
+
                 return new FoodItemWithImageBytes
                 {
                     Name = foodItem.Name,
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
-                    Id = foodItem.Id.ToString()
+                    Id = foodItem.Id.ToString(),
+                    Category = foodItem.Category
                 };
             });
 
             var foodListWithImages = await Task.WhenAll(tasks);
 
             return Ok(foodListWithImages.ToList());
+        }
+
+        [HttpPost("AddFood")]
+        public async Task<IActionResult> AddFoodAsync([FromForm] FoodTemp foodTemp)
+        {
+            try
+            {
+                _adminService.AddFood(foodTemp.Name, foodTemp.Country, foodTemp.Image, foodTemp.Category);
+                return Ok("Food added successfully");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+        [HttpDelete("DeleteFood")]
+        public IActionResult DeleteFood(string foodId)
+        {
+            try
+            {
+                _adminService.DeleteFood(foodId);
+                return Ok("Food deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("UpdateFood")]
+        public IActionResult UpdateFood([FromForm] FoodItemWithImageBytes foodTemp)
+        {
+            try
+            {
+                _adminService.UpdateFood(foodTemp);
+                return Ok("Food updated successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
@@ -162,19 +216,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             var scoredFoods = _adminService.GetScoredFoods();
             return Ok(scoredFoods);
         }
-        [HttpGet("GetUserById/{userId}")]
-        public IActionResult GetUserById(string userId)
-        {
-            var user = _adminService.GetUserWithId(userId);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
-        }
-        [HttpPut("UpdateUser/{userId}")]
+        [HttpPut("UpdateUser")]
         public IActionResult UpdateUser(string userId, User updatedUser)
         {
             try
@@ -187,7 +229,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("DeleteUser/{userId}")]
+        [HttpDelete("DeleteUser")]
         public IActionResult DeleteUser(string userId)
         {
             try
@@ -215,52 +257,119 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        [HttpPost("AddFood")]
-        public async Task<IActionResult> AddFoodAsync([FromForm] FoodTemp foodTemp)
+
+        [HttpGet("GetAllUser")]
+        public ActionResult<List<User>> GetAllUsers()
         {
-            try { 
-                    
-
-                _adminService.AddFood(foodTemp.Name, foodTemp.Country,foodTemp.Image);
-                return Ok("Food added successfully");
-            }
-            catch (Exception ex)
-            {
-                // Log the exception or handle it as needed
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            var users = _adminService.GetAllUsers();
+            return Ok(users);
         }
-        [HttpDelete("DeleteFood")]
-        public IActionResult DeleteFood(string foodId)
+        [HttpGet("GetAllUsersPageByPage")]
+        public ActionResult<List<User>> GetAllUsersPageByPage(int page, int pageSize)
         {
-            try
+            if (page < 1 || pageSize < 1)
             {
-                _adminService.DeleteFood(foodId);
-                return Ok("Food deleted successfully");
+                return BadRequest("Page or page size cannot be lower than one.");
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+
+            var users = _adminService.GetAllUsers();
+
+            var paginatedUsers = users.Skip((page - 1) * pageSize)
+                                      .Take(pageSize)
+                                      .ToList();
+
+            return Ok(paginatedUsers);
         }
-        [HttpPut("UpdateFood/")]
-        public IActionResult UpdateFood([FromForm] FoodItemWithImageBytes foodTemp)
+        [HttpGet("GetUserById")]
+        public ActionResult<User> GetUserById(string userId)
         {
-            try
+            var user = _adminService.GetUserById(userId);
+
+            if (user == null)
             {
-                _adminService.UpdateFood(foodTemp);
-                return Ok("Food updated successfully");
+                return NotFound("No user found with given ID."); // Kullanıcı bulunamadı durumunu işler
             }
-            catch (Exception ex)
+
+            return Ok(user);
+        }
+        [HttpGet("SearchUser")]
+        public ActionResult<List<User>> SearchUser(string query, int page = 1, int pageSize = 30)
+        {
+            
+            if (page < 1)
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Page number cannot be less than 1.");
             }
+
+            
+            if (pageSize < 1)
+            {
+                return BadRequest("Page size cannot be less than 1.");
+            }
+
+            var users = _adminService.GetAllUsers()
+                .Where(u => u.Name.Contains(query) || u.Email.Contains(query))
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return Ok(users);
+        }
+
+        [HttpGet("SearchUserByNameWithPagination")]
+        public async Task<ActionResult<List<User>>> SearchUserByNameWithPaginationAsync(string userName, int page = 1, int pageSize = 30)
+        {
+            if (userName == null)
+            {
+                return BadRequest("User name cannot be null.");
+            }
+
+            // Sayfa numarasının sıfırın altında olmamasını sağlama
+            if (page < 1)
+            {
+                return BadRequest("Page number cannot be less than 1.");
+            }
+
+            // Sayfa boyutunun sıfırın altında olmamasını sağlama
+            if (pageSize < 1)
+            {
+                return BadRequest("Page size cannot be less than 1.");
+            }
+            var users = _adminService.GetAllUsers()
+                .Where(u => u.Name.ToUpper().Contains(userName.ToUpper()))
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return Ok(users);
+        }
+        [HttpGet("GetPageCountUser")]
+        public int GetPageCountUser(int pageSize = 30)
+        {
+            int totalUserCount = _adminService.GetUserCount();
+            int pageCount = totalUserCount / pageSize;
+            pageCount += (totalUserCount % pageSize) != 0 ? 1 : 0;
+            return pageCount;
+        }
+
+        [HttpGet("GetPageCountUserByName")]
+        public int GetPageCountUserByName(int pageSize = 30, string name = "")
+        {
+            int totalUserCount = _adminService.GetUserCountByName(name);
+
+            int pageCount = totalUserCount / pageSize;
+            pageCount += (totalUserCount % pageSize) != 0 ? 1 : 0;
+            return pageCount;
         }
 
 
 
 
 
-        
+
+
+
+
     }
 }
