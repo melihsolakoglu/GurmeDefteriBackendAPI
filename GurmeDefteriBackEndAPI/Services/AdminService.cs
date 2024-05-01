@@ -15,6 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Drawing;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using GurmeDefteriBackEndAPI.Models.Dto;
 namespace GurmeDefteriBackEndAPI.Services
 {
     public class AdminService
@@ -78,9 +79,9 @@ namespace GurmeDefteriBackEndAPI.Services
             return user;
         }
 
-        public void UpdateUser(string userId, User updatedUser)
+        public void UpdateUser( UserAPI updatedUser)
         {
-            var objectId = new ObjectId(userId);
+            var objectId = new ObjectId(updatedUser.Id);
             var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
             var update = Builders<User>.Update
                 .Set(u => u.Name, updatedUser.Name)

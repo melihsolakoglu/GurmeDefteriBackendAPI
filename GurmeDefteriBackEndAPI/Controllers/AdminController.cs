@@ -218,11 +218,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
             return Ok(scoredFoods);
         }
         [HttpPut("UpdateUser")]
-        public IActionResult UpdateUser(string userId, User updatedUser)
+        public IActionResult UpdateUser(UserAPI updatedUser)
         {
             try
             {
-                _adminService.UpdateUser(userId, updatedUser);
+                _adminService.UpdateUser(updatedUser);
                 return Ok("Kullanıcı Başarıyla Güncellendi");
             }
             catch (Exception ex)
