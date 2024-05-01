@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GurmeDefteriBackEndAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c66fc64ba0ca5ae96bd77d027fa61021b700364")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a518992c5a02e67b8cecb7fa3a580b4581a7d4e")]
 [assembly: System.Reflection.AssemblyProductAttribute("GurmeDefteriBackEndAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GurmeDefteriBackEndAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

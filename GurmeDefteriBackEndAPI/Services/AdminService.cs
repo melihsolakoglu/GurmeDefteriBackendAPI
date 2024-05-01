@@ -37,6 +37,12 @@ namespace GurmeDefteriBackEndAPI.Services
             return user;
         }
 
+        public User GetUserByMail(string mail)
+        {
+            var user = _database.CollectionPerson.Find(u => u.Email == mail).FirstOrDefault();
+            return user;
+        }
+
 
         public List<Food> GetFoods()
         {

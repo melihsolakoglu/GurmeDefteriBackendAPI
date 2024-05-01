@@ -334,6 +334,27 @@ namespace GurmeDefteriBackEndAPI.Controllers
             };
             return Ok(userAPI);
         }
+
+        [HttpGet("GetUserByMail")]
+        public ActionResult<User> GetUserByMail(string userMail)
+        {
+            var user = _adminService.GetUserByMail(userMail);
+
+            if (user == null)
+            {
+                return NotFound("No user found with given ID."); // Kullanıcı bulunamadı durumunu işler
+            }
+            var userAPI = new UserAPI
+            {
+                Name = user.Name,
+                Password = user.Password,
+                Age = user.Age,
+                Id = user.Id.ToString(),
+                Email = user.Email,
+                Role = user.Role
+            };
+            return Ok(userAPI);
+        }
         [HttpGet("SearchUser")]
         public async Task<ActionResult<List<User>>> SearchUserAsync(string query, int page = 1, int pageSize = 30)
         {
