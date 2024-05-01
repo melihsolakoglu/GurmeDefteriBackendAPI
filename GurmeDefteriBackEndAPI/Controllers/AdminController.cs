@@ -1,5 +1,6 @@
 ﻿
 using GurmeDefteriBackEndAPI.Models;
+using GurmeDefteriBackEndAPI.Models.Dto;
 using GurmeDefteriBackEndAPI.Models.ViewModel;
 using GurmeDefteriBackEndAPI.Services;
 using GurmeDefteriWebUI.Models.ViewModel;
@@ -259,13 +260,30 @@ namespace GurmeDefteriBackEndAPI.Controllers
         }
 
         [HttpGet("GetAllUser")]
-        public ActionResult<List<User>> GetAllUsers()
+        public async Task<ActionResult<List<User>>> GetAllUsersAsync()
         {
             var users = _adminService.GetAllUsers();
-            return Ok(users);
-        }
+
+            var tasks = users.Select(async userItem =>
+            {
+                return new UserAPI
+                {
+                    Name = userItem.Name,
+                    Password = userItem.Password,
+                    Age = userItem.Age,
+                    Id = userItem.Id.ToString(),
+                    Email = userItem.Email,
+                    Role = userItem.Role
+                };
+            });
+
+            var userList = await Task.WhenAll(tasks);
+
+            return Ok(userList.ToList());
+        
+    }
         [HttpGet("GetAllUsersPageByPage")]
-        public ActionResult<List<User>> GetAllUsersPageByPage(int page, int pageSize)
+        public async Task<ActionResult<List<User>>> GetAllUsersPageByPageAsync(int page, int pageSize)
         {
             if (page < 1 || pageSize < 1)
             {
@@ -279,7 +297,22 @@ namespace GurmeDefteriBackEndAPI.Controllers
                                       .Take(pageSize)
                                       .ToList();
 
-            return Ok(paginatedUsers);
+            var tasks = paginatedUsers.Select(async userItem =>
+            {
+                return new UserAPI
+                {
+                    Name = userItem.Name,
+                    Password = userItem.Password,
+                    Age = userItem.Age,
+                    Id = userItem.Id.ToString(),
+                    Email = userItem.Email,
+                    Role = userItem.Role
+                };
+            });
+
+            var userList = await Task.WhenAll(tasks);
+
+            return Ok(userList.ToList());
         }
         [HttpGet("GetUserById")]
         public ActionResult<User> GetUserById(string userId)
@@ -290,11 +323,19 @@ namespace GurmeDefteriBackEndAPI.Controllers
             {
                 return NotFound("No user found with given ID."); // Kullanıcı bulunamadı durumunu işler
             }
-
-            return Ok(user);
+            var userAPI = new UserAPI
+            {
+                Name = user.Name,
+                Password = user.Password,
+                Age = user.Age,
+                Id = user.Id.ToString(),
+                Email = user.Email,
+                Role = user.Role
+            };
+            return Ok(userAPI);
         }
         [HttpGet("SearchUser")]
-        public ActionResult<List<User>> SearchUser(string query, int page = 1, int pageSize = 30)
+        public async Task<ActionResult<List<User>>> SearchUserAsync(string query, int page = 1, int pageSize = 30)
         {
             
             if (page < 1)
@@ -307,14 +348,29 @@ namespace GurmeDefteriBackEndAPI.Controllers
             {
                 return BadRequest("Page size cannot be less than 1.");
             }
-
             var users = _adminService.GetAllUsers()
-                .Where(u => u.Name.Contains(query) || u.Email.Contains(query))
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+                   .Where(u => u.Name.Contains(query) || u.Email.Contains(query))
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToList();
 
-            return Ok(users);
+            var tasks = users.Select(async userItem =>
+            {
+                return new UserAPI
+                {
+                    Name = userItem.Name,
+                    Password = userItem.Password,
+                    Age = userItem.Age,
+                    Id = userItem.Id.ToString(),
+                    Email = userItem.Email,
+                    Role= userItem.Role
+                };
+            });
+
+            var userList = await Task.WhenAll(tasks);
+
+            return Ok(userList.ToList());
+
         }
 
         [HttpGet("SearchUserByNameWithPagination")]
@@ -342,7 +398,22 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 .Take(pageSize)
                 .ToList();
 
-            return Ok(users);
+            var tasks = users.Select(async userItem =>
+            {
+                return new UserAPI
+                {
+                    Name = userItem.Name,
+                    Password = userItem.Password,
+                    Age = userItem.Age,
+                    Id = userItem.Id.ToString(),
+                    Email = userItem.Email,
+                    Role = userItem.Role
+                };
+            });
+
+            var userList = await Task.WhenAll(tasks);
+
+            return Ok(userList.ToList());
         }
         [HttpGet("GetPageCountUser")]
         public int GetPageCountUser(int pageSize = 30)
@@ -362,14 +433,5 @@ namespace GurmeDefteriBackEndAPI.Controllers
             pageCount += (totalUserCount % pageSize) != 0 ? 1 : 0;
             return pageCount;
         }
-
-
-
-
-
-
-
-
-
     }
 }

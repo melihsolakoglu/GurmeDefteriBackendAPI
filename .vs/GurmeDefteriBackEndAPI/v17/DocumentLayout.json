@@ -1,57 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\backendnet\\git\\gurmedefteribackendapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\backendnet\\git\\gurmedefteribackendapi\\models\\dto\\userapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\dto\\userapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\viewmodel\\foodtemp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\viewmodel\\foodtemp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\viewmodel\\fooditemwithimagebytes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\viewmodel\\fooditemwithimagebytes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\scoredfoods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\scoredfoods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\scoredfoods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\viewmodel\\foodtemp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\viewmodel\\foodtemp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\viewmodel\\fooditemwithimagebytes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\viewmodel\\fooditemwithimagebytes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\databasecontext\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\databasecontext\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\databasecontext\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\gurmedefteribackendapi\\models\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -62,50 +62,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FoodItemWithImageBytes.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
-              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
-              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "DocumentIndex": 1,
+              "Title": "UserAPI.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T19:39:29.19Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FoodTemp.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
-              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
-              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T19:37:56.916Z",
+              "WhenOpened": "2024-05-01T11:58:18.837Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Food.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\Food.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\Food.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\Food.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\Food.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\Food.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\Food.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAApAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T19:39:04.521Z",
               "EditorCaption": ""
@@ -114,47 +98,48 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAASAAAA",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAAAEABAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T19:38:44.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AdminService.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAAAKAAAAAJAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAACwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T20:51:45.423Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "ScoredFoods.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T12:27:09.269Z"
+              "WhenOpened": "2024-04-24T12:27:09.269Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAUwCwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -163,23 +148,49 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\User.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\User.cs",
+              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T12:27:11.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FoodTemp.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
+              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodTemp.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-23T19:37:56.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\appsettings.json",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\appsettings.json",
-              "RelativeToolTip": "GurmeDefteriBackEndAPI\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-24T12:36:20.937Z"
+              "Title": "FoodItemWithImageBytes.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
+              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\FoodItemWithImageBytes.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-23T19:39:29.19Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -189,9 +200,9 @@
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "Database.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\DatabaseContext\\Database.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\DatabaseContext\\Database.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\DatabaseContext\\Database.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\DatabaseContext\\Database.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\DatabaseContext\\Database.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\DatabaseContext\\Database.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -199,24 +210,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\User.cs",
-              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\User.cs",
-              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T12:27:11.75Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 11,
               "Title": "LoginUser.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -226,27 +224,13 @@
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "JwtSettings.cs",
-              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
-              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-24T12:27:05.821Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

@@ -139,7 +139,9 @@ namespace GurmeDefteriBackEndAPI.Services
             var update = Builders<Food>.Update
                 .Set(f => f.Name, foodTemp.Name)
                 .Set(f => f.Country, foodTemp.Country)
-                 .Set(f => f.Image, foodTemp.ImageBytes);
+                 .Set(f => f.Image, foodTemp.ImageBytes)
+                 //Category Yoktu
+                 .Set(f => f.Category, foodTemp.Category);
             _database.CollectionFood.UpdateOne(filter, update);
        
         }
