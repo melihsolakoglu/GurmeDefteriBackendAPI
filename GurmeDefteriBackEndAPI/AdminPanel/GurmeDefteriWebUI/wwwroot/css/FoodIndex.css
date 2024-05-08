@@ -1,0 +1,60 @@
+﻿body {
+    font-family: Arial, sans-serif;
+}
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.card {
+    min-width: 200px;
+    width: calc(33.333% - 20px);
+    height: calc(33.333% - 20px);
+}
+
+@@media (max-width: 992px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 500px) {
+    .card {
+        width: 100%;
+    }
+    .search-btn, #addFoodButton {
+        width: 10%;
+        font-size: 11px;
+
+    }
+}
+
+
+
+#updateFoodButton:hover {
+    background-color: #45a049; /* Koyu yeşil */
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.img {
+    width: 70%;
+    height: 70%;
+}
+
+
+
+.item {
+    flex: 1;
+    margin: 0;
+}
+

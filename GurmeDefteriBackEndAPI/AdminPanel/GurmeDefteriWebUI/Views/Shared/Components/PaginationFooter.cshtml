@@ -1,0 +1,116 @@
+﻿@using GurmeDefteriWebUI.Models.ViewModel.ComponentModel
+@model PageViewModel
+@{
+    int pageCount = Model.PageCount;
+    int pageNum= Model.PageNumber;
+    string rootLocation = Model.RootLocation;
+}
+<html>
+<head>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            background-color: #f8f9fa;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .paginationItem {
+            text-decoration: none;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .paginationItem:hover {
+                background-color: #007bff;
+                color: white;
+            }
+
+    </style>
+</head>
+<body>
+    <footer>
+        @if (pageCount < 2)
+            return;
+        <div class="pagination">
+            <div class="pagination-item">
+                @if (pageNum > 1)
+                {
+                    <a class="paginationItem" href=@rootLocation@(pageNum-1)>Önceki</a>
+                }
+            </div>
+
+            <div class="pagination-item">
+                @{
+                    int boxCount = 10;
+                    int endpage;
+                    int startPage;
+                    int distanceEnd = boxCount % 2 == 0 ? boxCount / 2 : (boxCount - 1) / 2;
+                    int distanceStart = boxCount % 2 == 0 ? (boxCount / 2) - 1 : (boxCount - 1) / 2;
+
+
+                    if (pageCount < boxCount)
+                    {
+                        startPage = 1;
+                        endpage = pageCount;
+                    }
+                    else if (pageNum <= 5)
+                    {
+                        startPage = 1;
+                        endpage = boxCount;
+                    }
+                    else
+                    {
+                        if (pageCount - pageNum < distanceEnd)
+                        {
+                            distanceEnd = pageCount - pageNum;
+                            distanceStart = (boxCount - 1) - distanceEnd;
+                        }
+
+                        startPage = pageNum - distanceStart;
+                        endpage = pageNum + distanceEnd;
+                    }
+                }
+
+                <div class="container">
+                    @for (int i = startPage; i <= endpage; i++)
+                    {
+                        <a class="paginationItem"
+                           href=@rootLocation@i
+                           style="@(i == pageNum ? "background-color:green; color:white;" : "")">@i</a>
+                    }
+
+                    @if (pageCount > 10)
+                    {
+                        <select class="paginationSelect" onchange="window.location.href=this.value">
+                            <option value=@rootLocation@(pageNum)>@pageNum</option>
+                            @for (int i = 1; i < pageCount; i += 10)
+                            {
+                                <option value=@rootLocation@(i)>@(i)</option>
+                            }
+                        </select>
+                    }
+                </div>
+            </div>
+
+            <div class="pagination-item">
+                @if (pageNum < pageCount)
+                {
+                    <a class="paginationItem" href=@rootLocation+@(pageNum+1)>Sonraki</a>
+                }
+            </div>
+    </footer>
+
+
+
+
+</body>
+</html>
+
+

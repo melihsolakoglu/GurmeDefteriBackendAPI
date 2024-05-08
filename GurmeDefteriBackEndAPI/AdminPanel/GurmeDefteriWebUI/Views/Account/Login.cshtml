@@ -1,0 +1,64 @@
+﻿
+@model LoginUser
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+</head>
+<body>
+    <div class="container py-15 h-10">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-4 text-center">
+
+
+                        <div class="mb-md-4 mt-md-3 pb-4">
+
+
+                            <h2 class="fw-bold mb-3 text-uppercase">Login</h2>
+                            <p class="text-white-50 mb-4">Please enter your login and password!</p>
+
+                            <form asp-action="Login" asp-controller="Account"  method="post" class="container">
+
+                                <div class="mb-3">
+
+                                    <label for="inputEmail" class="form-label"><b>Mail</b></label>
+                                    <input asp-for="@Model.Mail" class="form-control form-control-lg" id="inputEmail" placeholder="Enter your email" required>
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label for="inputPassword" class="form-label"><b>Password</b></label>
+                                    <input type="password" asp-for="@Model.Password" class="form-control form-control-lg" id="inputPassword" placeholder="Enter your password" required>
+                                </div>
+
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-4" type="submit">Login</button>
+                            </form>
+
+                            <p class="small mb-4"><a class="text-white-50" href="#!">Forgot password?</a></p>
+
+                        </div>
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <span>@error.ErrorMessage</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

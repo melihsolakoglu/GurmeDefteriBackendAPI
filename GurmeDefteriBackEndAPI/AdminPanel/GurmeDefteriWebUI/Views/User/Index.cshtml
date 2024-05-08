@@ -1,0 +1,107 @@
+﻿@using GurmeDefteriWebUI.Models.Dto
+@using GurmeDefteriWebUI.Models.ViewModel.ComponentModel
+@model SearchBarIndex
+@{
+    int pageCount = (int)ViewData["PageCount"];
+    int pageNum = ViewBag.PageNumber;
+    PageViewModel pageModel = new PageViewModel
+            {
+                PageCount = (int)ViewData["PageCount"],
+                PageNumber = ViewBag.PageNumber,
+                RootLocation = $"/User/Index?userName={ViewBag.SearchKey}&page="
+            };
+
+    RemoveObjectPopUpModel removeObjectPopUpModel = new RemoveObjectPopUpModel
+    {
+        aspController="User",
+        aspAction = "DeleteUser",
+        PropToReturn="mail"
+    
+    };
+}
+
+<html >
+<head>
+    <link rel="stylesheet" href="~/css/HeaderTransactionIndex.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        td{
+            text-align:center;
+        }
+        tr {
+            background-color: #ffffff; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="display: flex;">
+        <form class="container" asp-action="Index" asp-controller="User" method="post">
+            <div class="search-container">
+                <input asp-for="searcKey" type="text" id="searchBar" class="form-control" placeholder="Aramak İstediğiniz Kullanıcıyı Giriniz...">
+                <button type="submit" class="search-btn">Ara</button>
+            </div>
+            <input asp-for="page" type="hidden" value=1 />
+        </form>
+        <button class="addButton" onclick="window.location.href='@Url.Action("AddUser", "User")'" style="width: 30%;">Kullanıcı Ekle</button>
+    </div>
+
+    @if (((List<User>)ViewData["UserItems"]).Count <= 0)
+    {
+        <h1>Gösterilebilecek Kullanıcı Yok :/</h1>
+        return;
+    }
+    <table style="text-align: center;">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+        @foreach (var user in (List<User>)ViewData["UserItems"])
+        {
+            <tr>
+
+                <td>@user.Name</td>
+                <td>@user.Age</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>
+                    <a class="btn btn-transparent" style="color:mediumaquamarine;"
+                       asp-action="UpdateUser" asp-controller="User" asp-route-mail="@user.Email">
+                        <i class="fa-solid fa-cog" style="font-size:24px;color:mediumaquamarine;"></i>
+                    </a>
+                </td>
+                <td>  <button type="submit" class="btn btn-transparent" style="color:red ;" onclick="confirmDelete('@user.Email')"><i class=" fa-solid fa-trash style="font-size:24px;color:white;"></i></td>
+               
+            </tr>
+        }
+    </table>
+
+    <footer>
+        @Html.Partial("Components/PaginationFooter", pageModel)
+        @Html.Partial("Components/RemoveObjectPopUp", removeObjectPopUpModel)
+    </footer>
+
+
+
+</body>
+</html>

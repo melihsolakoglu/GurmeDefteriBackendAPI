@@ -1,0 +1,79 @@
+﻿@model SearchBarIndex
+@using GurmeDefteriWebUI.Models.Dto
+@using GurmeDefteriWebUI.Models.ViewModel.ComponentModel
+@{
+    PageViewModel pageModel = new PageViewModel
+            {
+                PageCount = (int)ViewData["PageCount"],
+                PageNumber = ViewBag.PageNumber,
+                RootLocation = $"/Food/Index?foodName={ViewBag.SearchKey}&page="
+    };
+    RemoveObjectPopUpModel removeObjectPopUpModel = new RemoveObjectPopUpModel
+            {
+                aspController = "Food",
+                aspAction = "DeleteFood",
+                PropToReturn = "name"
+            };
+}
+
+
+<html >
+<head>
+    <link rel="stylesheet" href="~/css/FoodIndex.css" />
+    <link rel="stylesheet" href="~/css/HeaderTransactionIndex.css" />
+    <title>Food Card Search</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <div class="container" style="display: flex;">
+        <form class="container" asp-action="Index" asp-controller="Food" method="post">
+            <div class="search-container">
+                <input asp-for="searcKey" type="text" id="searchBar" class="form-control" placeholder="Aramak İstediğiniz Yemeği Giriniz...">
+                <button type="submit" class="search-btn">Ara</button>
+            </div>
+            <input asp-for="page" type="hidden" value=1 />
+        </form>
+
+
+        
+        <button class="addButton" onclick="window.location.href='@Url.Action("AddFood", "Food")'" style="width: 30%;">Yemek Ekle</button>
+    </div>
+    <div class="content">
+    @if (((List<Food>) ViewData["FoodItems"]).Count <= 0){
+            <h1>Gösterilebilecek Yemek Yok :/</h1>
+            return;}
+
+    <div class="card-container">
+        @foreach (var foodItem in (List<Food>)ViewData["FoodItems"])
+        {       
+            <div class="card" data-name="@foodItem.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@foodItem.Name</h5>
+                    <h6 class="card-subtitle text-muted">@foodItem.Country  - @foodItem.Category</h6>
+                    <div class ="imgcontainer">
+                    <img src="@($"data:image/jpeg;base64,{foodItem.ImageBytes}")" class="card-img-top img" alt="Food Image">
+                        </div>
+                    <div class="btn-group">
+                        <a class="btn btn-success btn-sm" style=" width: 100px;" asp-action="UpdateFood" asp-controller="Food" asp-route-name=@foodItem.Name class="nav-link">Yemeği Güncelle</a>
+                        <button class="btn btn-danger btn-sm btn-delete" style="width: 100px;" onclick="confirmDelete('@foodItem.Name')">Yemeği Sil</button>
+                    </div>
+                </div>
+                <div >
+                   
+                </div>
+            </div>
+        }
+            </div>
+    </div>
+
+    <footer>
+        @Html.Partial("Components/PaginationFooter", pageModel)
+        @Html.Partial("Components/RemoveObjectPopUp", removeObjectPopUpModel)
+    </footer>
+
+
+</body>
+</html>

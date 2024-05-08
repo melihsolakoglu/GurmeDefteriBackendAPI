@@ -1,0 +1,56 @@
+﻿@using GurmeDefteriWebUI.Models.ViewModel.ComponentModel
+@model RemoveObjectPopUpModel
+<html>
+<head>
+
+</head>
+<body>
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-light">
+                    <h5 class="modal-title" id="exampleModalLabel">Silme İşlemi</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <p id="deleteConfirmationText"> Silmek istediğinizden emin misiniz?</p>
+                </div>
+                <form class="container" asp-action="@(Model.aspAction)" asp-controller="@(Model.aspController)" method="post" style="display: flex; justify-content: space-between;">
+                    <div class="item d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-secondary btn-block" aria-label="Close" data-bs-dismiss="modal">
+                            <i class="bi bi-x-lg"></i>  İptal
+                        </button>
+                    </div>
+                    <div class="item d-flex justify-content-center align-items-center">
+                        <input id="deleteInputForm" type="hidden" name="@(Model.PropToReturn)" value="" />
+                        <button type="submit" class="btn btn-danger btn-delete btn-block">
+                            <i class="bi bi-trash"></i>  Sil
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        document.getElementById('cancelButton').addEventListener('click', function (event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+        var foodMailToDelete;
+
+        function confirmDelete(deleteInput) {
+            var modal = $('#deleteConfirmationModal');
+            modal.find('#deleteConfirmationText').text(deleteInput + "\n Silmek istediğinizden emin misiniz?");
+            $("#deleteConfirmationModal").modal("show");
+            document.getElementById('deleteInputForm').value = deleteInput;
+        }
+    </script>
+</body>
+</html>

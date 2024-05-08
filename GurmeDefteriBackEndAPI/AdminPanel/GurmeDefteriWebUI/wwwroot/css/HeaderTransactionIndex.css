@@ -1,0 +1,66 @@
+﻿.search-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .search-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+
+.addButton {
+    width: 30%;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50; /* Yeşil renk */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    .addButton:hover {
+        background-color: #45a049; /* Koyu yeşil */
+    }
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #2196F3;
+    border-radius: 25px;
+    overflow: hidden;
+    background-color: #2196F3;
+}
+
+.form-control {
+    border: none;
+    padding: 10px;
+    width: calc(100% - 100px);
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+
+.search-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .search-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }

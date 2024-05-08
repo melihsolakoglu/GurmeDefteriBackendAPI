@@ -1,0 +1,159 @@
+﻿@using GurmeDefteriWebUI.Data
+@using GurmeDefteriWebUI.Models.Dto
+@model Food
+
+@Html.Partial("PopupPartial")
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Food</title>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .image-container {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            margin-top: 10px;
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-3">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h2 class="fw-bold mb-4 text-center">Add Food</h2>
+
+                        <form asp-action="AddFood" asp-controller="Food" method="post" enctype="multipart/form-data">
+
+
+                            <input asp-for="Id" type="hidden" value='1' />
+
+                            <div class="row mb-3 ">
+                                <div class="col-md-6">
+                                    <label for="customFile" class="form-label">Select Image:</label>
+                                    <input type="file" class="form-control" accept="image/*" id="customFile" onchange="previewImage(this)">
+                                    <input asp-for="ImageBytes" id="hiddenImage" type="hidden"  />
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                    <div class="image-container justify-content-center align-items-center" onclick="">
+                                        <img id="preview" class="preview-image" src="/Resources/img/addFood.png" alt="Preview Image">
+                                    </div></in
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3 ">
+                                <label for="foodName" class="form-label">Food Name:</label>
+                                <input asp-for="Name" type="text" class="form-control" id="foodName" placeholder="Enter food name">
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country:</label>
+                                <select asp-for="Country" class="form-select" id="country">
+                                    <option value="">Select a country</option>
+                                    @foreach (var country in CountryData.countries)
+                                    {
+                                        <option value="@country">@country</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category:</label>
+                                <select asp-for="Category" class="form-select" id="category">
+                                    <option value="">Select a country</option>
+                                    @foreach (var country in CategoryData.categories)
+                                    {
+                                        <option value="@country">@country</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Submit</button>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <span>@error.ErrorMessage</span>
+            }
+        </div>
+    }
+    else if (TempData["isPopupVisible"] != null && (bool)TempData["isPopupVisible"] == true)
+    {
+        <script>
+            window.onload = function () {
+                resetFields();
+                showSuccessPopup();
+            };
+
+
+        </script>
+        { ViewData["isPopupVisible"] = false; }
+    }
+
+
+
+
+    <script>
+          function previewImage(input) {
+            var preview = document.getElementById('preview');
+            var hiddenImage = document.getElementById('hiddenImage');
+            const file = input.files[0];
+            const fileType = file.type;
+
+            if (!fileType.startsWith('image/')) {
+                alert('Lütfen bir resim dosyası seçin.');
+                input.value = ''; 
+                return;
+            }
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.style.display = 'block';
+                    preview.src = e.target.result;
+                    var base64String = e.target.result.split(',')[1];
+                    hiddenImage.value = base64String;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function resetFields() {
+            document.getElementById('foodName').value = '';
+            document.getElementById('country').selectedIndex = 0;
+            var preview = document.getElementById('preview');
+            preview.src = '/Resources/img/addFood.png';
+        }
+        document.getElementById('preview').addEventListener('click', function () {
+            document.getElementById('customFile').click();
+        });
+
+    </script>
+
+</body>
+</html>
