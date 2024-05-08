@@ -1,0 +1,662 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\webfront\\gurmedefteriwebui\\gurmedefteriwebui\\views\\user\\adduser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\user\\adduser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\food\\addfood.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\food\\addfood.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\food\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\food\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\webfront\\gurmedefteriwebui\\gurmedefteriwebui\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\services\\foodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\foodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\webfront\\gurmedefteriwebui\\gurmedefteriwebui\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\webfront\\gurmedefteriwebui\\gurmedefteriwebui\\helpers\\apiconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\helpers\\apiconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\services\\sessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\sessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\webfront\\gurmedefteriwebui\\gurmedefteriwebui\\services\\usermodelstatepropcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\usermodelstatepropcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|c:\\users\\alisa\\onedrive\\masa\u00FCst\u00FC\\d\u00FCzenli\\yaz\u0131l\u0131m\\bitirme\\webfront\\gurmedefteriwebui\\gurmedefteriwebui\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\shared\\components\\popuppartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\shared\\components\\popuppartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\shared\\components\\paginationfooter.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\shared\\components\\paginationfooter.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\shared\\components\\removeobjectpopup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\shared\\components\\removeobjectpopup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\viewmodel\\componentmodel\\removeobjectpopupmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\viewmodel\\componentmodel\\removeobjectpopupmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\viewmodel\\componentmodel\\searchbarindex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\viewmodel\\componentmodel\\searchbarindex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\user\\updateuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\user\\updateuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\viewmodel\\componentmodel\\pageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\viewmodel\\componentmodel\\pageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\views\\food\\updatefood.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\views\\food\\updatefood.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\dto\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\dto\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\services\\foodmodelstatepropcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\foodmodelstatepropcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\services\\interfaces\\iusermodelstatepropcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\services\\interfaces\\iusermodelstatepropcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\wwwroot\\css\\foodindex.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\wwwroot\\css\\foodindex.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\dto\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\dto\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\viewmodel\\foodtemp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\viewmodel\\foodtemp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\data\\categorydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\data\\categorydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\data\\countrydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\data\\countrydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\enums\\enumhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\enums\\enumhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\enums\\foodcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\enums\\foodcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\gurmedefteriwebui\\models\\viewmodel\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D961DB24-3765-41CE-ADBE-153DC82E9EE6}|GurmeDefteriWebUI\\GurmeDefteriWebUI.csproj|solutionrelative:gurmedefteriwebui\\models\\viewmodel\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FoodService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\FoodService.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\FoodService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\FoodService.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\FoodService.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAABYAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-23T20:30:40.018Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\User\\Index.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\User\\Index.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\User\\Index.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\User\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T06:54:03.596Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "RemoveObjectPopUpModel.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\RemoveObjectPopUpModel.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\RemoveObjectPopUpModel.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\RemoveObjectPopUpModel.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\RemoveObjectPopUpModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-05T15:46:21.59Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddUser.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\User\\AddUser.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\User\\AddUser.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\User\\AddUser.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\User\\AddUser.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-08T22:57:10.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApiConstants.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Helpers\\ApiConstants.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Helpers\\ApiConstants.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Helpers\\ApiConstants.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Helpers\\ApiConstants.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T22:01:48.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\UserService.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\UserService.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T21:59:20.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddFood.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Food\\AddFood.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Food\\AddFood.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Food\\AddFood.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Food\\AddFood.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-01T13:39:06.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Food\\Index.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Food\\Index.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Food\\Index.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Food\\Index.cshtml",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAEQAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T06:50:50.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SessionService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\SessionService.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\SessionService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\SessionService.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\SessionService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T20:27:00.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\AuthService.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\AuthService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T22:04:25.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserModelStatePropCheck.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\UserModelStatePropCheck.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\UserModelStatePropCheck.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\UserModelStatePropCheck.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\UserModelStatePropCheck.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T22:04:09.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RoleService.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\RoleService.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\RoleService.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\RoleService.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\RoleService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T18:09:44.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PaginationFooter.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Components\\PaginationFooter.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Shared\\Components\\PaginationFooter.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Components\\PaginationFooter.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Shared\\Components\\PaginationFooter.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-28T10:54:15.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PopupPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Components\\PopupPartial.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Shared\\Components\\PopupPartial.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Components\\PopupPartial.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Shared\\Components\\PopupPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-28T10:54:38.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\_ViewStart.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T16:02:09.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\_ViewImports.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T16:02:07.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T06:51:58.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-25T09:29:14.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T06:53:02.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RemoveObjectPopUp.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Components\\RemoveObjectPopUp.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Shared\\Components\\RemoveObjectPopUp.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Shared\\Components\\RemoveObjectPopUp.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Shared\\Components\\RemoveObjectPopUp.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-05T15:43:11.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "SearchBarIndex.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\SearchBarIndex.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\SearchBarIndex.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\SearchBarIndex.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\SearchBarIndex.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T13:30:08.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UpdateUser.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\User\\UpdateUser.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\User\\UpdateUser.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\User\\UpdateUser.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\User\\UpdateUser.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAADAAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-01T22:22:02Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PageViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\PageViewModel.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\PageViewModel.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\PageViewModel.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\ViewModel\\ComponentModel\\PageViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T11:01:07.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UpdateFood.cshtml",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Food\\UpdateFood.cshtml",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Views\\Food\\UpdateFood.cshtml",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Views\\Food\\UpdateFood.cshtml",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Views\\Food\\UpdateFood.cshtml",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAHIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-24T19:50:25.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\Dto\\User.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\Dto\\User.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\Dto\\User.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\Dto\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T10:41:04.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FoodModelStatePropCheck.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\FoodModelStatePropCheck.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\FoodModelStatePropCheck.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\FoodModelStatePropCheck.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\FoodModelStatePropCheck.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T21:44:45.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IUserModelStatePropCheck.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\Interfaces\\IUserModelStatePropCheck.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Services\\Interfaces\\IUserModelStatePropCheck.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Services\\Interfaces\\IUserModelStatePropCheck.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Services\\Interfaces\\IUserModelStatePropCheck.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T13:58:08.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Program.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Program.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Program.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Program.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAuwCYAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T08:03:16.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAD4vz4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T07:46:23.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "FoodIndex.css",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\css\\FoodIndex.css",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\wwwroot\\css\\FoodIndex.css",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\css\\FoodIndex.css",
+              "RelativeToolTip": "GurmeDefteriWebUI\\wwwroot\\css\\FoodIndex.css",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-26T07:44:26.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Food.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\Dto\\Food.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\Dto\\Food.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\Dto\\Food.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\Dto\\Food.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T11:43:11.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "FoodTemp.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\FoodTemp.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\ViewModel\\FoodTemp.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\FoodTemp.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\ViewModel\\FoodTemp.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-23T22:57:22.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "CountryData.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Data\\CountryData.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Data\\CountryData.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Data\\CountryData.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Data\\CountryData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T08:45:18.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "CategoryData.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Data\\CategoryData.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Data\\CategoryData.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Data\\CategoryData.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Data\\CategoryData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T09:02:24.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "EnumHelper.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Enums\\EnumHelper.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Enums\\EnumHelper.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Enums\\EnumHelper.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Enums\\EnumHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T08:38:48.313Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "FoodCategories.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Enums\\FoodCategories.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Enums\\FoodCategories.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Enums\\FoodCategories.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Enums\\FoodCategories.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T08:25:15.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\appsettings.json",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\appsettings.json",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\appsettings.json",
+              "RelativeToolTip": "GurmeDefteriWebUI\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-26T08:03:17.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "GurmeDefteriWebUI\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-26T07:44:28.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "LoginUser.cs",
+              "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\LoginUser.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriWebUI\\Models\\ViewModel\\LoginUser.cs",
+              "ToolTip": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\Models\\ViewModel\\LoginUser.cs",
+              "RelativeToolTip": "GurmeDefteriWebUI\\Models\\ViewModel\\LoginUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T08:46:03.082Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -14,7 +14,7 @@ namespace GurmeDefteriBackEndAPI.DatabaseContext
 
         public Database()
         {
-            string connectionString = "mongodb://gurme:12345p@20.81.205.102:27017";
+            string connectionString = "mongodb://gurme:12345p@34.125.160.14:27017";
             var client = new MongoClient(connectionString);
             _database = client.GetDatabase("gurmedefteri");
             _collectionPerson = _database.GetCollection<User>("users");
