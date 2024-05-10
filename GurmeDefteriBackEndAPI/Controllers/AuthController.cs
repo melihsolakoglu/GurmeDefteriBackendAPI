@@ -19,9 +19,9 @@ namespace GurmeDefteriBackEndAPI.Controllers
         private readonly AuthService _authService;
         private readonly JwtSettings _jwtSettings;
 
-        public AuthController(IOptions<JwtSettings> jwtSettings)
+        public AuthController(AuthService authService,IOptions<JwtSettings> jwtSettings)
         {
-            _authService = new AuthService();
+            _authService = authService;
             _jwtSettings = jwtSettings.Value;
         }
         [HttpPost]
@@ -45,13 +45,14 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             var claimArray = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Name),
+                new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
             };
 
             var token = new JwtSecurityToken(_jwtSettings.Issuer,
                 _jwtSettings.Audience,
                 claimArray,
+                expires: DateTime.UtcNow.AddYears(1),
                 signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

@@ -6,11 +6,14 @@ namespace GurmeDefteriBackEndAPI.Services
 {
     public class AuthService
     {
-        private Database database;
+        private Database _database;
+        public AuthService(Database database) 
+        {
+            _database = database;
+        }
         public bool ValidateUser(LoginUser user)
         {
-            database = new();
-            var _users = database.CollectionPerson;
+            var _users = _database.CollectionPerson;
 
             var results = _users.Find(x => x.Email == user.Email && x.Password == user.Password).ToList();
 
@@ -18,8 +21,8 @@ namespace GurmeDefteriBackEndAPI.Services
         }
         public User FindUser(string email, string password)
         {
-            database = new();
-            var _users = database.CollectionPerson;
+            
+            var _users = _database.CollectionPerson;
             return _users.Find(x => x.Email == email && x.Password == password).FirstOrDefault();
         }
     }

@@ -12,13 +12,14 @@ namespace GurmeDefteriBackEndAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class AdminController : ControllerBase
     {
         private readonly AdminService _adminService;
 
-        public AdminController()
+        public AdminController(AdminService adminService)
         {
-            _adminService = new AdminService();
+            _adminService = adminService;
         }
 
 
