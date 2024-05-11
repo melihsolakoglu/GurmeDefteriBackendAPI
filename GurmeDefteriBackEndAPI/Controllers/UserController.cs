@@ -15,12 +15,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
     {
         private readonly UserService _userService;
 
-        public UserController(UserService userService) 
+        public UserController()
         {
-            _userService = userService;
+            _userService = new UserService();
         }
-        
-  
+
+
         [HttpGet("GetAllFoods")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetAllFoodsAsync()
         {

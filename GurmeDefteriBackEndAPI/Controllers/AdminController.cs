@@ -17,9 +17,9 @@ namespace GurmeDefteriBackEndAPI.Controllers
     {
         private readonly AdminService _adminService;
 
-        public AdminController(AdminService adminService)
+        public AdminController()
         {
-            _adminService = adminService;
+            _adminService = new AdminService();
         }
 
 

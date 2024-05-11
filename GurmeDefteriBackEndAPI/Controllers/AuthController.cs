@@ -19,9 +19,9 @@ namespace GurmeDefteriBackEndAPI.Controllers
         private readonly AuthService _authService;
         private readonly JwtSettings _jwtSettings;
 
-        public AuthController(AuthService authService,IOptions<JwtSettings> jwtSettings)
+        public AuthController(IOptions<JwtSettings> jwtSettings)
         {
-            _authService = authService;
+            _authService = new AuthService();
             _jwtSettings = jwtSettings.Value;
         }
         [HttpPost]

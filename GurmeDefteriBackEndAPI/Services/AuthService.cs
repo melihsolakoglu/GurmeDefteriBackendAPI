@@ -7,9 +7,9 @@ namespace GurmeDefteriBackEndAPI.Services
     public class AuthService
     {
         private Database _database;
-        public AuthService(Database database) 
+        public AuthService()
         {
-            _database = database;
+            _database = new Database();
         }
         public bool ValidateUser(LoginUser user)
         {

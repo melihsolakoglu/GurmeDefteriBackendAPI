@@ -22,11 +22,10 @@ namespace GurmeDefteriBackEndAPI.Services
     {
         private readonly Database _database;
 
-        public AdminService(Database database)
+        public AdminService()
         {
-            _database = database;
+            _database = new Database();
         }
-
         public List<User> GetAllUsers()
         {
             var _users = _database.CollectionPerson;

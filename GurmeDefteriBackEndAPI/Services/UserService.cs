@@ -11,9 +11,9 @@ namespace GurmeDefteriBackEndAPI.Services
     {
         private readonly Database _database;
 
-        public UserService(Database database)
+        public UserService()
         {
-            _database = database;
+            _database = new Database();
         }
         public User GetUserById(string userId)
         {
