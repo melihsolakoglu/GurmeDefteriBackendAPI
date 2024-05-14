@@ -146,7 +146,6 @@ namespace GurmeDefteriBackEndAPI.Services
                 .Set(f => f.Name, foodTemp.Name)
                 .Set(f => f.Country, foodTemp.Country)
                  .Set(f => f.Image, foodTemp.ImageBytes)
-                 //Category Yoktu
                  .Set(f => f.Category, foodTemp.Category);
             _database.CollectionFood.UpdateOne(filter, update);
        
@@ -179,6 +178,80 @@ namespace GurmeDefteriBackEndAPI.Services
             var userCount = _database.CollectionPerson.CountDocuments(filter);
             int documentCountInt = Convert.ToInt32(userCount);
             return documentCountInt;
+        }
+        public void AddScoredFoods(ScoredFoods scoredFoods)
+        {
+            _database.CollectionScoredFoods.InsertOne(scoredFoods);
+        }
+        public void UpdateScoredFoods(string id, int score)
+        {
+            if (!ObjectId.TryParse(id, out var objectId))
+            {
+                throw new ArgumentException("Invalid ObjectId format", nameof(id));
+            }
+
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.Id, objectId);
+            var update = Builders<ScoredFoods>.Update.Set(s => s.Score, score);
+
+            _database.CollectionScoredFoods.UpdateOne(filter, update);
+        }
+
+        public void DeleteScoredFoods(string id)
+        {
+            if (!ObjectId.TryParse(id, out var objectId))
+            {
+                throw new ArgumentException("Invalid ObjectId format", nameof(id));
+            }
+
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.Id, objectId);
+            _database.CollectionScoredFoods.DeleteOne(filter);
+        }
+        public List<ScoredFoods> GetScoredFoodsByUserId(string userId)
+        {
+            var objectId = new ObjectId(userId);
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
+
+            return _database.CollectionScoredFoods.Find(filter).ToList();
+        }
+
+        public List<ScoredFoods> GetScoredFoodsByFoodId(string foodId)
+        {
+            var objectId = new ObjectId(foodId);
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.FoodId, foodId);
+
+            return _database.CollectionScoredFoods.Find(filter).ToList();
+        }
+        //Geliştirilme aşamasında
+        public List<(string userEmail, string foodName, int score)> ShowAdminScoredFoods()
+        {
+            try
+            {
+                var scoredFoods = _database.CollectionScoredFoods.Find(_ => true).ToList();
+                var result = new List<(string userEmail, string foodName, int score)>();
+
+                foreach (var scoredFood in scoredFoods)
+                {
+                    var userId = ObjectId.Parse(scoredFood.UserId);
+                    var foodId = ObjectId.Parse(scoredFood.FoodId);
+
+                    var user = _database.CollectionPerson.Find(u => u.Id == userId).FirstOrDefault();
+                    var food = _database.CollectionFood.Find(f => f.Id == foodId).FirstOrDefault();
+
+                    if (user != null && food != null)
+                    {
+                        result.Add((user.Email, food.Name, scoredFood.Score));
+                    }
+                }
+
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Error in ShowAdminScoredFoods: {ex.Message}");
+                throw; // Rethrow the exception or handle it as needed
+            }
         }
 
 

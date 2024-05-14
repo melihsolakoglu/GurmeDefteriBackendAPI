@@ -455,5 +455,89 @@ namespace GurmeDefteriBackEndAPI.Controllers
             pageCount += (totalUserCount % pageSize) != 0 ? 1 : 0;
             return pageCount;
         }
+
+        [HttpPost("AddScoredFoods")]
+        public IActionResult AddScoredFoods(ScoredFoods scoredFoods)
+        {
+            try
+            {
+                _adminService.AddScoredFoods(scoredFoods);
+                return Ok("Scored foods added successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("UpdateScoredFoods")]
+        public IActionResult UpdateScoredFoods(string id, int score)
+        {
+            try
+            {
+                _adminService.UpdateScoredFoods(id, score);
+                return Ok("Score updated successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("DeleteScoredFoods")]
+        public IActionResult DeleteScoredFoods(string id)
+        {
+            try
+            {
+                _adminService.DeleteScoredFoods(id);
+                return Ok("Scored food deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetScoredFoodsByUserId")]
+        public IActionResult GetScoredFoodsByUserId(string userId)
+        {
+            try
+            {
+                var scoredFoods = _adminService.GetScoredFoodsByUserId(userId);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetScoredFoodsByFoodId")]
+        public IActionResult GetScoredFoodsByFoodId(string foodId)
+        {
+            try
+            {
+                var scoredFoods = _adminService.GetScoredFoodsByFoodId(foodId);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("ShowAdminScoredFoods")]
+        public IActionResult ShowAdminScoredFoods()
+        {
+            try
+            {
+                var scoredFoods = _adminService.ShowAdminScoredFoods();
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

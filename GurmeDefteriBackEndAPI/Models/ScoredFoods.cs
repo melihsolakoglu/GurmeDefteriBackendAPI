@@ -11,10 +11,10 @@ namespace GurmeDefteriBackEndAPI.Models
         public ObjectId Id { get; set; }
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId UserId { get; set; }
+        public string UserId { get; set; }
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId FoodId { get; set; }
+        public string FoodId { get; set; }
 
         public int Score { get; set; }
     }
