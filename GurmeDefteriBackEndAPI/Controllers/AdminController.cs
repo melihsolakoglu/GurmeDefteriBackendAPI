@@ -538,6 +538,83 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("SearchScoredFoodsByUserEmail")]
+        public IActionResult SearchScoredFoodsByUserEmail(string userEmail)
+        {
+            try
+            {
+                var scoredFoods = _adminService.SearchScoredFoodsByUserEmail(userEmail);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("SearchScoredFoodsByFoodName")]
+        public IActionResult SearchScoredFoodsByFoodName(string foodName)
+        {
+            try
+            {
+                var scoredFoods = _adminService.SearchScoredFoodsByFoodName(foodName);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("SearchScoredFoods")]
+        public IActionResult SearchScoredFoods(string searchTerm)
+        {
+            try
+            {
+                var scoredFoods = _adminService.SearchScoredFoods(searchTerm);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetAllUserNames")]
+        public IActionResult GetAllUserNames()
+        {
+            try
+            {
+                var userNames = _adminService.GetAllUserNames();
+                return Ok(userNames);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetAllFoodsNames")]
+        public IActionResult GetUserNames()
+        {
+            try
+            {
+                var foodNames = _adminService.GetAllFoodNames();
+                return Ok(foodNames);
+            }
+            catch (Exception ex)
+            { return BadRequest(ex.Message); }
+        }
+        [HttpPost("AddAdminScoredFoods")]
+        public IActionResult AddScoredFoods([FromBody] AddScoredFoodsRequest request)
+        {
+            try
+            {
+                _adminService.AddAdminScoredFoods(request.UserEmail, request.FoodName, request.Score);
+                return Ok("Scored food added successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

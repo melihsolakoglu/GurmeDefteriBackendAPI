@@ -11,6 +11,14 @@
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\viewmodel\\addscoredfoodsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\viewmodel\\addscoredfoodsrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\models\\dto\\userapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\models\\dto\\userapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|c:\\users\\melih\\documents\\github\\gurmedefteribackendapi\\gurmedefteribackendapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F468347C-4DD9-462E-A992-3D6B34CA7D06}|GurmeDefteriBackEndAPI\\GurmeDefteriBackEndAPI.csproj|solutionrelative:gurmedefteribackendapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -61,7 +69,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -77,7 +85,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserAPI.cs",
+              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\Dto\\UserAPI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T12:46:16.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AddScoredFoodsRequest.cs",
+              "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\AddScoredFoodsRequest.cs",
+              "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\AddScoredFoodsRequest.cs",
+              "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ViewModel\\AddScoredFoodsRequest.cs",
+              "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\AddScoredFoodsRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T12:45:53.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Services\\UserService.cs",
@@ -95,7 +129,7 @@
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
               "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAPsBAAAAAAAAAAAiwBkCAAAuAAAA",
+              "ViewState": "AQIAACECAAAAAAAAAAAYwGACAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T19:38:44.906Z",
               "EditorCaption": ""
@@ -108,13 +142,14 @@
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
               "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
-              "ViewState": "AQIAANoAAAAAAAAAAAAAAOoAAABDAAAA",
+              "ViewState": "AQIAAIIBAAAAAAAAAAAswJsBAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T20:51:45.423Z"
+              "WhenOpened": "2024-04-23T20:51:45.423Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ScoredFoods.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
@@ -126,7 +161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Services\\AuthService.cs",
@@ -138,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Controllers\\AuthController.cs",
@@ -150,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\appsettings.Development.json",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\appsettings.Development.json",
@@ -162,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Properties\\launchSettings.json",
@@ -174,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "JwtSettings.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\JwtSettings.cs",
@@ -186,7 +221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "LoginUser.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Models\\LoginUser.cs",
@@ -198,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Program.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Program.cs",
@@ -210,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "GurmeDefteriBackEndAPI.AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\obj\\Debug\\net8.0\\GurmeDefteriBackEndAPI.AssemblyInfo.cs",
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\obj\\Debug\\net8.0\\GurmeDefteriBackEndAPI.AssemblyInfo.cs",
@@ -222,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "GurmeDefteriBackEndAPI.RazorAssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\obj\\Debug\\net8.0\\GurmeDefteriBackEndAPI.RazorAssemblyInfo.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\alisa\\OneDrive\\Masa\u00FCst\u00FC\\D\u00FCzenli\\Yaz\u0131l\u0131m\\Bitirme\\BackendNet\\git\\GurmeDefteriBackEndAPI\\obj\\Debug\\net8.0\\GurmeDefteriBackEndAPI.RazorAssemblyInfo.cs",

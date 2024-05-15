@@ -253,6 +253,172 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw; // Rethrow the exception or handle it as needed
             }
         }
+        public List<AdminShowScoredFood> SearchScoredFoodsByUserEmail(string userEmail)
+        {
+            try
+            {
+                var user = _database.CollectionPerson.Find(u => u.Email == userEmail).FirstOrDefault();
+                if (user == null)
+                {
+                    return new List<AdminShowScoredFood>(); // Kullanıcı bulunamazsa boş liste döndür
+                }
+
+                var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString()).ToList();
+                var result = new List<AdminShowScoredFood>();
+
+                foreach (var scoredFood in scoredFoods)
+                {
+                    var food = _database.CollectionFood.Find(f => f.Id == ObjectId.Parse(scoredFood.FoodId)).FirstOrDefault();
+                    if (food != null)
+                    {
+                        result.Add(new AdminShowScoredFood
+                        {
+                            ScoredFoodID = scoredFood.FoodId.ToString(),
+                            Email = user.Email,
+                            Foodname = food.Name,
+                            Score = scoredFood.Score
+                        });
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SearchScoredFoodsByUserEmail: {ex.Message}");
+                throw;
+            }
+        }
+
+        public List<AdminShowScoredFood> SearchScoredFoodsByFoodName(string foodName)
+        {
+            try
+            {
+                var food = _database.CollectionFood.Find(f => f.Name == foodName).FirstOrDefault();
+                if (food == null)
+                {
+                    return new List<AdminShowScoredFood>(); // Yiyecek bulunamazsa boş liste döndür
+                }
+
+                var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.FoodId == food.Id.ToString()).ToList();
+                var result = new List<AdminShowScoredFood>();
+
+                foreach (var scoredFood in scoredFoods)
+                {
+                    var user = _database.CollectionPerson.Find(u => u.Id == ObjectId.Parse(scoredFood.UserId)).FirstOrDefault();
+                    if (user != null)
+                    {
+                        result.Add(new AdminShowScoredFood
+                        {
+                            ScoredFoodID = scoredFood.FoodId.ToString(),
+                            Email = user.Email,
+                            Foodname = food.Name,
+                            Score = scoredFood.Score
+                        });
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SearchScoredFoodsByFoodName: {ex.Message}");
+                throw;
+            }
+        }
+        public List<AdminShowScoredFood> SearchScoredFoods(string searchTerm)
+        {
+            try
+            {
+                var user = _database.CollectionPerson.Find(u => u.Email == searchTerm).FirstOrDefault();
+                var food = _database.CollectionFood.Find(f => f.Name == searchTerm).FirstOrDefault();
+
+                if (user == null && food == null)
+                {
+                    return new List<AdminShowScoredFood>(); // Kullanıcı ve yiyecek bulunamazsa boş liste döndür
+                }
+
+                var result = new List<AdminShowScoredFood>();
+
+                if (user != null)
+                {
+                    var userScoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString()).ToList();
+                    foreach (var scoredFood in userScoredFoods)
+                    {
+                        var scoredFoodFood = _database.CollectionFood.Find(f => f.Id == ObjectId.Parse(scoredFood.FoodId)).FirstOrDefault();
+                        if (scoredFoodFood != null)
+                        {
+                            result.Add(new AdminShowScoredFood
+                            {
+                                ScoredFoodID = scoredFood.FoodId.ToString(),
+                                Email = user.Email,
+                                Foodname = scoredFoodFood.Name,
+                                Score = scoredFood.Score
+                            });
+                        }
+                    }
+                }
+
+                if (food != null)
+                {
+                    var foodScoredFoods = _database.CollectionScoredFoods.Find(sf => sf.FoodId == food.Id.ToString()).ToList();
+                    foreach (var scoredFood in foodScoredFoods)
+                    {
+                        var scoredFoodUser = _database.CollectionPerson.Find(u => u.Id == ObjectId.Parse(scoredFood.UserId)).FirstOrDefault();
+                        if (scoredFoodUser != null)
+                        {
+                            result.Add(new AdminShowScoredFood
+                            {
+                                ScoredFoodID = scoredFood.FoodId.ToString(),
+                                Email = scoredFoodUser.Email,
+                                Foodname = food.Name,
+                                Score = scoredFood.Score
+                            });
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SearchScoredFoods: {ex.Message}");
+                throw;
+            }
+        }
+        public List<string> GetAllUserNames()
+        {
+            var users = _database.CollectionPerson;
+            var userNames = users.Find(user => true).ToList().Select(user => user.Name).ToList();
+            return userNames;
+        }
+        public List<string> GetAllFoodNames()
+        {
+            var foods = _database.CollectionFood;
+            var foodNames = foods.Find(food => true).ToList().Select(food => food.Name).ToList();
+            return foodNames;
+        }
+        public void AddAdminScoredFoods(string userEmail, string foodName, int score)
+        {
+            var user = _database.CollectionPerson.Find(u => u.Email == userEmail).FirstOrDefault();
+            var food = _database.CollectionFood.Find(f => f.Name == foodName).FirstOrDefault();
+
+            if (user != null && food != null)
+            {
+                var scoredFoods = new ScoredFoods
+                {
+                    UserId = user.Id.ToString(),
+                    FoodId = food.Id.ToString(),
+                    Score = score
+                };
+
+                _database.CollectionScoredFoods.InsertOne(scoredFoods);
+            }
+            else
+            {
+                throw new ArgumentException("User or food not found");
+            }
+        }
 
 
 
