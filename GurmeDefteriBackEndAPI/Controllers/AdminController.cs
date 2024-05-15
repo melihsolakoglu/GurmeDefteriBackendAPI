@@ -455,6 +455,25 @@ namespace GurmeDefteriBackEndAPI.Controllers
             pageCount += (totalUserCount % pageSize) != 0 ? 1 : 0;
             return pageCount;
         }
+        [HttpGet("GetPageCountScoredFood")]
+        public int GetPageCountScoredFood(int pageSize = 30) 
+        {
+            int totalScoredFoodCount = _adminService.GetScoredFoodCount();
+
+            int pageCount=totalScoredFoodCount / pageSize;
+            pageCount += (totalScoredFoodCount % pageSize) != 0 ? 1 : 0;
+            return pageCount;
+        }
+        [HttpGet("GetPageCountScoredFoodsByName")]
+        public int GetPageCountScoredFoodsByName(int pageSize = 30, string name = "")
+        {
+            int totalUserCount = _adminService.GetScoredFoodCountByName(name);
+
+            int pageCount = totalUserCount / pageSize;
+            pageCount += (totalUserCount % pageSize) != 0 ? 1 : 0;
+            return pageCount;
+        }
+
 
         [HttpPost("AddScoredFoods")]
         public IActionResult AddScoredFoods(ScoredFoods scoredFoods)
@@ -526,11 +545,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
         [HttpGet("ShowAdminScoredFoods")]
-        public IActionResult ShowAdminScoredFoods()
+        public IActionResult ShowAdminScoredFoods(int pageNumber = 1, int pageSize = 30)
         {
             try
             {
-                var scoredFoods = _adminService.ShowAdminScoredFoods();
+                var scoredFoods = _adminService.ShowAdminScoredFoods(pageNumber, pageSize);
                 return Ok(scoredFoods);
             }
             catch (Exception ex)
@@ -539,11 +558,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
         [HttpGet("SearchScoredFoodsByUserEmail")]
-        public IActionResult SearchScoredFoodsByUserEmail(string userEmail)
+        public IActionResult SearchScoredFoodsByUserEmail(string userEmail, int pageNumber = 1, int pageSize = 30)
         {
             try
             {
-                var scoredFoods = _adminService.SearchScoredFoodsByUserEmail(userEmail);
+                var scoredFoods = _adminService.SearchScoredFoodsByUserEmail(userEmail, pageNumber, pageSize);
                 return Ok(scoredFoods);
             }
             catch (Exception ex)
@@ -553,11 +572,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
         }
 
         [HttpGet("SearchScoredFoodsByFoodName")]
-        public IActionResult SearchScoredFoodsByFoodName(string foodName)
+        public IActionResult SearchScoredFoodsByFoodName(string foodName, int pageNumber = 1, int pageSize = 30)
         {
             try
             {
-                var scoredFoods = _adminService.SearchScoredFoodsByFoodName(foodName);
+                var scoredFoods = _adminService.SearchScoredFoodsByFoodName(foodName, pageNumber, pageSize);
                 return Ok(scoredFoods);
             }
             catch (Exception ex)
@@ -566,11 +585,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
         [HttpGet("SearchScoredFoods")]
-        public IActionResult SearchScoredFoods(string searchTerm)
+        public IActionResult SearchScoredFoods(string searchTerm, int pageNumber = 1, int pageSize = 30)
         {
             try
             {
-                var scoredFoods = _adminService.SearchScoredFoods(searchTerm);
+                var scoredFoods = _adminService.SearchScoredFoods(searchTerm, pageNumber, pageSize);
                 return Ok(scoredFoods);
             }
             catch (Exception ex)

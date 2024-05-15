@@ -55,6 +55,21 @@ namespace GurmeDefteriBackEndAPI.Services
             int documentCountInt = Convert.ToInt32(foodCount);
             return documentCountInt;
         }
+        public int GetScoredFoodCount()
+        {
+            var scoredFoodCount = _database.CollectionScoredFoods.CountDocuments(new BsonDocument());
+            int documentCountInt = Convert.ToInt32(scoredFoodCount);
+            return documentCountInt;
+        }
+        public int GetScoredFoodCountByName(string name)
+        {
+            FilterDefinition<ScoredFoods> filter = Builders<ScoredFoods>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
+
+            var foodCount = _database.CollectionScoredFoods.CountDocuments(filter);
+            int documentCountInt = Convert.ToInt32(foodCount);
+            return documentCountInt;
+        }
+
 
         public int GetFoodCountByName(string name)
         {
@@ -222,12 +237,15 @@ namespace GurmeDefteriBackEndAPI.Services
             return _database.CollectionScoredFoods.Find(filter).ToList();
         }
         //Geliştirilme aşamasında
-        public List<(string userEmail, string foodName, int score)> ShowAdminScoredFoods()
+        public List<AdminShowScoredFood> ShowAdminScoredFoods(int pageNumber, int pageSize)
         {
             try
             {
-                var scoredFoods = _database.CollectionScoredFoods.Find(_ => true).ToList();
-                var result = new List<(string userEmail, string foodName, int score)>();
+                var scoredFoods = _database.CollectionScoredFoods.Find(_ => true)
+                                     .Skip((pageNumber - 1) * pageSize)
+                                     .Limit(pageSize)
+                                     .ToList();
+                var result = new List<AdminShowScoredFood>();
 
                 foreach (var scoredFood in scoredFoods)
                 {
@@ -239,31 +257,38 @@ namespace GurmeDefteriBackEndAPI.Services
 
                     if (user != null && food != null)
                     {
-                        result.Add((user.Email, food.Name, scoredFood.Score));
+                        result.Add(new AdminShowScoredFood
+                        {
+                            ScoredFoodID = scoredFood.FoodId.ToString(),
+                            Email = user.Email,
+                            Foodname = food.Name,
+                            Score = scoredFood.Score
+                        });
                     }
                 }
 
                 return result;
             }
-
             catch (Exception ex)
             {
-                // Log the exception for debugging purposes
                 Console.WriteLine($"Error in ShowAdminScoredFoods: {ex.Message}");
-                throw; // Rethrow the exception or handle it as needed
+                throw;
             }
         }
-        public List<AdminShowScoredFood> SearchScoredFoodsByUserEmail(string userEmail)
+        public List<AdminShowScoredFood> SearchScoredFoodsByUserEmail(string userEmail, int pageNumber, int pageSize)
         {
             try
             {
                 var user = _database.CollectionPerson.Find(u => u.Email == userEmail).FirstOrDefault();
                 if (user == null)
                 {
-                    return new List<AdminShowScoredFood>(); // Kullanıcı bulunamazsa boş liste döndür
+                    return new List<AdminShowScoredFood>(); // Return an empty list if user is not found
                 }
 
-                var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString()).ToList();
+                var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString())
+                                     .Skip((pageNumber - 1) * pageSize)
+                                     .Limit(pageSize)
+                                     .ToList();
                 var result = new List<AdminShowScoredFood>();
 
                 foreach (var scoredFood in scoredFoods)
@@ -290,7 +315,7 @@ namespace GurmeDefteriBackEndAPI.Services
             }
         }
 
-        public List<AdminShowScoredFood> SearchScoredFoodsByFoodName(string foodName)
+        public List<AdminShowScoredFood> SearchScoredFoodsByFoodName(string foodName, int pageNumber, int pageSize)
         {
             try
             {
@@ -300,7 +325,10 @@ namespace GurmeDefteriBackEndAPI.Services
                     return new List<AdminShowScoredFood>(); // Yiyecek bulunamazsa boş liste döndür
                 }
 
-                var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.FoodId == food.Id.ToString()).ToList();
+                var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.FoodId == food.Id.ToString())
+                                     .Skip((pageNumber - 1) * pageSize)
+                                     .Limit(pageSize)
+                                     .ToList();
                 var result = new List<AdminShowScoredFood>();
 
                 foreach (var scoredFood in scoredFoods)
@@ -326,7 +354,7 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
-        public List<AdminShowScoredFood> SearchScoredFoods(string searchTerm)
+        public List<AdminShowScoredFood> SearchScoredFoods(string searchTerm, int pageNumber, int pageSize)
         {
             try
             {
@@ -335,14 +363,17 @@ namespace GurmeDefteriBackEndAPI.Services
 
                 if (user == null && food == null)
                 {
-                    return new List<AdminShowScoredFood>(); // Kullanıcı ve yiyecek bulunamazsa boş liste döndür
+                    return new List<AdminShowScoredFood>(); // Return an empty list if user and food are not found
                 }
 
                 var result = new List<AdminShowScoredFood>();
 
                 if (user != null)
                 {
-                    var userScoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString()).ToList();
+                    var userScoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString())
+                                             .Skip((pageNumber - 1) * pageSize)
+                                             .Limit(pageSize)
+                                             .ToList();
                     foreach (var scoredFood in userScoredFoods)
                     {
                         var scoredFoodFood = _database.CollectionFood.Find(f => f.Id == ObjectId.Parse(scoredFood.FoodId)).FirstOrDefault();
@@ -361,7 +392,10 @@ namespace GurmeDefteriBackEndAPI.Services
 
                 if (food != null)
                 {
-                    var foodScoredFoods = _database.CollectionScoredFoods.Find(sf => sf.FoodId == food.Id.ToString()).ToList();
+                    var foodScoredFoods = _database.CollectionScoredFoods.Find(sf => sf.FoodId == food.Id.ToString())
+                                             .Skip((pageNumber - 1) * pageSize)
+                                             .Limit(pageSize)
+                                             .ToList();
                     foreach (var scoredFood in foodScoredFoods)
                     {
                         var scoredFoodUser = _database.CollectionPerson.Find(u => u.Id == ObjectId.Parse(scoredFood.UserId)).FirstOrDefault();
