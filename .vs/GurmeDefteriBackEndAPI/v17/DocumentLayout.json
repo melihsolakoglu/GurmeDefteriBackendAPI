@@ -101,8 +101,7 @@
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\Food.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T21:55:31.238Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T21:55:31.238Z"
             },
             {
               "$type": "Document",
@@ -114,8 +113,7 @@
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\AdminShowScoredFood.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T21:38:48.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T21:38:48.89Z"
             },
             {
               "$type": "Document",
@@ -127,8 +125,7 @@
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ViewModel\\AddScoredFoodsRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T12:45:53.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T12:45:53.12Z"
             },
             {
               "$type": "Document",
@@ -138,7 +135,7 @@
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
               "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Services\\AdminService.cs",
-              "ViewState": "AQIAAHIBAAAAAAAAAAAUwGQBAAAwAAAA",
+              "ViewState": "AQIAAJIBAAAAAAAAAAAEwKYBAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T20:51:45.423Z",
               "EditorCaption": ""
@@ -163,7 +160,7 @@
               "RelativeDocumentMoniker": "GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
               "ToolTip": "C:\\Users\\melih\\Documents\\Github\\GurmeDefteriBackendAPI\\GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAI4BAAAAAAAAAAAowMABAAArAAAA",
+              "ViewState": "AQIAAEwCAAAAAAAAAAAqwFcCAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T19:38:44.906Z",
               "EditorCaption": ""
@@ -190,8 +187,7 @@
               "RelativeToolTip": "GurmeDefteriBackEndAPI\\Models\\ScoredFoods.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T12:27:09.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-24T12:27:09.269Z"
             },
             {
               "$type": "Document",

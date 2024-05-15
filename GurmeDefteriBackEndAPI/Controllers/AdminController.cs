@@ -597,12 +597,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("GetAllUserNames")]
-        public IActionResult GetAllUserNames()
+        [HttpGet("GetAllUserEmails")]
+        public IActionResult GetAllUserEmails()
         {
             try
             {
-                var userNames = _adminService.GetAllUserNames();
+                var userNames = _adminService.GetAllUserEmails();
                 return Ok(userNames);
             }
             catch (Exception ex)
@@ -611,7 +611,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
         [HttpGet("GetAllFoodsNames")]
-        public IActionResult GetUserNames()
+        public IActionResult GetAllFoodNames()
         {
             try
             {

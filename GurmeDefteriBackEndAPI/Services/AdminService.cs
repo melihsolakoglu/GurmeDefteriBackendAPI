@@ -420,10 +420,10 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
-        public List<string> GetAllUserNames()
+        public List<string> GetAllUserEmails()
         {
             var users = _database.CollectionPerson;
-            var userNames = users.Find(user => true).ToList().Select(user => user.Name).ToList();
+            var userNames = users.Find(user => true).ToList().Select(user => user.Email).ToList();
             return userNames;
         }
         public List<string> GetAllFoodNames()
