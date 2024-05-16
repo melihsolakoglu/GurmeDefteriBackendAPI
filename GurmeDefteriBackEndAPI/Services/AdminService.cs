@@ -124,17 +124,15 @@ namespace GurmeDefteriBackEndAPI.Services
 
         public void DeleteUser(string userId)
         {
-            try
-            {
-                var objectId = new ObjectId(userId);
-                var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
-                _database.CollectionPerson.DeleteOne(filter);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            var objectId = new ObjectId(userId);
+            var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
+            _database.CollectionPerson.DeleteOne(filter);
+
+            // ScoredFood için filtre oluştur
+            var scoredFoodFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId);
+            _database.CollectionScoredFoods.DeleteMany(scoredFoodFilter);
         }
+
 
         public void AddUser(User newUser)
         {
@@ -182,18 +180,15 @@ namespace GurmeDefteriBackEndAPI.Services
         }
         public void DeleteFood(string foodId)
         {
-            if (!ObjectId.TryParse(foodId, out var objectId))
-            {
-                throw new ArgumentException("Invalid ObjectId format", nameof(foodId));
-            }
-
+            var objectId = new ObjectId(foodId);
             var filter = Builders<Food>.Filter.Eq(f => f.Id, objectId);
-            var food = _database.CollectionFood.Find(filter).FirstOrDefault();
-            if (food != null)
-            {
-                _database.CollectionFood.DeleteOne(filter);         
-            }
+            _database.CollectionFood.DeleteOne(filter);
+
+            // ScoredFood için filtre oluştur
+            var scoredFoodFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.FoodId, foodId);
+            _database.CollectionScoredFoods.DeleteMany(scoredFoodFilter);
         }
+
         public int GetUserCount()
         {
             var userCount = _database.CollectionPerson.CountDocuments(new BsonDocument());
@@ -251,7 +246,6 @@ namespace GurmeDefteriBackEndAPI.Services
 
             return _database.CollectionScoredFoods.Find(filter).ToList();
         }
-        //Geliştirilme aşamasında
         public List<AdminShowScoredFood> ShowAdminScoredFoods(int pageNumber, int pageSize)
         {
             try
