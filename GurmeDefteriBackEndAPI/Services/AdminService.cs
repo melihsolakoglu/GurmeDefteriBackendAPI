@@ -63,11 +63,26 @@ namespace GurmeDefteriBackEndAPI.Services
         }
         public int GetScoredFoodCountByName(string name)
         {
-            FilterDefinition<ScoredFoods> filter = Builders<ScoredFoods>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
+            var user = _database.CollectionPerson.Find(u => u.Email == name).FirstOrDefault();
+            var food = _database.CollectionFood.Find(u => u.Name == name).FirstOrDefault();
+
+            FilterDefinition<ScoredFoods> filter = null;
+
+            if (user != null)
+            {
+                filter = Builders<ScoredFoods>.Filter.Eq("UserId", user.Id.ToString());
+            }
+            else if (food != null)
+            {
+                filter = Builders<ScoredFoods>.Filter.Eq("FoodId", food.Id.ToString());
+            }
+            else
+            {
+                return 0;
+            }
 
             var foodCount = _database.CollectionScoredFoods.CountDocuments(filter);
-            int documentCountInt = Convert.ToInt32(foodCount);
-            return documentCountInt;
+            return (int)foodCount;
         }
 
 
@@ -453,6 +468,67 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw new ArgumentException("User or food not found");
             }
         }
+        public AdminShowScoredFood GetScoredFoodWithId(string scoredFoodId)
+        {
+            try
+            {
+                var scoredFood = _database.CollectionScoredFoods.Find(sf => sf.Id == ObjectId.Parse(scoredFoodId)).FirstOrDefault();
+
+                if (scoredFood == null)
+                {
+                    return null; // Eğer puanlanmış yiyecek bulunamazsa null döndür
+                }
+
+                var user = _database.CollectionPerson.Find(u => u.Id == ObjectId.Parse(scoredFood.UserId)).FirstOrDefault();
+                var food = _database.CollectionFood.Find(f => f.Id == ObjectId.Parse(scoredFood.FoodId)).FirstOrDefault();
+
+                if (user == null || food == null)
+                {
+                    return null; // Eğer kullanıcı veya yiyecek bulunamazsa null döndür
+                }
+
+                return new AdminShowScoredFood
+                {
+                    ScoredFoodID = scoredFood.FoodId.ToString(),
+                    Email = user.Email,
+                    Foodname = food.Name,
+                    Score = scoredFood.Score
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetScoredFoodWithId: {ex.Message}");
+                throw;
+            }
+        }
+        public bool CheckScoredFood(string userEmail, string foodName)
+        {
+            try
+            {
+                var user = _database.CollectionPerson.Find(u => u.Email == userEmail).FirstOrDefault();
+                if (user == null)
+                {
+                    throw new Exception("User not found."); // Kullanıcı bulunamazsa istisna fırlat
+                }
+
+                var food = _database.CollectionFood.Find(f => f.Name == foodName).FirstOrDefault();
+                if (food == null)
+                {
+                    throw new Exception("Food not found."); // Yiyecek bulunamazsa istisna fırlat
+                }
+
+                var scoredFood = _database.CollectionScoredFoods.Find(sf => sf.UserId == user.Id.ToString() && sf.FoodId == food.Id.ToString()).FirstOrDefault();
+                return scoredFood != null; // Eğer puanlanmış yiyecek varsa true, yoksa false döndür
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in CheckScoredFood: {ex.Message}");
+                throw;
+            }
+        }
+
+
+
 
 
 

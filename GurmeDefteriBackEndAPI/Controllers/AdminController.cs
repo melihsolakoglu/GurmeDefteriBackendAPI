@@ -634,6 +634,39 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("GetScoredFoodWithId")]
+        public IActionResult GetScoredFoodWithId(string scoredFoodId)
+        {
+            try
+            {
+                var scoredFood = _adminService.GetScoredFoodWithId(scoredFoodId);
+                if (scoredFood == null)
+                {
+                    return NotFound(); // Eğer puanlanmış yiyecek bulunamazsa 404 Not Found döndür
+                }
+
+                return Ok(scoredFood);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("CheckScoredFood")]
+        public IActionResult CheckScoredFood(string userEmail, string foodName)
+        {
+            try
+            {
+                var result = _adminService.CheckScoredFood(userEmail, foodName);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
 
     }
 }
