@@ -92,6 +92,60 @@ namespace GurmeDefteriBackEndAPI.Services
             int documentCountInt = Convert.ToInt32(foodCount);
             return documentCountInt;
         }
+        //Daha sonra bu fonksiyonları kullanabilirim
+
+        public List<ScoredFoods> GetScoredFoodsByUserId(string userId)
+        {
+            var objectId = new ObjectId(userId);
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
+
+            return _database.CollectionScoredFoods.Find(filter).ToList();
+        }
+
+        public List<ScoredFoods> GetScoredFoodsByFoodId(string foodId)
+        {
+            var objectId = new ObjectId(foodId);
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.FoodId, foodId);
+
+            return _database.CollectionScoredFoods.Find(filter).ToList();
+        }
+        public List<Food> FoodCategoryFilter(string category)
+        {
+            var filter = Builders<Food>.Filter.Eq(f => f.Category, category);
+            var foods = _database.CollectionFood.Find(filter).ToList();
+            return foods;
+        }
+        public List<Food> SearchFoodsByTerm(string term)
+        {
+            var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(term, "i"));
+            var foods = _database.CollectionFood.Find(filter).ToList();
+            return foods;
+        }
+        public List<Food> SearchFoodsByTermAndCategory(string term, string category)
+        {
+            var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(term, "i")) & Builders<Food>.Filter.Eq("Category", category);
+            var foods = _database.CollectionFood.Find(filter).ToList();
+            return foods;
+        }
+
+
+        //public List<Food> GetUnscoredFoodsByUserId(string userId)
+        //{
+        //    var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
+        //                                            .Project(sf => ObjectId.Parse(sf.FoodId))
+        //                                            .ToList();
+
+
+        //    var unscoredFoods = _database.CollectionFood.Find(f => !scoredFoodIds.Contains(f.Id))
+        //                                                 .ToList();
+
+        //    return unscoredFoods;
+        //}
+
+
+
+
+
     }
 
 }

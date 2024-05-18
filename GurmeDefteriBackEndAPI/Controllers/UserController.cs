@@ -175,5 +175,57 @@ namespace GurmeDefteriBackEndAPI.Controllers
             };
             return Ok(userAPI);
         }
+        [HttpGet("GetScoredFoodsByUserId")]
+        public IActionResult GetScoredFoodsByUserId(string userId)
+        {
+            try
+            {
+                var scoredFoods = _userService.GetScoredFoodsByUserId(userId);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetScoredFoodsByFoodId")]
+        public IActionResult GetScoredFoodsByFoodId(string foodId)
+        {
+            try
+            {
+                var scoredFoods = _userService.GetScoredFoodsByFoodId(foodId);
+                return Ok(scoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetFoodsByCategory")]
+        public IActionResult GetFoodsByCategory(string category)
+        {
+            var foods = _userService.FoodCategoryFilter(category);
+            return Ok(foods);
+        }
+        [HttpGet("SearchFoodsByTerm")]
+        public IActionResult SearchFoodsByTerm(string term)
+        {
+            var foods = _userService.SearchFoodsByTerm(term);
+            return Ok(foods);
+        }
+        [HttpGet("SearchFoodsByTermAndCategory")]
+        public IActionResult SearchFoodsByTermAndCategory(string term, string category)
+        {
+            var foods = _userService.SearchFoodsByTermAndCategory(term, category);
+            return Ok(foods);
+        }
+        //[HttpGet("GetUnscoredFoodsbyUserID")]
+        //public IActionResult GetUnscoredFoodsByUserId(string userId)
+        //{
+        //    var unscoredFoods = _userService.GetUnscoredFoodsByUserId(userId);
+        //    return Ok(unscoredFoods);
+        //}
+
     }
 }

@@ -231,23 +231,7 @@ namespace GurmeDefteriBackEndAPI.Services
             var filter = Builders<ScoredFoods>.Filter.Eq(s => s.Id, objectId);
             _database.CollectionScoredFoods.DeleteOne(filter);
         }
-        //Daha sonra bu fonksiyonları kullanabilirim
 
-        //public List<ScoredFoods> GetScoredFoodsByUserId(string userId)
-        //{
-        //    var objectId = new ObjectId(userId);
-        //    var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
-
-        //    return _database.CollectionScoredFoods.Find(filter).ToList();
-        //}
-
-        //public List<ScoredFoods> GetScoredFoodsByFoodId(string foodId)
-        //{
-        //    var objectId = new ObjectId(foodId);
-        //    var filter = Builders<ScoredFoods>.Filter.Eq(s => s.FoodId, foodId);
-
-        //    return _database.CollectionScoredFoods.Find(filter).ToList();
-        //}
         public List<AdminShowScoredFood> ShowAdminScoredFoods(int pageNumber, int pageSize)
         {
             try

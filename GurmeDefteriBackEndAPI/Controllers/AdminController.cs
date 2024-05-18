@@ -517,33 +517,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
 
-        [HttpGet("GetScoredFoodsByUserId")]
-        public IActionResult GetScoredFoodsByUserId(string userId)
-        {
-            try
-            {
-                var scoredFoods = _adminService.GetScoredFoodsByUserId(userId);
-                return Ok(scoredFoods);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("GetScoredFoodsByFoodId")]
-        public IActionResult GetScoredFoodsByFoodId(string foodId)
-        {
-            try
-            {
-                var scoredFoods = _adminService.GetScoredFoodsByFoodId(foodId);
-                return Ok(scoredFoods);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+       
         [HttpGet("ShowAdminScoredFoods")]
         public IActionResult ShowAdminScoredFoods(int pageNumber = 1, int pageSize = 30)
         {
