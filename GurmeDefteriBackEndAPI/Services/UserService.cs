@@ -94,53 +94,98 @@ namespace GurmeDefteriBackEndAPI.Services
         }
         //Daha sonra bu fonksiyonları kullanabilirim
 
-        public List<ScoredFoods> GetScoredFoodsByUserId(string userId)
+        public List<ScoredFoods> GetScoredFoodsByUserId(string userId, int page, int pageSize)
         {
             var objectId = new ObjectId(userId);
             var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
-
-            return _database.CollectionScoredFoods.Find(filter).ToList();
+            var scoredFoods = _database.CollectionScoredFoods.Find(filter)
+                                                             .Skip((page - 1) * pageSize)
+                                                             .Limit(pageSize)
+                                                             .ToList();
+            return scoredFoods;
         }
 
-        public List<ScoredFoods> GetScoredFoodsByFoodId(string foodId)
+        public List<ScoredFoods> GetScoredFoodsByFoodId(string foodId, int page, int pageSize)
         {
             var objectId = new ObjectId(foodId);
             var filter = Builders<ScoredFoods>.Filter.Eq(s => s.FoodId, foodId);
-
-            return _database.CollectionScoredFoods.Find(filter).ToList();
+            var scoredFoods = _database.CollectionScoredFoods.Find(filter)
+                                                             .Skip((page - 1) * pageSize)
+                                                             .Limit(pageSize)
+                                                             .ToList();
+            return scoredFoods;
         }
-        public List<Food> FoodCategoryFilter(string category)
+
+        public List<Food> FoodCategoryFilter(string category, int page, int pageSize)
         {
             var filter = Builders<Food>.Filter.Eq(f => f.Category, category);
-            var foods = _database.CollectionFood.Find(filter).ToList();
+            var foods = _database.CollectionFood.Find(filter)
+                                                 .Skip((page - 1) * pageSize)
+                                                 .Limit(pageSize)
+                                                 .ToList();
             return foods;
         }
-        public List<Food> SearchFoodsByTerm(string term)
-        {
-            var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(term, "i"));
-            var foods = _database.CollectionFood.Find(filter).ToList();
-            return foods;
-        }
-        public List<Food> SearchFoodsByTermAndCategory(string term, string category)
+
+
+        //public List<Food> SearchFoodsByTerm(string term, int skip, int limit)
+        //{
+        //    var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(term, "i"));
+        //    var foods = _database.CollectionFood.Find(filter).Skip(skip).Limit(limit).ToList();
+        //    return foods;
+        //}
+        public List<Food> SearchFoodsByTermAndCategory(string term, string category, int page, int pageSize)
         {
             var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(term, "i")) & Builders<Food>.Filter.Eq("Category", category);
-            var foods = _database.CollectionFood.Find(filter).ToList();
+            var foods = _database.CollectionFood.Find(filter)
+                                                 .Skip((page - 1) * pageSize)
+                                                 .Limit(pageSize)
+                                                 .ToList();
             return foods;
         }
 
+        public List<Food> GetUnscoredFoodsByUserId(string userId, int page, int pageSize)
+        {
+            var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
+                                                                .Project(sf => sf.FoodId.ToString())
+                                                                .ToList();
 
-        //public List<Food> GetUnscoredFoodsByUserId(string userId)
-        //{
-        //    var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
-        //                                            .Project(sf => ObjectId.Parse(sf.FoodId))
-        //                                            .ToList();
+            var unscoredFoods = _database.CollectionFood.Find(f => !scoredFoodIds.Contains(f.Id.ToString()))
+                                                         .Skip((page - 1) * pageSize)
+                                                         .Limit(pageSize)
+                                                         .ToList();
+
+            return unscoredFoods;
+        }
+
+        public void AddScoredFoods(ScoredFoods scoredFoods)
+        {
+            _database.CollectionScoredFoods.InsertOne(scoredFoods);
+        }
+        public void UpdateScoredFood(string userId, string foodId, int score)
+        {
+            var updateFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId) &
+                               Builders<ScoredFoods>.Filter.Eq(sf => sf.FoodId, foodId);
+
+            var update = Builders<ScoredFoods>.Update.Set(sf => sf.Score, score);
+
+            _database.CollectionScoredFoods.UpdateOne(updateFilter, update);
+        }
+        public bool CheckScoredFood(string userId, string foodId)
+        {
+            try
+            {
+                var scoredFood = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId && sf.FoodId == foodId).FirstOrDefault();
+                return scoredFood != null; // Eğer yiyecek puanlanmışsa  true, yoksa false döndür
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in CheckScoredFood: {ex.Message}");
+                throw;
+            }
+        }
 
 
-        //    var unscoredFoods = _database.CollectionFood.Find(f => !scoredFoodIds.Contains(f.Id))
-        //                                                 .ToList();
 
-        //    return unscoredFoods;
-        //}
 
 
 

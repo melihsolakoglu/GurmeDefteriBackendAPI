@@ -176,11 +176,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
             return Ok(userAPI);
         }
         [HttpGet("GetScoredFoodsByUserId")]
-        public IActionResult GetScoredFoodsByUserId(string userId)
+        public IActionResult GetScoredFoodsByUserId(string userId, int page = 1, int pageSize = 10)
         {
             try
             {
-                var scoredFoods = _userService.GetScoredFoodsByUserId(userId);
+                var scoredFoods = _userService.GetScoredFoodsByUserId(userId, page, pageSize);
                 return Ok(scoredFoods);
             }
             catch (Exception ex)
@@ -190,11 +190,11 @@ namespace GurmeDefteriBackEndAPI.Controllers
         }
 
         [HttpGet("GetScoredFoodsByFoodId")]
-        public IActionResult GetScoredFoodsByFoodId(string foodId)
+        public IActionResult GetScoredFoodsByFoodId(string foodId, int page = 1, int pageSize = 10)
         {
             try
             {
-                var scoredFoods = _userService.GetScoredFoodsByFoodId(foodId);
+                var scoredFoods = _userService.GetScoredFoodsByFoodId(foodId, page, pageSize);
                 return Ok(scoredFoods);
             }
             catch (Exception ex)
@@ -203,29 +203,125 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
         [HttpGet("GetFoodsByCategory")]
-        public IActionResult GetFoodsByCategory(string category)
+        public IActionResult GetFoodsByCategory(string category, int page = 1, int pageSize = 10)
         {
-            var foods = _userService.FoodCategoryFilter(category);
-            return Ok(foods);
+            try
+            {
+                var foods = _userService.FoodCategoryFilter(category, page, pageSize);
+                return Ok(foods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-        [HttpGet("SearchFoodsByTerm")]
-        public IActionResult SearchFoodsByTerm(string term)
-        {
-            var foods = _userService.SearchFoodsByTerm(term);
-            return Ok(foods);
-        }
-        [HttpGet("SearchFoodsByTermAndCategory")]
-        public IActionResult SearchFoodsByTermAndCategory(string term, string category)
-        {
-            var foods = _userService.SearchFoodsByTermAndCategory(term, category);
-            return Ok(foods);
-        }
-        //[HttpGet("GetUnscoredFoodsbyUserID")]
-        //public IActionResult GetUnscoredFoodsByUserId(string userId)
+
+        //[HttpGet("SearchFoodsByTerm")]
+        //public IActionResult SearchFoodsByTerm(string term, int skip = 0, int limit = 10)
         //{
-        //    var unscoredFoods = _userService.GetUnscoredFoodsByUserId(userId);
-        //    return Ok(unscoredFoods);
-        //}
+        //    var foods = _userService.SearchFoodsByTerm(term, skip, limit);
+        //    return Ok(foods);
+        //} 
+        [HttpGet("SearchFoodsByTermAndCategory")]
+        public IActionResult SearchFoodsByTermAndCategory(string term, string category, int page = 1, int pageSize = 10)
+        {
+            try
+            {
+                var foods = _userService.SearchFoodsByTermAndCategory(term, category, page, pageSize);
+                return Ok(foods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetUnscoredFoodsByUserId")]
+        public IActionResult GetUnscoredFoodsByUserId(string userId, int page = 1, int pageSize = 10)
+        {
+            try
+            {
+                var unscoredFoods = _userService.GetUnscoredFoodsByUserId(userId, page, pageSize);
+                return Ok(unscoredFoods);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetFoodsWithPagebyPage")]
+        public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page = 1, int pageSize = 30)
+        {
+            if (page < 1 || pageSize < 1)
+            {
+                return BadRequest("Page or page size cannot be lower than one.");
+            }
+            var foods = _userService.GetFoods();
+
+            var pagedFoods = foods.Skip((page - 1) * pageSize).Take(pageSize);
+
+            var tasks = pagedFoods.Select(async foodItem =>
+            {
+                return new FoodItemWithImageBytes
+                {
+                    Name = foodItem.Name,
+                    Country = foodItem.Country,
+                    ImageBytes = foodItem.Image,
+                    Id = foodItem.Id.ToString(),
+                    Category = foodItem.Category
+                };
+            });
+
+            var foodListWithImages = await Task.WhenAll(tasks);
+
+            return Ok(foodListWithImages.ToList());
+        }
+        [HttpPost("AddScoredFoods")]
+        public IActionResult AddScoredFoods(ScoredFoods scoredFoods)
+        {
+            try
+            {
+                _userService.AddScoredFoods(scoredFoods);
+                return Ok("Scored foods added successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("UpdateScoredFood")]
+        public IActionResult UpdateScoredFood(string userId, string foodId, int score)
+        {
+            try
+            {
+                _userService.UpdateScoredFood(userId, foodId, score);
+                return Ok("Score updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("CheckScoredFood")]
+        public IActionResult CheckScoredFood(string userId, string foodId)
+        {
+            try
+            {
+                var result = _userService.CheckScoredFood(userId, foodId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
+
+
 
     }
 }
