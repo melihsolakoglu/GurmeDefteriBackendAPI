@@ -221,3 +221,4 @@ C:\Users\melih\Documents\Github\GurmeDefteriBackendAPI\GurmeDefteriBackEndAPI\ob
 C:\Users\melih\Documents\Github\GurmeDefteriBackendAPI\GurmeDefteriBackEndAPI\obj\Debug\net8.0\GurmeDefteriBackEndAPI.pdb
 C:\Users\melih\Documents\Github\GurmeDefteriBackendAPI\GurmeDefteriBackEndAPI\obj\Debug\net8.0\GurmeDefteriBackEndAPI.genruntimeconfig.cache
 C:\Users\melih\Documents\Github\GurmeDefteriBackendAPI\GurmeDefteriBackEndAPI\obj\Debug\net8.0\ref\GurmeDefteriBackEndAPI.dll
+C:\Users\melih\Documents\Github\GurmeDefteriBackendAPI\GurmeDefteriBackEndAPI\bin\Debug\net8.0\Newtonsoft.Json.dll

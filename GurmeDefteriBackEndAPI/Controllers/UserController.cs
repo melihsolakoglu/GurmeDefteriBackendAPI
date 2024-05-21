@@ -189,6 +189,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
 
+
         [HttpGet("GetScoredFoodsByFoodId")]
         public IActionResult GetScoredFoodsByFoodId(string foodId, int page = 1, int pageSize = 10)
         {
@@ -250,6 +251,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
 
+
         [HttpGet("GetFoodsWithPagebyPage")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page = 1, int pageSize = 30)
         {
@@ -308,14 +310,25 @@ namespace GurmeDefteriBackEndAPI.Controllers
         {
             try
             {
-                var result = _userService.CheckScoredFood(userId, foodId);
-                return Ok(result);
+                var score = _userService.CheckScoredFood(userId, foodId);
+                return Ok(score);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+        //geliştirilme aşamasında
+        [HttpGet("SuggestScore")]
+        public ActionResult<IEnumerable<string>> SuggestScore(string userId)
+        {
+            var unscoredFoodIds = _userService.SuggestScore(userId);
+
+            return Ok(unscoredFoodIds);
+        }
+
+
+
 
 
 
