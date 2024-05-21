@@ -240,37 +240,65 @@ namespace GurmeDefteriBackEndAPI.Services
             }
         }
         //geliştirilme aşamasında
-        public IEnumerable<string> SuggestScore(string userId)
+        //public IEnumerable<string> SuggestScore(string userId)
+        //{
+        //    var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
+        //                                               .ToList()
+        //                                               .Select(sf => sf.FoodId);
+
+        //    var allFoodIds = _database.CollectionScoredFoods.Find(sf => true)
+        //                                            .ToList()
+        //                                            .Select(sf => sf.FoodId);
+
+        //    var unscoredFoodIds = allFoodIds.Except(scoredFoodIds).Take(50);
+
+        //    var client = new HttpClient();
+        //    var url = "http://20.81.205.102:92/api/eniyiteklif";
+        //    var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new { UserId = userId, FoodIds = unscoredFoodIds }), Encoding.UTF8, "application/json");
+        //    var response = client.PostAsync(url, content).Result;
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        var responseObject = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(result, new { UnsuggestedFoodIds = new List<string>(), UserId = "" });
+        //        return responseObject.UnsuggestedFoodIds;
+        //    }
+        //    else
+        //    {
+        //        // Handle unsuccessful response
+        //        return new List<string>();
+        //    }
+        //}
+        public (FoodItemWithImageBytes Food, int Score) GetFoodScoreSuggestion(string userId)
         {
-            var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
-                                                       .ToList()
-                                                       .Select(sf => sf.FoodId);
+            var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId).ToList();
 
-            var allFoodIds = _database.CollectionScoredFoods.Find(sf => true)
-                                                    .ToList()
-                                                    .Select(sf => sf.FoodId);
-
-            var unscoredFoodIds = allFoodIds.Except(scoredFoodIds).Take(50);
-
-            var client = new HttpClient();
-            var url = "http://20.81.205.102:92/api/eniyiteklif";
-            var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new { UserId = userId, FoodIds = unscoredFoodIds }), Encoding.UTF8, "application/json");
-            var response = client.PostAsync(url, content).Result;
-
-            if (response.IsSuccessStatusCode)
+            if (scoredFoods.Count == 0)
             {
-                var result = response.Content.ReadAsStringAsync().Result;
-                var responseObject = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(result, new { UnsuggestedFoodIds = new List<string>(), UserId = "" });
-                return responseObject.UnsuggestedFoodIds;
+                throw new InvalidOperationException("No scored foods found for the given user.");
             }
-            else
+
+            var random = new Random();
+            var randomIndex = random.Next(scoredFoods.Count);
+            var randomScoredFood = scoredFoods[randomIndex];
+
+            var food = _database.CollectionFood.Find(f => f.Id == new ObjectId(randomScoredFood.FoodId)).FirstOrDefault();
+            if (food == null)
             {
-                // Handle unsuccessful response
-                return new List<string>();
+                throw new InvalidOperationException("Food not found.");
             }
+
+            var foodItemWithImageBytes = new FoodItemWithImageBytes
+            {
+                Id = food.Id.ToString(),
+                Name = food.Name,
+                Country = food.Country,
+                ImageBytes = food.Image,
+                Category = food.Category
+            };
+
+            return (foodItemWithImageBytes, randomScoredFood.Score);
         }
-
-
 
 
     }

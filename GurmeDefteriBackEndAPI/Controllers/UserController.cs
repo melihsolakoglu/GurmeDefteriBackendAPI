@@ -319,12 +319,25 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
         //geliştirilme aşamasında
-        [HttpGet("SuggestScore")]
-        public ActionResult<IEnumerable<string>> SuggestScore(string userId)
-        {
-            var unscoredFoodIds = _userService.SuggestScore(userId);
+        //[HttpGet("SuggestScore")]
+        //public ActionResult<IEnumerable<string>> SuggestScore(string userId)
+        //{
+        //    var unscoredFoodIds = _userService.SuggestScore(userId);
 
-            return Ok(unscoredFoodIds);
+        //    return Ok(new { UnsuggestedFoodIds = unscoredFoodIds, UserId = userId });
+        //}
+        [HttpGet("GetFoodScoreSuggestion")]
+        public ActionResult<object> GetFoodScoreSuggestion(string userId)
+        {
+            try
+            {
+                var result = _userService.GetFoodScoreSuggestion(userId);
+                return Ok(new { Food = result.Food, Score = result.Score });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
 
