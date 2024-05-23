@@ -1,7 +1,6 @@
 ﻿
 using GurmeDefteriBackEndAPI.Models;
 using GurmeDefteriBackEndAPI.Models.Dto;
-using GurmeDefteriBackEndAPI.Models.ViewModel;
 using GurmeDefteriBackEndAPI.Services;
 using GurmeDefteriWebUI.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;

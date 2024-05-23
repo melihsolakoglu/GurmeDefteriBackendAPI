@@ -1,5 +1,4 @@
 ﻿using GurmeDefteriBackEndAPI.Models.Dto;
-using GurmeDefteriBackEndAPI.Models.ViewModel;
 using GurmeDefteriBackEndAPI.Models;
 using GurmeDefteriBackEndAPI.Services;
 using Microsoft.AspNetCore.Http;
@@ -318,25 +317,17 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        //geliştirilme aşamasında
-        //[HttpGet("SuggestScore")]
-        //public ActionResult<IEnumerable<string>> SuggestScore(string userId)
-        //{
-        //    var unscoredFoodIds = _userService.SuggestScore(userId);
-
-        //    return Ok(new { UnsuggestedFoodIds = unscoredFoodIds, UserId = userId });
-        //}
         [HttpGet("GetFoodScoreSuggestion")]
-        public ActionResult<object> GetFoodScoreSuggestion(string userId)
+        public async Task<IActionResult> GetFoodScoreSuggestion(string userId)
         {
             try
             {
-                var result = _userService.GetFoodScoreSuggestion(userId);
-                return Ok(new { Food = result.Food, Score = result.Score });
+                var result = await _userService.GetFoodScoreSuggestion(userId);
+                return Ok(result);
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 

@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using GurmeDefteriBackEndAPI.DatabaseContext;
 using GurmeDefteriBackEndAPI.Models;
-using GurmeDefteriBackEndAPI.Models.ViewModel;
 using GurmeDefteriWebUI.Models.ViewModel;
 using MongoDB.Bson;
 using MongoDB.Driver;

@@ -4,7 +4,6 @@ using GurmeDefteriBackEndAPI.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using GurmeDefteriBackEndAPI.Models.Dto;
-using GurmeDefteriBackEndAPI.Models.ViewModel;
 using MongoDB.Bson.IO;
 using System.Net.Http;
 using System.Text;
@@ -54,16 +53,13 @@ namespace GurmeDefteriBackEndAPI.Services
 
         public void DeleteUser(string userId)
         {
-            try
-            {
-                var objectId = new ObjectId(userId);
-                var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
-                _database.CollectionPerson.DeleteOne(filter);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            var objectId = new ObjectId(userId);
+            var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
+            _database.CollectionPerson.DeleteOne(filter);
+
+            // ScoredFood için filtre oluştur
+            var scoredFoodFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId);
+            _database.CollectionScoredFoods.DeleteMany(scoredFoodFilter);
         }
 
         public void AddUser(User newUser)
@@ -97,8 +93,6 @@ namespace GurmeDefteriBackEndAPI.Services
             int documentCountInt = Convert.ToInt32(foodCount);
             return documentCountInt;
         }
-        //Daha sonra bu fonksiyonları kullanabilirim
-
         public List<FoodItemWithImageBytes> GetScoredFoodsByUserId(string userId, int page, int pageSize)
         {
             var objectId = new ObjectId(userId);
@@ -239,66 +233,82 @@ namespace GurmeDefteriBackEndAPI.Services
                 throw;
             }
         }
-        //geliştirilme aşamasında
-        //public IEnumerable<string> SuggestScore(string userId)
-        //{
-        //    var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
-        //                                               .ToList()
-        //                                               .Select(sf => sf.FoodId);
-
-        //    var allFoodIds = _database.CollectionScoredFoods.Find(sf => true)
-        //                                            .ToList()
-        //                                            .Select(sf => sf.FoodId);
-
-        //    var unscoredFoodIds = allFoodIds.Except(scoredFoodIds).Take(50);
-
-        //    var client = new HttpClient();
-        //    var url = "http://20.81.205.102:92/api/eniyiteklif";
-        //    var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new { UserId = userId, FoodIds = unscoredFoodIds }), Encoding.UTF8, "application/json");
-        //    var response = client.PostAsync(url, content).Result;
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var result = response.Content.ReadAsStringAsync().Result;
-        //        var responseObject = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(result, new { UnsuggestedFoodIds = new List<string>(), UserId = "" });
-        //        return responseObject.UnsuggestedFoodIds;
-        //    }
-        //    else
-        //    {
-        //        // Handle unsuccessful response
-        //        return new List<string>();
-        //    }
-        //}
-        public (FoodItemWithImageBytes Food, int Score) GetFoodScoreSuggestion(string userId)
+        public async Task<SuggestFoodAPI> GetFoodScoreSuggestion(string userId)
         {
-            var scoredFoods = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId).ToList();
+            var userObjectId = new ObjectId(userId);
+            var userScoredFoodIds = _database.CollectionScoredFoods
+                .Find(sf => sf.UserId == userId)
+                .Project(sf => sf.FoodId)
+                .ToList();
 
-            if (scoredFoods.Count == 0)
+            var allScoredFoodIds = _database.CollectionScoredFoods
+                .Find(Builders<ScoredFoods>.Filter.Empty)
+                .Project(sf => sf.FoodId)
+                .ToList();
+
+            var unscoredFoodIds = _database.CollectionFood
+                .Find(f => !userScoredFoodIds.Contains(f.Id.ToString()) && allScoredFoodIds.Contains(f.Id.ToString()))
+                .Project(f => f.Id.ToString())
+                .Limit(50)
+                .ToList();
+
+            if (unscoredFoodIds.Count == 0)
             {
-                throw new InvalidOperationException("No scored foods found for the given user.");
+                throw new InvalidOperationException("No unscored foods found for the given user.");
             }
 
-            var random = new Random();
-            var randomIndex = random.Next(scoredFoods.Count);
-            var randomScoredFood = scoredFoods[randomIndex];
+            var requestBody = new
+            {
+                user_id = userId,
+                food_ids = unscoredFoodIds
+            };
+            var jsonContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync("http://20.81.205.102:92/api/eniyiteklif", jsonContent);
 
-            var food = _database.CollectionFood.Find(f => f.Id == new ObjectId(randomScoredFood.FoodId)).FirstOrDefault();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"API call failed with status code: {response.StatusCode}");
+            }
+
+            var apiResponseString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("API Response: " + apiResponseString);
+
+            var apiResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResponse>(apiResponseString, new JsonSerializerSettings
+            {
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
+            if (apiResponse == null || string.IsNullOrEmpty(apiResponse.BestFoodId))
+            {
+                throw new InvalidOperationException("API did not return a valid response.");
+            }
+
+            var bestFoodId = new ObjectId(apiResponse.BestFoodId);
+            var food = _database.CollectionFood.Find(f => f.Id == bestFoodId).FirstOrDefault();
+
             if (food == null)
             {
                 throw new InvalidOperationException("Food not found.");
             }
 
-            var foodItemWithImageBytes = new FoodItemWithImageBytes
+            var suggestFoodAPI = new SuggestFoodAPI
             {
                 Id = food.Id.ToString(),
                 Name = food.Name,
                 Country = food.Country,
                 ImageBytes = food.Image,
-                Category = food.Category
+                Category = food.Category,
+                Score = (int)Math.Round(apiResponse.Score) // Skoru int olarak ayarlayın
             };
 
-            return (foodItemWithImageBytes, randomScoredFood.Score);
+            return suggestFoodAPI;
         }
+
+
+
+
 
 
     }
