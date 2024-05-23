@@ -9,6 +9,7 @@ using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
+using Serilog;
 
 namespace GurmeDefteriBackEndAPI.Controllers
 {
@@ -31,8 +32,10 @@ namespace GurmeDefteriBackEndAPI.Controllers
             {
                 User user = _authService.FindUser(logUser.Email, logUser.Password);
                 var token = CreateToken(user);
+                Log.Information("User logged in: {UserName}", logUser.Email);
                 return Ok(token);
             }
+            Log.Information("User can't logged in: {UserName}", logUser.Email);
             return Unauthorized(new { Response = false });
         }
         private string CreateToken(User user)
