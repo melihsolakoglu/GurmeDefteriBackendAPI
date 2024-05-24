@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_foods_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ece0f4"
+    tools:context=".ui.fragments.FoodsDetailFragment">
+
+    <ImageView
+        android:id="@+id/yildiz1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/drawing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodCountry" />
+
+    <ImageView
+        android:id="@+id/yildiz2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/drawing"
+        app:layout_constraintStart_toEndOf="@+id/yildiz1"
+        app:layout_constraintTop_toTopOf="@+id/yildiz1" />
+
+    <ImageView
+        android:id="@+id/yildiz3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/drawing"
+        app:layout_constraintStart_toEndOf="@+id/yildiz2"
+        app:layout_constraintTop_toTopOf="@+id/yildiz1" />
+
+    <ImageView
+        android:id="@+id/yildiz4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/drawing"
+        app:layout_constraintStart_toEndOf="@+id/yildiz3"
+        app:layout_constraintTop_toTopOf="@+id/yildiz1" />
+
+    <ImageView
+        android:id="@+id/yildiz5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/drawing"
+        app:layout_constraintStart_toEndOf="@+id/yildiz4"
+        app:layout_constraintTop_toTopOf="@+id/yildiz1" />
+
+    <TextView
+        android:id="@+id/foodCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/foodCategory"
+        app:layout_constraintStart_toStartOf="@+id/foodCategory"
+        app:layout_constraintTop_toBottomOf="@+id/foodCategory" />
+
+    <TextView
+        android:id="@+id/foodCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/foodName"
+        app:layout_constraintStart_toStartOf="@+id/foodName"
+        app:layout_constraintTop_toBottomOf="@+id/foodName" />
+
+    <TextView
+        android:id="@+id/foodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

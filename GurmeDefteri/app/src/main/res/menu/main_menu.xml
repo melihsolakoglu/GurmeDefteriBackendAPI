@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation.view">
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:visible="false">
+
+            </item>
+        </menu>
+
+    </item>
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/homepageFragment"
+            android:icon="@drawable/baseline_home_30"
+            android:title="Home Page" />
+
+
+        <item
+            android:id="@+id/scoredFoodFragment"
+            android:icon="@drawable/scored_hamburger"
+            android:title="Scored Foods" />
+
+
+        <item
+            android:id="@+id/profileFragment"
+            android:icon="@drawable/person"
+            android:title="Profile Settings" />
+        <item
+            android:id="@+id/foodsDetailFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:visible="false" />
+        <item
+            android:id="@+id/searchFoodsFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:visible="false" />
+
+
+    </group>
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/logoutFragment"
+                android:icon="@drawable/baseline_logout_24"
+                android:title="Logout">
+
+            </item>
+        </menu>
+
+    </item>
+
+
+</menu>

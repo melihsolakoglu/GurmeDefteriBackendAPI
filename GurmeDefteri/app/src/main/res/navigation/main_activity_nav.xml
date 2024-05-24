@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/homepageFragment">
+
+    <fragment
+        android:id="@+id/homepageFragment"
+        android:name="com.example.gurmedefteri.ui.fragments.HomepageFragment"
+        android:label="fragment_homepage"
+        tools:layout="@layout/fragment_homepage" >
+        <action
+            android:id="@+id/action_homepage_to_foods_detail"
+            app:destination="@id/foodsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodsDetailFragment"
+        android:name="com.example.gurmedefteri.ui.fragments.FoodsDetailFragment"
+        android:label="fragment_foods_detail"
+        tools:layout="@layout/fragment_foods_detail" >
+        <argument
+            android:name="Food"
+            app:argType="com.example.gurmedefteri.data.entity.Food" />
+        <action
+            android:id="@+id/action_foodsDetailFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.gurmedefteri.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/scoredFoodFragment"
+        android:name="com.example.gurmedefteri.ui.fragments.ScoredFoodFragment"
+        android:label="fragment_scored_food"
+        tools:layout="@layout/fragment_scored_food" >
+        <action
+            android:id="@+id/action_scoredFoodFragment_to_foodsDetailFragment"
+            app:destination="@id/foodsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFoodsFragment"
+        android:name="com.example.gurmedefteri.ui.fragments.SearchFoodsFragment"
+        android:label="fragment_search_foods"
+        tools:layout="@layout/fragment_search_foods" >
+        <action
+            android:id="@+id/action_searchFoodsFragment_to_foodsDetailFragment"
+            app:destination="@id/foodsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logoutFragment"
+        android:name="com.example.gurmedefteri.ui.fragments.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
+</navigation>
