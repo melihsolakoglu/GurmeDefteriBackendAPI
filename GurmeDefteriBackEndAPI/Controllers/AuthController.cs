@@ -32,10 +32,10 @@ namespace GurmeDefteriBackEndAPI.Controllers
             {
                 User user = _authService.FindUser(logUser.Email, logUser.Password);
                 var token = CreateToken(user);
-                Log.Information("User logged in: {UserName}", logUser.Email);
+                Log.Information("Kullanıcı giriş yaptı: {UserName}", logUser.Email);
                 return Ok(token);
             }
-            Log.Information("User can't logged in: {UserName}", logUser.Email);
+            Log.Information("Kullanıcı girişi başarısız: {UserName}", logUser.Email);
             return Unauthorized(new { Response = false });
         }
         private string CreateToken(User user)

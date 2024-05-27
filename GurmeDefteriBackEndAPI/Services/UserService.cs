@@ -8,6 +8,7 @@ using MongoDB.Bson.IO;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace GurmeDefteriBackEndAPI.Services
 {
@@ -49,24 +50,45 @@ namespace GurmeDefteriBackEndAPI.Services
                 .Set(u => u.Role, updatedUser.Role);
 
             _database.CollectionPerson.UpdateOne(filter, update);
+            Log.Information("Kullanıcı bilgileri güncellendi:{Username}", updatedUser.Email);
         }
 
         public void DeleteUser(string userId)
         {
             var objectId = new ObjectId(userId);
-            var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
-            _database.CollectionPerson.DeleteOne(filter);
+
+            // Kullanıcıyı al
+            var userFilter = Builders<User>.Filter.Eq(u => u.Id, objectId);
+            var deletedUser = _database.CollectionPerson.FindOneAndDelete(userFilter);
 
             // ScoredFood için filtre oluştur
             var scoredFoodFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId);
             _database.CollectionScoredFoods.DeleteMany(scoredFoodFilter);
+
+            if (deletedUser != null)
+            {
+                Log.Information("Kullanıcı silindi : {username}", deletedUser.Email);
+            }
+            else
+            {
+                Log.Information("Kullanıcı bulunamadı");
+            }
         }
+
 
         public void AddUser(User newUser)
         {
             try
             {
                 _database.CollectionPerson.InsertOne(newUser);
+                if(newUser != null)
+                {
+                    Log.Information($"Kullanıcı eklendi: {newUser.Email}");
+                }
+                else 
+                {
+                    Log.Information("Kullanıcı bilgileri eksik.");
+                }
             }
             catch (Exception ex)
             {
@@ -203,7 +225,26 @@ namespace GurmeDefteriBackEndAPI.Services
         public void AddScoredFoods(ScoredFoods scoredFoods)
         {
             _database.CollectionScoredFoods.InsertOne(scoredFoods);
+
+            var userObjectId = new ObjectId(scoredFoods.UserId);
+            var userFilter = Builders<User>.Filter.Eq(u => u.Id, userObjectId);
+            var logUser = _database.CollectionPerson.Find(userFilter).FirstOrDefault();
+
+            var foodObjectId = new ObjectId(scoredFoods.FoodId);
+            var foodFilter = Builders<Food>.Filter.Eq(u => u.Id, foodObjectId);
+            var logFood = _database.CollectionFood.Find(foodFilter).FirstOrDefault();
+
+            if (logUser != null && logFood != null)
+            {
+                Log.Information("{Username} kullanıcısı {Foodname} adlı yemeğe {Skor} oy verdi.", logUser.Email, logFood.Name, scoredFoods.Score);
+            }
+            else
+            {
+                Log.Information("Kullanıcı veya yemek bulunamadı.");
+            }
         }
+
+
         public void UpdateScoredFood(string userId, string foodId, int score)
         {
             var updateFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId) &
@@ -212,6 +253,22 @@ namespace GurmeDefteriBackEndAPI.Services
             var update = Builders<ScoredFoods>.Update.Set(sf => sf.Score, score);
 
             _database.CollectionScoredFoods.UpdateOne(updateFilter, update);
+            var userObjectId=new ObjectId(userId);
+            var foodObjectId = new ObjectId(foodId);
+            var userFilter=Builders<User>.Filter.Eq(u=>u.Id, userObjectId);
+            var logUser=_database.CollectionPerson.Find(userFilter).FirstOrDefault();
+            var foodFilter=Builders<Food>.Filter.Eq(u=> u.Id, foodObjectId);
+            var logFood=_database.CollectionFood.Find(foodFilter).FirstOrDefault();
+
+            if (logUser != null && logFood != null)
+            {
+                Log.Information("{Username} kullanıcısı {Foodname} adlı yemeğe verdiği oyu değiştirdi.Yeni oy : {Skor}", logUser.Email, logFood.Name,score);
+            }
+            else
+            {
+                Log.Information("Kullanıcı veya yemek bulunamadı.");
+            }
+
         }
         public int CheckScoredFood(string userId, string foodId)
         {
@@ -353,6 +410,12 @@ namespace GurmeDefteriBackEndAPI.Services
                               Category = f.Category
                           }).ToList();
 
+            return result;
+        }
+        public bool CheckUserIdExistsInScoredFoods(string userId)
+        {
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
+            var result = _database.CollectionScoredFoods.Find(filter).Any();
             return result;
         }
 
