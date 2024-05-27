@@ -330,6 +330,33 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("UnscoredFoodsByUserIdAndCategory")]
+        public IActionResult UnscoredFoodsByUserIdAndCategory(string userId, string category, int page = 1, int pageSize = 10)
+        {
+            var unscoredFoods = _userService.GetUnscoredFoodsByUserIdAndCategory(userId, category, page, pageSize);
+
+            if (unscoredFoods == null || unscoredFoods.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(unscoredFoods);
+        }
+        [HttpGet("GetScoredFoodsByUserIdAndCategory")]
+        public IActionResult GetScoredFoodsByUserIdAndCategory(string userId, string category, int page = 1, int pageSize = 10)
+        {
+            var scoredFoods = _userService.GetScoredFoodsByUserIdAndCategory(userId, category, page, pageSize);
+
+            if (scoredFoods == null || scoredFoods.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(scoredFoods);
+        }
+
+
+
 
 
 

@@ -305,6 +305,60 @@ namespace GurmeDefteriBackEndAPI.Services
 
             return suggestFoodAPI;
         }
+        public List<FoodItemWithImageBytes> GetUnscoredFoodsByUserIdAndCategory(string userId, string category, int page, int pageSize)
+        {
+            var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
+                                                                .Project(sf => sf.FoodId)
+                                                                .ToList();
+
+            var filter = Builders<Food>.Filter.Nin(f => f.Id, scoredFoodIds.Select(id => new ObjectId(id)))
+                                            & Builders<Food>.Filter.Eq(f => f.Category, category);
+
+            var unscoredFoods = _database.CollectionFood.Find(filter)
+                                                         .Skip((page - 1) * pageSize)
+                                                         .Limit(pageSize)
+                                                         .ToList();
+
+            var foodItems = unscoredFoods.Select(food => new FoodItemWithImageBytes
+            {
+                Name = food.Name,
+                Country = food.Country,
+                ImageBytes = food.Image,
+                Id = food.Id.ToString(),
+                Category = food.Category
+            }).ToList();
+
+            return foodItems;
+        }
+        public List<FoodItemWithImageBytes> GetScoredFoodsByUserIdAndCategory(string userId, string category, int page, int pageSize)
+        {
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
+            var scoredFoods = _database.CollectionScoredFoods.Find(filter)
+                                                              .Skip((page - 1) * pageSize)
+                                                              .Limit(pageSize)
+                                                              .ToList();
+
+            var foodIds = scoredFoods.Select(sf => sf.FoodId).ToList();
+            var foods = _database.CollectionFood.Find(f => foodIds.Contains(f.Id.ToString()) && f.Category == category)
+                                                 .ToList();
+
+            var result = (from sf in scoredFoods
+                          join f in foods on sf.FoodId equals f.Id.ToString()
+                          select new FoodItemWithImageBytes
+                          {
+                              Id = f.Id.ToString(),
+                              Name = f.Name,
+                              Country = f.Country,
+                              ImageBytes = f.Image,
+                              Category = f.Category
+                          }).ToList();
+
+            return result;
+        }
+
+
+
+
 
 
 
