@@ -4,6 +4,7 @@ using GurmeDefteriBackEndAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using GurmeDefteriBackEndAPI.Models.ViewModel;
 
 namespace GurmeDefteriBackEndAPI.Controllers
 {
@@ -370,18 +371,32 @@ namespace GurmeDefteriBackEndAPI.Controllers
             var exists = _userService.CheckUserIdExistsInScoredFoods(userId);
             return Ok(exists);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        [HttpPost("GetFoodExpectedScore")]
+        public async Task<IActionResult> GetFoodExpectedScore([FromBody] GetFoodExpectedScoreRequest request)
+        {
+            try
+            {
+                var score = await _userService.GetFoodExpectedScore(request.UserId, request.FoodId);
+                return Ok(score);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using Serilog;
+using Microsoft.IdentityModel.Tokens;
 
 namespace GurmeDefteriBackEndAPI.Services
 {
@@ -418,6 +419,33 @@ namespace GurmeDefteriBackEndAPI.Services
             var result = _database.CollectionScoredFoods.Find(filter).Any();
             return result;
         }
+        public async Task<string> GetFoodExpectedScore(string userId, string foodId)
+        {
+            var requestBody = new
+            {
+                user_id = userId,
+                food_id = foodId
+            };
+            var jsonContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync("http://20.81.205.102:92/api/yemeknumarasi", jsonContent);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"API call failed with status code: {response.StatusCode}");
+            }
+
+            var apiResponseString = await response.Content.ReadAsStringAsync();
+            var apiResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<FoodApiResponse>(apiResponseString);
+
+            if (apiResponse == null || string.IsNullOrEmpty(apiResponse.Score))
+            {
+                throw new InvalidOperationException("API did not return a valid response.");
+            }
+
+            return apiResponse.Score;
+        }
+
 
 
 
