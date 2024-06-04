@@ -3,22 +3,30 @@ using GurmeDefteriBackEndAPI.Models;
 using GurmeDefteriBackEndAPI.Models.Dto;
 using GurmeDefteriBackEndAPI.Services;
 using GurmeDefteriWebUI.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using System;
+using System.IO;
+
 
 namespace GurmeDefteriBackEndAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
+    
 
     public class AdminController : ControllerBase
     {
         private readonly AdminService _adminService;
+        private readonly LogService _logService;
 
         public AdminController()
         {
             _adminService = new AdminService();
+            _logService = new LogService();
         }
 
 
@@ -35,7 +43,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description=foodItem.Description,
                 };
             });
 
@@ -63,7 +72,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description = foodItem.Description
                 };
             });
 
@@ -88,7 +98,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 Country = foodItem.Country,
                 ImageBytes = foodItem.Image,
                 Id = foodItem.Id.ToString(),
-                Category = foodItem.Category
+                Category = foodItem.Category,
+                Description = foodItem.Description
             };
 
             return Ok(foodItemWithImage);
@@ -111,7 +122,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description = foodItem.Description
                 };
             });
 
@@ -159,7 +171,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description = foodItem.Description
                 };
             });
 
@@ -173,7 +186,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
         {
             try
             {
-                _adminService.AddFood(foodTemp.Name, foodTemp.Country, foodTemp.Image, foodTemp.Category);
+                _adminService.AddFood(foodTemp.Name, foodTemp.Country, foodTemp.Image, foodTemp.Category,foodTemp.Description);
                 return Ok("Food added successfully");
             }
             catch (Exception ex)
@@ -638,6 +651,22 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("GetLog")]
+        public IActionResult GetLogFileByDate([FromQuery] string date)
+        {
+            DateTime logDate;
+            if (DateTime.TryParseExact(date, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out logDate))
+            {
+                var logContent = _logService.FindLogFileByDate(logDate);
+                if (logContent != null)
+                {
+                    return Ok(logContent);
+                }
+                return NotFound("Log file not found");
+            }
+            return BadRequest("Invalid date format. Please use dd-MM-yyyy format.");
+        }
+
 
 
 

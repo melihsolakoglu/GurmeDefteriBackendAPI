@@ -136,7 +136,8 @@ namespace GurmeDefteriBackEndAPI.Services
                               Name = f.Name,
                               Country = f.Country,
                               ImageBytes = f.Image,
-                              Category = f.Category
+                              Category = f.Category,
+                              Description= f.Description
                           }).ToList();
 
             return result;
@@ -167,7 +168,8 @@ namespace GurmeDefteriBackEndAPI.Services
                                                      Country = f.Country,
                                                      ImageBytes = f.Image,
                                                      Id = f.Id.ToString(),
-                                                     Category = f.Category
+                                                     Category = f.Category,
+                                                     Description=f.Description
                                                  })
                                                  .ToList();
             return foods;
@@ -193,7 +195,8 @@ namespace GurmeDefteriBackEndAPI.Services
                                                      Country = f.Country,
                                                      ImageBytes = f.Image,
                                                      Id = f.Id.ToString(),
-                                                     Category = f.Category
+                                                     Category = f.Category,
+                                                     Description=f.Description
                                                  })
                                                  .ToList();
             return foods;
@@ -217,7 +220,8 @@ namespace GurmeDefteriBackEndAPI.Services
                 Country = food.Country,
                 ImageBytes = food.Image,
                 Id = food.Id.ToString(),
-                Category = food.Category
+                Category = food.Category,
+                Description = food.Description
             }).ToList();
 
             return foodItems;
@@ -358,6 +362,7 @@ namespace GurmeDefteriBackEndAPI.Services
                 Country = food.Country,
                 ImageBytes = food.Image,
                 Category = food.Category,
+                Description= food.Description,
                 Score = (int)Math.Round(apiResponse.Score) // Skoru int olarak ayarlayın
             };
 
@@ -383,7 +388,8 @@ namespace GurmeDefteriBackEndAPI.Services
                 Country = food.Country,
                 ImageBytes = food.Image,
                 Id = food.Id.ToString(),
-                Category = food.Category
+                Category = food.Category,
+                Description= food.Description
             }).ToList();
 
             return foodItems;
@@ -408,7 +414,8 @@ namespace GurmeDefteriBackEndAPI.Services
                               Name = f.Name,
                               Country = f.Country,
                               ImageBytes = f.Image,
-                              Category = f.Category
+                              Category = f.Category,
+                              Description= f.Description
                           }).ToList();
 
             return result;

@@ -34,7 +34,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description= foodItem.Description
                 };
             });
 
@@ -59,7 +60,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 Country = foodItem.Country,
                 ImageBytes = foodItem.Image,
                 Id = foodItem.Id.ToString(),
-                Category = foodItem.Category
+                Category = foodItem.Category,
+                Description= foodItem.Description
             };
 
             return Ok(foodItemWithImage);
@@ -85,7 +87,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description = foodItem.Description
                 };
             });
 
@@ -274,7 +277,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description= foodItem.Description
                 };
             });
 

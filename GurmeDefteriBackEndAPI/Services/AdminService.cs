@@ -167,7 +167,7 @@ namespace GurmeDefteriBackEndAPI.Services
             }
         }
 
-        public void AddFood(string name, string country, string imagefile, string category)
+        public void AddFood(string name, string country, string imagefile, string category,string description)
         {
             try
             {
@@ -176,7 +176,8 @@ namespace GurmeDefteriBackEndAPI.Services
                     Name = name,
                     Country = country,
                     Image = imagefile,
-                    Category = category
+                    Category = category,
+                    Description = description
                 };
 
                 _database.CollectionFood.InsertOne(food);
@@ -198,7 +199,8 @@ namespace GurmeDefteriBackEndAPI.Services
                 .Set(f => f.Name, foodTemp.Name)
                 .Set(f => f.Country, foodTemp.Country)
                  .Set(f => f.Image, foodTemp.ImageBytes)
-                 .Set(f => f.Category, foodTemp.Category);
+                 .Set(f => f.Category, foodTemp.Category)
+                 .Set(f => f.Description, foodTemp.Description);
             _database.CollectionFood.UpdateOne(filter, update);
             Log.Information("Yemek bilgileri güncellendi : {Foodname} ",foodTemp.Name);
        
