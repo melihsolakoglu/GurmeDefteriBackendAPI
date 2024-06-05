@@ -6,7 +6,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Food</title>
+    <title>Yemek Ekle</title>
 
     <style>
         body {
@@ -36,7 +36,7 @@
             <div class="col-lg-6">
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
-                        <h2 class="fw-bold mb-4 text-center">Add Food</h2>
+                        <h2 class="fw-bold mb-4 text-center">Yemek Ekle</h2>
 
                         <form asp-action="AddFood" asp-controller="Food" method="post" enctype="multipart/form-data">
 
@@ -45,28 +45,28 @@
 
                             <div class="row mb-3 ">
                                 <div class="col-md-6">
-                                    <label for="customFile" class="form-label">Select Image:</label>
+                                    <label for="customFile" class="form-label">Resim:</label>
                                     <input type="file" class="form-control" accept="image/*" id="customFile" onchange="previewImage(this)">
                                     <input asp-for="ImageBytes" id="hiddenImage" type="hidden"  />
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-center align-items-center">
                                     <div class="image-container justify-content-center align-items-center" onclick="">
                                         <img id="preview" class="preview-image" src="/Resources/img/addFood.png" alt="Preview Image">
-                                    </div></in
+                                    </div>
                                 </div>
                             </div>
 
 
                             <div class="mb-3 ">
-                                <label for="foodName" class="form-label">Food Name:</label>
+                                <label for="foodName" class="form-label">Yemek Adı:</label>
                                 <input asp-for="Name" type="text" class="form-control" id="foodName" placeholder="Enter food name">
                             </div>
 
 
                             <div class="mb-3">
-                                <label for="country" class="form-label">Country:</label>
+                                <label for="country" class="form-label">Ülke:</label>
                                 <select asp-for="Country" class="form-select" id="country">
-                                    <option value="">Select a country</option>
+                                    <option value="">Bir Ülke Seçiniz</option>
                                     @foreach (var country in CountryData.countries)
                                     {
                                         <option value="@country">@country</option>
@@ -75,9 +75,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="category" class="form-label">Category:</label>
+                                <label for="category" class="form-label">Kategori:</label>
                                 <select asp-for="Category" class="form-select" id="category">
-                                    <option value="">Select a country</option>
+                                    <option value="">Bir Kategori Seçiniz</option>
                                     @foreach (var country in CategoryData.categories)
                                     {
                                         <option value="@country">@country</option>
@@ -85,7 +85,11 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Submit</button>
+                            <div class="mb-3">
+                                <label  class="form-label">Hakkında:</label>
+                                <textarea class="form-control"  id="detail" name="detail"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Ekle</button>
 
 
 

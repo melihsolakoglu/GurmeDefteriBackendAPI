@@ -12,11 +12,11 @@
             {
                 aspController = "Food",
                 aspAction = "DeleteFood",
-                PropToReturn = "name"
+                PropToReturn = "Id"
             };
 }
 
-
+<!DOCTYPE html>
 <html >
 <head>
     <link rel="stylesheet" href="~/css/FoodIndex.css" />
@@ -26,12 +26,12 @@
        
     </style>
 </head>
-<body>
+<body >
 
     <div class="container" style="display: flex;">
         <form class="container" asp-action="Index" asp-controller="Food" method="post">
             <div class="search-container">
-                <input asp-for="searcKey" type="text" id="searchBar" class="form-control" placeholder="Aramak İstediğiniz Yemeği Giriniz...">
+                <input asp-for="searchKey" type="text" id="searchBar" class="form-control" placeholder="Aramak İstediğiniz Yemeği Giriniz...">
                 <button type="submit" class="search-btn">Ara</button>
             </div>
             <input asp-for="page" type="hidden" value=1 />
@@ -46,7 +46,7 @@
             <h1>Gösterilebilecek Yemek Yok :/</h1>
             return;}
 
-    <div class="card-container">
+        <div class="card-container " >
         @foreach (var foodItem in (List<Food>)ViewData["FoodItems"])
         {       
             <div class="card" data-name="@foodItem.Name">
@@ -58,7 +58,7 @@
                         </div>
                     <div class="btn-group">
                         <a class="btn btn-success btn-sm" style=" width: 100px;" asp-action="UpdateFood" asp-controller="Food" asp-route-name=@foodItem.Name class="nav-link">Yemeği Güncelle</a>
-                        <button class="btn btn-danger btn-sm btn-delete" style="width: 100px;" onclick="confirmDelete('@foodItem.Name')">Yemeği Sil</button>
+                            <button class="btn btn-danger btn-sm btn-delete" style="width: 100px;" onclick="confirmDelete('@foodItem.Id','@foodItem.Name')">Yemeği Sil</button>
                     </div>
                 </div>
                 <div >

@@ -38,16 +38,6 @@ namespace GurmeDefteriWebUI.Services
             return _modelStateFeedbackTemp;
         }
 
-        //private void CheckFileIsImage(IFormFile file)
-        //{
-        //    string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
-        //    bool fileStatue =imageExtensions.Any(ext => file.FileName.EndsWith(ext, StringComparison.OrdinalIgnoreCase));
-        //    if(!fileStatue) {
-        //        _modelStateFeedback.Message += "Geçersiz dosya formatı. Lütfen bir resim dosyası seçin.\n";
-        //        _modelStateFeedback.IsValid = false;
-        //    }
-           
-        //}
         private void CheckName(string name)
         {
             if(name.Length > 100) {

@@ -9,6 +9,8 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using GurmeDefteriWebUI.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 
 namespace GurmeDefteriWebUI.Services
@@ -16,25 +18,30 @@ namespace GurmeDefteriWebUI.Services
     public class FoodService
     {
         private readonly HttpClient _httpClient;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public FoodService()
+        public FoodService( )
         {
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(ApiConstants.ApiUrl+"Admin/")
             };
+            _httpContextAccessor = new HttpContextAccessor();
+            var jwtToken = _httpContextAccessor.HttpContext.Request.Cookies["JwtCookie"];
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
         }
 
-        private string ResizeBase4Image(string Base64Image,int width ,int height)
+        private string ResizeBase64Image(string base64Image, int width, int height)
         {
-            byte[] imageBytes = Convert.FromBase64String(Base64Image);
+            byte[] imageBytes = Convert.FromBase64String(base64Image);
 
             using (var inputStream = new MemoryStream(imageBytes))
             using (var outputStream = new MemoryStream())
             using (var image = Image.Load(inputStream))
             {
-                image.Mutate(x => x.Resize(width, height));
-                image.Save(outputStream, new JpegEncoder());
+  
+                image.Mutate(x => x.AutoOrient().Resize(width, height));
+                image.Save(outputStream, new JpegEncoder { Quality = 75 });
                 byte[] resizedImageBytes = outputStream.ToArray();
                 return Convert.ToBase64String(resizedImageBytes);
             }
@@ -43,12 +50,12 @@ namespace GurmeDefteriWebUI.Services
         {
             try
             {
-                string resizedBase64String = ResizeBase4Image(fileBase64,400, 300);
+                string resizedBase64String = ResizeBase64Image(fileBase64,400, 300);
 
               
                 var content = new MultipartFormDataContent
                 {
-                    { new StringContent(name), "Name" },
+                    { new StringContent( char.ToUpper(name[0]) + name.Substring(1)), "Name" },
                     { new StringContent(country), "Country" },
                     { new StringContent(resizedBase64String), "Image" },
                     { new StringContent(category), "Category" }
@@ -68,11 +75,11 @@ namespace GurmeDefteriWebUI.Services
         {
             try
             {
-                string resizedBase64String = ResizeBase4Image(foodTemp.ImageBytes, 400, 300);
+                string resizedBase64String = ResizeBase64Image(foodTemp.ImageBytes, 400, 300);
                 var content = new MultipartFormDataContent
                 {
                     { new StringContent(foodTemp.Id), "Id" },
-                    { new StringContent(foodTemp.Name), "Name" },
+                    { new StringContent(char.ToUpper(foodTemp.Name[0]) + foodTemp.Name.Substring(1)), "Name" },
                     { new StringContent(foodTemp.Country), "Country" },
                     { new StringContent(resizedBase64String), "ImageBytes" },
                     { new StringContent(foodTemp.Category), "Category" }

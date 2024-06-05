@@ -36,8 +36,10 @@ namespace GurmeDefteriWebUI.Controllers
             {
                 var result = await _authService.Authenticate(loginUserMail, loginUserPassword);
 
-                if (result )
+                if ( !string.IsNullOrEmpty(result) )
                 {
+                    Response.Cookies.Append("JwtCookie", result);
+                    Response.Cookies.Append("Mail", loginUserMail);
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name,loginUserMail),
@@ -62,9 +64,12 @@ namespace GurmeDefteriWebUI.Controllers
         }
 
         [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> LogoutAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            Response.Cookies.Delete("JwtCookie");
+            Response.Cookies.Delete("Mail");
             return RedirectToAction("Login", "Account");
         }
 

@@ -26,6 +26,7 @@
 @media (max-width: 500px) {
     .card {
         width: 100%;
+        height:25%;
     }
     .search-btn, #addFoodButton {
         width: 10%;
@@ -37,7 +38,7 @@
 
 
 #updateFoodButton:hover {
-    background-color: #45a049; /* Koyu yeşil */
+    background-color: #45a049; 
 }
 
 .btn-group {

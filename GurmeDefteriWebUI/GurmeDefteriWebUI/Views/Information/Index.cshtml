@@ -1,0 +1,119 @@
+﻿<html>
+<head>
+    <style>
+
+        .input-container input {
+            border: none;
+            box-sizing: border-box;
+            outline: 0;
+            padding: .75rem;
+            position: relative;
+            width:100%;
+
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+        }
+        .marquee {
+            margin-top:80px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+
+        }
+
+            .marquee p {
+                display: inline-block;
+                padding-left: 100%;
+                animation: marquee 20s linear infinite;
+                 padding-left: 100%;
+    font-size: 2em;
+                color: C0C0C0;
+            }
+
+        @@keyframes marquee {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+
+        #logoImage {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <form asp-action="DownloadLogs" asp-controller="Information" method="get">
+        <div class="text-center text-white">
+            <h1 style="margin-bottom:2%">Mr Gurme'nin Üzerine Tıklayarak Seçtiğiniz Günlük Logları İndirebilirsiniz</h1>
+            <button type="submit" class="btn btn-transparent navbar-brand" style="background: none; border: none; padding: 0; margin: 0;">
+                <img id="logoImage" src="~/Resources/img/hamburgerLog.jpg" alt="Gurme Defteri Logo" loading="lazy" />
+            </button>
+        </div>
+        <div style="text-align:center; margin-top:20px">
+            <input type="date" id="logDate" name="date">
+        </div>
+    </form>
+    <div class="marquee">
+        <p>100 Yemek Oylandı , 50 Yeni kullanıcı aramıza katıldı, 10 Yemek Sistemden Silindi</p>
+    </div>
+
+
+
+
+    <script>
+
+        var today = new Date();
+
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0');
+        var day = String(today.getDate()).padStart(2, '0');
+
+        document.getElementById('logDate').value = year + '-' + month + '-' + day;
+    </script>
+    <script>
+        window.onload = function () {
+            var logDate = document.getElementById('logDate');
+            var IsCalendarShowed = false;
+
+            logDate.addEventListener('click', function () {
+                if (!IsCalendarShowed) {
+                    var rect = this.getBoundingClientRect();
+                    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+                    this.style.left = (rect.left + scrollLeft) + 'px';
+                    this.style.position = 'fixed';
+                    IsCalendarShowed = true;
+                }
+            });
+        };
+
+    </script>
+
+
+
+</body>
+
+
+
+</html>
+

@@ -1,0 +1,123 @@
+﻿@using GurmeDefteriWebUI.Data
+@using GurmeDefteriWebUI.Models.Dto
+@model ScoredFood
+@Html.Partial("Components/PopupPartial")
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yemek Skoru Güncelle</title>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .image-container {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            margin-top: 10px;
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container py-3">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h2 class="fw-bold mb-4 text-center"> Yemek Skoru Güncelle</h2>
+
+                        <form asp-action="UpdateScoredFood" asp-controller="ScoredFood" method="post" enctype="multipart/form-data">
+
+                            <input asp-for="ScoredFoodID" type="hidden" value="@Model.ScoredFoodID" />
+
+                            <div class="mb-3">
+                                <label for="userMailShowed" class="form-label">Kullanıcı Email:</label>
+                                <input asp-for="Email" type="hidden" class="form-control" id="userMail" readonly>
+                                <input value="@Model.Email" class="form-control" id="userMailShowed" readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="foodNameShowed" class="form-label">Yemek Adı:</label>
+                                <input asp-for="Foodname" type="hidden" class="form-control" id="foodName" readonly>
+                                <input value="@Model.Foodname" type="text" class="form-control" id="foodNameShowed" readonly>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="foodScore" class="form-label">Yemek Skoru :</label>
+                                <input asp-for="Score" type="text" class="form-control" id="foodScore" placeholder="Yemek Skorunu giriniz 1-10 arasıdna olmalı" value="@(Model.Score)">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <span>@error.ErrorMessage</span>
+            }
+        </div>
+    }
+    else if (TempData["isPopupVisible"] != null && (bool)TempData["isPopupVisible"] == true)
+    {
+        <script>
+            window.onload = function () {
+                showSuccessPopup();
+            };
+
+
+        </script>
+        { ViewData["isPopupVisible"] = false; }
+    }
+
+    }
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview');
+            var hiddenImage = document.getElementById('hiddenImage');
+            const file = input.files[0];
+            const fileType = file.type;
+
+            if (!fileType.startsWith('image/')) {
+                alert('Lütfen bir resim dosyası seçin.');
+                input.value = '';
+                return;
+            }
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.style.display = 'block';
+                    preview.src = e.target.result;
+                    var base64String = e.target.result.split(',')[1];
+                    hiddenImage.value = base64String;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.getElementById('preview').addEventListener('click', function () {
+            document.getElementById('customFile').click();
+        });
+
+    </script>
+
+</body>
+</html>
