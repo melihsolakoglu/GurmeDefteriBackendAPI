@@ -15,16 +15,16 @@ namespace GurmeDefteriBackEndAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
     
 
     public class AdminController : ControllerBase
     {
         private readonly AdminService _adminService;
         private readonly LogService _logService;
-        private readonly IDailyActivityCounterService _dailyActivityCounterService;
+        private readonly DailyActivityCounterService _dailyActivityCounterService;
 
-        public AdminController(IDailyActivityCounterService dailyActivityCounterService)
+        public AdminController(DailyActivityCounterService dailyActivityCounterService)
         {
             _adminService = new AdminService();
             _logService = new LogService();

@@ -1,4 +1,5 @@
 using GurmeDefteriBackEndAPI.Models;
+using GurmeDefteriBackEndAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
@@ -24,6 +25,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddSingleton<DailyActivityCounterService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

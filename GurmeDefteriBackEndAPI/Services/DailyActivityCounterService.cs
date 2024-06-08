@@ -1,16 +1,6 @@
 ﻿namespace GurmeDefteriBackEndAPI.Services
 {
-    public interface IDailyActivityCounterService
-    {
-        void IncrementLoginCount();
-        void IncrementFoodRatedCount();
-        void IncrementFoodSuggestedCount();
-        int GetDailyLoginCount();
-        int GetDailyFoodRatedCount();
-        int GetDailyFoodSuggestedCount();
-    }
-
-    public class DailyActivityCounterService : IDailyActivityCounterService
+    public class DailyActivityCounterService
     {
         private int _dailyLoginCount;
         private int _dailyFoodRatedCount;
@@ -63,5 +53,4 @@
             return _dailyFoodSuggestedCount;
         }
     }
-
 }

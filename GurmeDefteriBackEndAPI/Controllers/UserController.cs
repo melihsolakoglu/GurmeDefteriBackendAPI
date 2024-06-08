@@ -14,9 +14,9 @@ namespace GurmeDefteriBackEndAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
-        private readonly IDailyActivityCounterService _dailyActivityCounterService; 
+        private readonly DailyActivityCounterService _dailyActivityCounterService; 
 
-        public UserController(IDailyActivityCounterService dailyActivityCounterService)
+        public UserController(DailyActivityCounterService dailyActivityCounterService)
         {
             _userService = new UserService();
             _dailyActivityCounterService = dailyActivityCounterService;

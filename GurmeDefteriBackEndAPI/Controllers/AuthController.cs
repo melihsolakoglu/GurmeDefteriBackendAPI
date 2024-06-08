@@ -19,9 +19,9 @@ namespace GurmeDefteriBackEndAPI.Controllers
     {
         private readonly AuthService _authService;
         private readonly JwtSettings _jwtSettings;
-        private readonly IDailyActivityCounterService _dailyActivityCounterService;
+        private readonly DailyActivityCounterService _dailyActivityCounterService;
 
-        public AuthController(IOptions<JwtSettings> jwtSettings, IDailyActivityCounterService dailyActivityCounterService)
+        public AuthController(IOptions<JwtSettings> jwtSettings,DailyActivityCounterService dailyActivityCounterService)
         {
             _authService = new AuthService();
             _jwtSettings = jwtSettings.Value;
