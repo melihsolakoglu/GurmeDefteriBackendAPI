@@ -15,9 +15,9 @@
                 <div class="modal-body d-flex justify-content-center align-items-center">
                     <p id="deleteConfirmationText"> Silmek istediğinizden emin misiniz?</p>
                 </div>
-                <form class="container" asp-action="@(Model.aspAction)" asp-controller="@(Model.aspController)" method="post" style="display: flex; justify-content: space-between;">
+                <form class="container" asp-action="@(Model.aspAction)" asp-controller="@(Model.aspController)" method="post" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
                     <div class="item d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-secondary btn-block" aria-label="Close" data-bs-dismiss="modal">
+                        <button id="cancelButton" type="button" class="btn btn-secondary btn-block" aria-label="Close" data-bs-dismiss="modal">
                             <i class="bi bi-x-lg"></i>  İptal
                         </button>
                     </div>
@@ -28,16 +28,11 @@
                         </button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     </div>
 
-
-
     <script>
-
         document.getElementById('cancelButton').addEventListener('click', function (event) {
             event.preventDefault();
         });
@@ -45,9 +40,9 @@
     <script>
         var foodMailToDelete;
 
-        function confirmDelete(deleteInput) {
+        function confirmDelete(deleteInput, showInput) {
             var modal = $('#deleteConfirmationModal');
-            modal.find('#deleteConfirmationText').text(deleteInput + "\n Silmek istediğinizden emin misiniz?");
+            modal.find('#deleteConfirmationText').text(showInput + "\n Silmek istediğinizden emin misiniz?");
             $("#deleteConfirmationModal").modal("show");
             document.getElementById('deleteInputForm').value = deleteInput;
         }

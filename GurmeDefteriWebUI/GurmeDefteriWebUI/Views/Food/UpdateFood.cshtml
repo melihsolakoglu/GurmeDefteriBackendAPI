@@ -1,12 +1,12 @@
 ﻿@using GurmeDefteriWebUI.Data
 @using GurmeDefteriWebUI.Models.Dto
 @model Food 
-@Html.Partial("PopupPartial")
+@Html.Partial("Components/PopupPartial")
 
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Food</title>
+    <title>Yemek Güncelle</title>
 
     <style>
         body {
@@ -37,14 +37,14 @@
             <div class="col-lg-6">
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
-                        <h2 class="fw-bold mb-4 text-center">Add Food</h2>
+                        <h2 class="fw-bold mb-4 text-center">Yemek Güncelle</h2>
 
                         <form asp-action="UpdateFood" asp-controller="Food" method="post" enctype="multipart/form-data">
                             <input asp-for="Id" type="hidden" value="@(Model.Id)" />
                             <input type="hidden" name="prevName" value="@(Model.Name)" />
                             <div class="row mb-3 ">
                                 <div class="col-md-6">
-                                    <label for="customFile" class="form-label">Select Image:</label>
+                                    <label for="customFile" class="form-label">Resim:</label>
                                     <input  type="file" class="form-control" accept="image/*" id="customFile"  onchange="previewImage(this)">
                                     <input asp-for="ImageBytes" id="hiddenImage" type="hidden" value=@(Model.ImageBytes) />
                                 </div>
@@ -57,13 +57,13 @@
 
 
                             <div class="mb-3 ">
-                                <label for="foodName" class="form-label">Food Name:</label>
+                                <label for="foodName" class="form-label">Yemek Adı:</label>
                                 <input asp-for="Name" type="text" class="form-control" id="foodName" placeholder="Enter food name">
                             </div>
 
          
                             <div class="mb-3">
-                                <label for="country" class="form-label">Country:</label>
+                                <label for="country" class="form-label">Ülke:</label>
                                 <select asp-for="Country" class="form-select" id="country">
                                     <option selected="@(Model.Country)"> @(Model.Country)</option>
                                     @foreach (var country in CountryData.countries)
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="category" class="form-label">Category:</label>
+                                <label for="category" class="form-label">Kategori:</label>
                                 <select asp-for="Category" class="form-select" id="category">
                                     <option selected="@(Model.Category)"> @(Model.Category)</option>
                                     @foreach (var country in CategoryData.categories)
@@ -83,7 +83,12 @@
                                     }
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Submit</button>
+                            <div class="mb-3">
+                                <label class="form-label">Hakkında:</label>
+                                <textarea class="form-control" id="detail" name="detail"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Güncelle</button>
 
                         </form>
                     </div>

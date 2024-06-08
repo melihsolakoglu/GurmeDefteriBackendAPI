@@ -1,0 +1,111 @@
+﻿@using GurmeDefteriWebUI.Models.Dto
+@using GurmeDefteriWebUI.Models.ViewModel.ComponentModel
+@model SearchBarIndex
+@{
+    int pageCount = (int)ViewData["PageCount"];
+    int pageNum = ViewBag.PageNumber;
+    PageViewModel pageModel = new PageViewModel
+            {
+                PageCount = (int)ViewData["PageCount"],
+                PageNumber = ViewBag.PageNumber,
+                RootLocation = $"/ScoredFood/Index?searchKey={ViewBag.SearchKey}&page="
+            };
+
+    RemoveObjectPopUpModel removeObjectPopUpModel = new RemoveObjectPopUpModel
+            {
+                aspController = "ScoredFood",
+                aspAction = "DeleteScoredFood",
+                PropToReturn = "scoredFoodId"
+            };
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/HeaderTransactionIndex.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="display: flex;">
+        <form class="container" asp-action="Index" asp-controller="ScoredFood" method="post">
+            <div class="search-container">
+                <input asp-for="searchKey" type="text" id="searchBar" class="form-control" placeholder="Kullanıcı Mail'i ya da Yemek Adı Giriniz... ">
+                <button type="submit" class="search-btn">Ara</button>
+            </div>
+            <input asp-for="page" type="hidden" value=1 />
+        </form>
+        <button class="addButton" onclick="window.location.href='@Url.Action("AddScoredFood", "ScoredFood")'" style="width: 30%;">Yemek Skoru Ekle</button>
+    </div>
+
+    @if (((List<ScoredFood>)ViewData["ScoredFoodItems"]).Count <= 0)
+    {
+        <h1>Gösterilebilecek Puanlanmış Yemek Yok :/</h1>
+        return;
+    }
+    <div style="overflow-x:auto;">
+        <table style="text-align: center;">
+            <tr>
+                <th>Mail</th>
+                <th>Yemek</th>
+                <th>Puan</th>
+                <th>Güncelle</th>
+                <th>Sil</th>
+            </tr>
+            @foreach (var scoredFood in (List<ScoredFood>)ViewData["ScoredFoodItems"])
+            {
+                <tr>
+
+                    <td>@scoredFood.Email</td>
+                    <td>@scoredFood.Foodname</td>
+                    <td>@scoredFood.Score</td>
+                    <td>
+                        <a class="btn btn-transparent" style="color:mediumaquamarine;"
+                           asp-action="UpdateScoredFood" asp-controller="ScoredFood" asp-route-scoredFoodId="@scoredFood.ScoredFoodID">
+                            <i class="fa-solid fa-cog" style="font-size:24px;color:mediumaquamarine;"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-transparent" style="color:red;"
+                                onclick="confirmDelete('@scoredFood.ScoredFoodID', '@scoredFood.Email @scoredFood.Foodname')">
+                        <i class=" fa-solid fa-trash style="font-size:24px;color:white;"></i>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+    <footer>
+        @Html.Partial("Components/PaginationFooter", pageModel)
+        @Html.Partial("Components/RemoveObjectPopUp", removeObjectPopUpModel)
+    </footer>
+
+
+
+</body>
+</html>

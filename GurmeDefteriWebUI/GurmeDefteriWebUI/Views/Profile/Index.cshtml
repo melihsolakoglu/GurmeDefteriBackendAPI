@@ -1,0 +1,80 @@
+﻿@using GurmeDefteriWebUI.Data
+@using GurmeDefteriWebUI.Models.Dto
+@using GurmeDefteriWebUI.Models.ViewModel.ComponentModel
+@model User
+@{
+    RemoveObjectPopUpModel removeObjectPopUpModel = new RemoveObjectPopUpModel
+            {
+                aspController = "Profile",
+                aspAction = "DeleteProfile",
+                PropToReturn = "mail"
+            };
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil</title>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .profile-container {
+            background-color: #343a40;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        .profile-icon {
+            left: 50%;
+            color: white;
+            font-size: 64px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="profile-container">
+                    <div style="text-align: center;"><i class="fas fa-user profile-icon"></i></div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Ad</label>
+                        <input type="text" class="form-control" id="fullName" value="@Model.Name" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-posta</label>
+                        <input type="email" class="form-control" id="email" value="@Model.Email" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Yaş</label>
+                        <input type="text" class="form-control" id="age" value="@Model.Age" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Şifre</label>
+                        <input type="text" class="form-control" id="pass" value="@Model.Password" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <input type="text" class="form-control" id="rol" value="@Model.Role" readonly>
+                    </div>
+                    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
+                        <a class="btn btn-primary" asp-action="UpdateProfile" asp-controller="Profile" asp-route-mail="@Model.Email">Güncelle</a>
+                        <button type="submit" class="btn btn-transparent" style="background:red; color:white;" onclick="confirmDelete('@Model.Email')">Sil</td>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <footer>
+        @Html.Partial("Components/RemoveObjectPopUp", removeObjectPopUpModel)
+    </footer>
+
+</body>
+</html>

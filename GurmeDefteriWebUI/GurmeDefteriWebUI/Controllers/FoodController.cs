@@ -3,6 +3,7 @@ using GurmeDefteriWebUI.Models.Dto;
 using GurmeDefteriWebUI.Models.ViewModel;
 using GurmeDefteriWebUI.Services;
 using GurmeDefteriWebUI.Services.Interfaces;
+using GurmeDefteriWebUI.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,19 +16,21 @@ namespace GurmeDefteriWebUI.Controllers
     [Authorize(Roles = "Admin")]
     public class FoodController : Controller
     {
+        private readonly StringPropertyTrim stringPropertyTrim;
         private readonly FoodService _foodService;
         private readonly IFoodModelStatePropCheck _foodModelStatePropCheck;
         private readonly int pageSize;
         public FoodController(IFoodModelStatePropCheck foodModelStatePropCheck)
         {
+            stringPropertyTrim = new();
             _foodModelStatePropCheck = foodModelStatePropCheck;
             _foodService = new();
             pageSize = 6;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(int page = 1, string searcKey="")
+        public async Task<IActionResult> Index(int page = 1, string searchKey="")
         {
-            if (String.IsNullOrEmpty(searcKey))
+            if (String.IsNullOrEmpty(searchKey))
             {
                 int pageCount = Convert.ToInt32(await _foodService.GetPageCountFoodAsync(pageSize));
                 page = (page > pageCount) ? pageCount : page;
@@ -40,22 +43,22 @@ namespace GurmeDefteriWebUI.Controllers
             }
             else
             {
-                searcKey = searcKey.Trim();
-                int pageCount = Convert.ToInt32(await _foodService.GetPageCountFoodByNameAsync(pageSize,searcKey));
-                var foodItems = await _foodService.GetPagedFoodWithKeyAsync(page, pageSize, searcKey);
+                searchKey = searchKey.Trim();
+                int pageCount = Convert.ToInt32(await _foodService.GetPageCountFoodByNameAsync(pageSize,searchKey));
+                var foodItems = await _foodService.GetPagedFoodWithKeyAsync(page, pageSize, searchKey);
                 page = (page > pageCount) ? pageCount : page;
                 page = (page < 1) ? 1 : page;
                 ViewBag.FoodItems = foodItems;
                 ViewBag.PageNumber = page;
-                ViewBag.SearchKey = searcKey;
+                ViewBag.SearchKey = searchKey;
                 ViewData["PageCount"] = pageCount;
                 return View();
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Index( string searcKey)
+        public async Task<IActionResult> Index( string searchKey)
         {
-                return RedirectToAction(nameof(Index), new { searcKey });
+                return RedirectToAction(nameof(Index), new { searchKey });
         }
         [HttpGet]
         public async Task<IActionResult> AddFood()
@@ -66,9 +69,7 @@ namespace GurmeDefteriWebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFood(Food model)
         {
-            FoodService foodSeri = new();
-
-
+            stringPropertyTrim.TrimAllStringProperties(model);
             if (ModelState.IsValid)
             {
                 ModelStateFeedback foodModelState = await  _foodModelStatePropCheck.GetModelStateFeedbacAddkFood(model);
@@ -77,7 +78,7 @@ namespace GurmeDefteriWebUI.Controllers
                     ModelState.AddModelError(string.Empty, foodModelState.Message);
                     return View(model);
                 }
-               var respond= await foodSeri.AddFood(model.Name,model.Country,model.ImageBytes,model.Category);
+               var respond= await _foodService.AddFood(model.Name,model.Country,model.ImageBytes,model.Category);
                 if(respond=="Error")
                 {
                     ModelState.AddModelError(string.Empty, "Yemek Eklenemedi, Resmi değitirmeyi deniyebilirsiniz");
@@ -98,13 +99,13 @@ namespace GurmeDefteriWebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateFood(string name)
         {
-            var food = await _foodService.GetFoodByNameAsync(name);
+            var food = await _foodService.GetFoodByNameAsync(name.Trim());
             return View(food);
         }
         [HttpPost]
         public async Task<IActionResult> UpdateFood(Food model,string prevName)
         {
-            FoodService foodSeri = new();
+            stringPropertyTrim.TrimAllStringProperties(model);
             ViewBag.FoodItem = model;
             bool IsNameChanged = model.Name != prevName;
 
@@ -116,7 +117,7 @@ namespace GurmeDefteriWebUI.Controllers
                     ModelState.AddModelError(string.Empty, foodModelState.Message);
                     return View(model);
                 }
-                var respond = await foodSeri.UpdateFood(model);          
+                var respond = await _foodService.UpdateFood(model);          
                 if (respond == "Error")
                 {
                     ModelState.AddModelError(string.Empty, "Yemek Eklenemedi, Resmi değitirmeyi deniyebilirsiniz");
@@ -136,10 +137,9 @@ namespace GurmeDefteriWebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteFood(string name)
+        public async Task<IActionResult> DeleteFood(string Id)
         {
-            var food = await _foodService.GetFoodByNameAsync(name);
-            await _foodService.DeleteFoodAsync(food.Id);
+            await _foodService.DeleteFoodAsync(Id);
             return RedirectToAction(nameof(Index));
         }
     }

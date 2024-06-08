@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\GurmeDefteriWebUI.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\Resources\\img\\adminPP.jpg",
+      "PackagePath": "staticwebassets\\Resources\\img\\adminPP.jpg"
+    },
+    {
+      "Id": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\Resources\\img\\hamburgerLog.jpg",
+      "PackagePath": "staticwebassets\\Resources\\img\\hamburgerLog.jpg"
+    },
+    {
       "Id": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\css\\FoodIndex.css",
       "PackagePath": "staticwebassets\\css\\FoodIndex.css"
     },

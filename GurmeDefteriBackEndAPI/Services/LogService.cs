@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.IO;
 
 namespace GurmeDefteriBackEndAPI.Services
@@ -13,13 +14,15 @@ namespace GurmeDefteriBackEndAPI.Services
             string logFileName = $"gurmeDefteriLogs-{dateString}.txt";
             string logFilePath = Path.Combine(_logFolderPath, logFileName);
 
-            if (File.Exists(logFilePath))
+            if (File.Exists(logFilePath.Trim()))
             {
-                string logContent = File.ReadAllText(logFilePath);
+                string logContent = File.ReadAllText(logFilePath.Trim());
                 return logContent;
             }
 
-            return null;
-        }
+            return "Seçilen gün için gösterilebilecek log bulunmamakta.";
+        
+    }
+            
     }
 }
