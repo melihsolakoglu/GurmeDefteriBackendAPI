@@ -14,10 +14,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly IDailyActivityCounterService _dailyActivityCounterService; 
 
-        public UserController()
+        public UserController(IDailyActivityCounterService dailyActivityCounterService)
         {
             _userService = new UserService();
+            _dailyActivityCounterService = dailyActivityCounterService;
         }
 
 
@@ -293,6 +295,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             try
             {
                 _userService.AddScoredFoods(scoredFoods);
+                _dailyActivityCounterService.IncrementFoodRatedCount();
                 return Ok("Scored foods added successfully");
             }
             catch (Exception ex)
@@ -335,6 +338,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             try
             {
                 var result = await _userService.GetFoodScoreSuggestion(userId);
+                _dailyActivityCounterService.IncrementFoodSuggestedCount();
                 return Ok(result);
             }
             catch (Exception ex)

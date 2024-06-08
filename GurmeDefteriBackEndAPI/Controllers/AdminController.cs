@@ -22,11 +22,13 @@ namespace GurmeDefteriBackEndAPI.Controllers
     {
         private readonly AdminService _adminService;
         private readonly LogService _logService;
+        private readonly IDailyActivityCounterService _dailyActivityCounterService;
 
-        public AdminController()
+        public AdminController(IDailyActivityCounterService dailyActivityCounterService)
         {
             _adminService = new AdminService();
             _logService = new LogService();
+            _dailyActivityCounterService = dailyActivityCounterService;
         }
 
 
@@ -493,6 +495,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             try
             {
                 _adminService.AddScoredFoods(scoredFoods);
+                _dailyActivityCounterService.IncrementFoodRatedCount();
                 return Ok("Scored foods added successfully");
             }
             catch (Exception ex)
@@ -665,6 +668,19 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return NotFound("Log file not found");
             }
             return BadRequest("Invalid date format. Please use dd-MM-yyyy format.");
+        }
+        [HttpGet("DailyActivityCounts")]
+        public ActionResult GetDailyActivityCounts()
+        {
+            var loginCount = _dailyActivityCounterService.GetDailyLoginCount();
+            var foodRatedCount = _dailyActivityCounterService.GetDailyFoodRatedCount();
+            var foodSuggestedCount = _dailyActivityCounterService.GetDailyFoodSuggestedCount();
+            return Ok(new
+            {
+                DailyLoginCount = loginCount,
+                DailyFoodRatedCount = foodRatedCount,
+                DailyFoodSuggestedCount = foodSuggestedCount
+            });
         }
 
 

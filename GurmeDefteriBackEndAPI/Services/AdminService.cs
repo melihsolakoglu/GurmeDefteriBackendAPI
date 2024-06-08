@@ -560,5 +560,6 @@ namespace GurmeDefteriBackEndAPI.Services
 
 
 
+
     }
 }
