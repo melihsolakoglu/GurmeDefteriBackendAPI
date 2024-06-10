@@ -15,7 +15,7 @@ namespace GurmeDefteriWebUI.Services
             };
         }
 
-        public async Task<bool> Authenticate(string Email, string password)
+        public async Task<string> Authenticate(string Email, string password)
         {
             var requestData = new
             {
@@ -23,10 +23,13 @@ namespace GurmeDefteriWebUI.Services
                 password
             };
 
-            var response = await _httpClient.PostAsJsonAsync("Auth", requestData);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var code = response.StatusCode.ToString();
-            return code == "OK";
+            var response = await _httpClient.PostAsJsonAsync("Auth/AdminLogin", requestData);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            string code = response.StatusCode.ToString();
+            if(code=="OK")
+            return responseBody;
+
+            return "";
              
         }
     }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T8wG93J54r7u3La8VYSLXL8sP/jqrc6T4NJC8yNidnQ=",
+  "Hash": "0eccNxDimpUT6HHBOKUtZAH28tk3FyPfabgoYciIQVA=",
   "Source": "GurmeDefteriWebUI",
   "BasePath": "_content/GurmeDefteriWebUI",
   "Mode": "Default",
@@ -1212,6 +1212,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\Resources\\img\\adminPP.jpg",
+      "SourceId": "GurmeDefteriWebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\",
+      "BasePath": "_content/GurmeDefteriWebUI",
+      "RelativePath": "Resources/img/adminPP.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\img\\adminPP.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\Resources\\img\\hamburgerLog.jpg",
+      "SourceId": "GurmeDefteriWebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alisa\\OneDrive\\Masaüstü\\Düzenli\\Yazılım\\Bitirme\\WebFront\\GurmeDefteriWebUI\\GurmeDefteriWebUI\\wwwroot\\",
+      "BasePath": "_content/GurmeDefteriWebUI",
+      "RelativePath": "Resources/img/hamburgerLog.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\img\\hamburgerLog.jpg"
     }
   ]
 }

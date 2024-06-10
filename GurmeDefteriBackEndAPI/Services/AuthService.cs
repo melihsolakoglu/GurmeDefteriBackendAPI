@@ -25,5 +25,14 @@ namespace GurmeDefteriBackEndAPI.Services
             var _users = _database.CollectionPerson;
             return _users.Find(x => x.Email == email && x.Password == password).FirstOrDefault();
         }
+        public bool IsAdmin(LoginUser user)
+        {
+            var _users = _database.CollectionPerson;
+
+            var result = _users.Find(x => x.Email == user.Email && x.Password == user.Password && x.Role == "Admin").FirstOrDefault();
+
+            return result != null;
+        }
+
     }
 }

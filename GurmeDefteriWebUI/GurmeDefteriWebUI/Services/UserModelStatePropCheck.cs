@@ -94,5 +94,15 @@ namespace GurmeDefteriWebUI.Services
             }
         }
 
+
+        private async Task CheckPassword(string role)
+        {
+
+            if (role != "User" && role != "Admin")
+            {
+                _modelStateFeedback.Message += "Rol Geçerli Değil.\n";
+                _modelStateFeedback.IsValid = false;
+            }
+        }
     }
 }

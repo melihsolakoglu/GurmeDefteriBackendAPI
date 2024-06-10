@@ -8,6 +8,8 @@ using MongoDB.Bson.IO;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using Serilog;
+using Microsoft.IdentityModel.Tokens;
 
 namespace GurmeDefteriBackEndAPI.Services
 {
@@ -49,24 +51,45 @@ namespace GurmeDefteriBackEndAPI.Services
                 .Set(u => u.Role, updatedUser.Role);
 
             _database.CollectionPerson.UpdateOne(filter, update);
+            Log.Information("Kullanıcı bilgileri güncellendi:{Username}", updatedUser.Email);
         }
 
         public void DeleteUser(string userId)
         {
             var objectId = new ObjectId(userId);
-            var filter = Builders<User>.Filter.Eq(u => u.Id, objectId);
-            _database.CollectionPerson.DeleteOne(filter);
+
+            // Kullanıcıyı al
+            var userFilter = Builders<User>.Filter.Eq(u => u.Id, objectId);
+            var deletedUser = _database.CollectionPerson.FindOneAndDelete(userFilter);
 
             // ScoredFood için filtre oluştur
             var scoredFoodFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId);
             _database.CollectionScoredFoods.DeleteMany(scoredFoodFilter);
+
+            if (deletedUser != null)
+            {
+                Log.Information("Kullanıcı silindi : {username}", deletedUser.Email);
+            }
+            else
+            {
+                Log.Information("Kullanıcı bulunamadı");
+            }
         }
+
 
         public void AddUser(User newUser)
         {
             try
             {
                 _database.CollectionPerson.InsertOne(newUser);
+                if(newUser != null)
+                {
+                    Log.Information($"Kullanıcı eklendi: {newUser.Email}");
+                }
+                else 
+                {
+                    Log.Information("Kullanıcı bilgileri eksik.");
+                }
             }
             catch (Exception ex)
             {
@@ -113,7 +136,8 @@ namespace GurmeDefteriBackEndAPI.Services
                               Name = f.Name,
                               Country = f.Country,
                               ImageBytes = f.Image,
-                              Category = f.Category
+                              Category = f.Category,
+                              Description= f.Description
                           }).ToList();
 
             return result;
@@ -144,7 +168,8 @@ namespace GurmeDefteriBackEndAPI.Services
                                                      Country = f.Country,
                                                      ImageBytes = f.Image,
                                                      Id = f.Id.ToString(),
-                                                     Category = f.Category
+                                                     Category = f.Category,
+                                                     Description=f.Description
                                                  })
                                                  .ToList();
             return foods;
@@ -170,7 +195,8 @@ namespace GurmeDefteriBackEndAPI.Services
                                                      Country = f.Country,
                                                      ImageBytes = f.Image,
                                                      Id = f.Id.ToString(),
-                                                     Category = f.Category
+                                                     Category = f.Category,
+                                                     Description=f.Description
                                                  })
                                                  .ToList();
             return foods;
@@ -194,7 +220,8 @@ namespace GurmeDefteriBackEndAPI.Services
                 Country = food.Country,
                 ImageBytes = food.Image,
                 Id = food.Id.ToString(),
-                Category = food.Category
+                Category = food.Category,
+                Description = food.Description
             }).ToList();
 
             return foodItems;
@@ -203,7 +230,26 @@ namespace GurmeDefteriBackEndAPI.Services
         public void AddScoredFoods(ScoredFoods scoredFoods)
         {
             _database.CollectionScoredFoods.InsertOne(scoredFoods);
+
+            var userObjectId = new ObjectId(scoredFoods.UserId);
+            var userFilter = Builders<User>.Filter.Eq(u => u.Id, userObjectId);
+            var logUser = _database.CollectionPerson.Find(userFilter).FirstOrDefault();
+
+            var foodObjectId = new ObjectId(scoredFoods.FoodId);
+            var foodFilter = Builders<Food>.Filter.Eq(u => u.Id, foodObjectId);
+            var logFood = _database.CollectionFood.Find(foodFilter).FirstOrDefault();
+
+            if (logUser != null && logFood != null)
+            {
+                Log.Information("{Username} kullanıcısı {Foodname} adlı yemeğe {Skor} oy verdi.", logUser.Email, logFood.Name, scoredFoods.Score);
+            }
+            else
+            {
+                Log.Information("Kullanıcı veya yemek bulunamadı.");
+            }
         }
+
+
         public void UpdateScoredFood(string userId, string foodId, int score)
         {
             var updateFilter = Builders<ScoredFoods>.Filter.Eq(sf => sf.UserId, userId) &
@@ -212,6 +258,22 @@ namespace GurmeDefteriBackEndAPI.Services
             var update = Builders<ScoredFoods>.Update.Set(sf => sf.Score, score);
 
             _database.CollectionScoredFoods.UpdateOne(updateFilter, update);
+            var userObjectId=new ObjectId(userId);
+            var foodObjectId = new ObjectId(foodId);
+            var userFilter=Builders<User>.Filter.Eq(u=>u.Id, userObjectId);
+            var logUser=_database.CollectionPerson.Find(userFilter).FirstOrDefault();
+            var foodFilter=Builders<Food>.Filter.Eq(u=> u.Id, foodObjectId);
+            var logFood=_database.CollectionFood.Find(foodFilter).FirstOrDefault();
+
+            if (logUser != null && logFood != null)
+            {
+                Log.Information("{Username} kullanıcısı {Foodname} adlı yemeğe verdiği oyu değiştirdi.Yeni oy : {Skor}", logUser.Email, logFood.Name,score);
+            }
+            else
+            {
+                Log.Information("Kullanıcı veya yemek bulunamadı.");
+            }
+
         }
         public int CheckScoredFood(string userId, string foodId)
         {
@@ -300,11 +362,101 @@ namespace GurmeDefteriBackEndAPI.Services
                 Country = food.Country,
                 ImageBytes = food.Image,
                 Category = food.Category,
+                Description= food.Description,
                 Score = (int)Math.Round(apiResponse.Score) // Skoru int olarak ayarlayın
             };
 
             return suggestFoodAPI;
         }
+        public List<FoodItemWithImageBytes> GetUnscoredFoodsByUserIdAndCategory(string userId, string category, int page, int pageSize)
+        {
+            var scoredFoodIds = _database.CollectionScoredFoods.Find(sf => sf.UserId == userId)
+                                                                .Project(sf => sf.FoodId)
+                                                                .ToList();
+
+            var filter = Builders<Food>.Filter.Nin(f => f.Id, scoredFoodIds.Select(id => new ObjectId(id)))
+                                            & Builders<Food>.Filter.Eq(f => f.Category, category);
+
+            var unscoredFoods = _database.CollectionFood.Find(filter)
+                                                         .Skip((page - 1) * pageSize)
+                                                         .Limit(pageSize)
+                                                         .ToList();
+
+            var foodItems = unscoredFoods.Select(food => new FoodItemWithImageBytes
+            {
+                Name = food.Name,
+                Country = food.Country,
+                ImageBytes = food.Image,
+                Id = food.Id.ToString(),
+                Category = food.Category,
+                Description= food.Description
+            }).ToList();
+
+            return foodItems;
+        }
+        public List<FoodItemWithImageBytes> GetScoredFoodsByUserIdAndCategory(string userId, string category, int page, int pageSize)
+        {
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
+            var scoredFoods = _database.CollectionScoredFoods.Find(filter)
+                                                              .Skip((page - 1) * pageSize)
+                                                              .Limit(pageSize)
+                                                              .ToList();
+
+            var foodIds = scoredFoods.Select(sf => sf.FoodId).ToList();
+            var foods = _database.CollectionFood.Find(f => foodIds.Contains(f.Id.ToString()) && f.Category == category)
+                                                 .ToList();
+
+            var result = (from sf in scoredFoods
+                          join f in foods on sf.FoodId equals f.Id.ToString()
+                          select new FoodItemWithImageBytes
+                          {
+                              Id = f.Id.ToString(),
+                              Name = f.Name,
+                              Country = f.Country,
+                              ImageBytes = f.Image,
+                              Category = f.Category,
+                              Description= f.Description
+                          }).ToList();
+
+            return result;
+        }
+        public bool CheckUserIdExistsInScoredFoods(string userId)
+        {
+            var filter = Builders<ScoredFoods>.Filter.Eq(s => s.UserId, userId);
+            var result = _database.CollectionScoredFoods.Find(filter).Any();
+            return result;
+        }
+        public async Task<string> GetFoodExpectedScore(string userId, string foodId)
+        {
+            var requestBody = new
+            {
+                user_id = userId,
+                food_id = foodId
+            };
+            var jsonContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync("http://20.81.205.102:92/api/yemeknumarasi", jsonContent);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"API call failed with status code: {response.StatusCode}");
+            }
+
+            var apiResponseString = await response.Content.ReadAsStringAsync();
+            var apiResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<FoodApiResponse>(apiResponseString);
+
+            if (apiResponse == null || string.IsNullOrEmpty(apiResponse.Score))
+            {
+                throw new InvalidOperationException("API did not return a valid response.");
+            }
+
+            return apiResponse.Score;
+        }
+
+
+
+
+
 
 
 

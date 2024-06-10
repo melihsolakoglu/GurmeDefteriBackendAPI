@@ -1,0 +1,208 @@
+﻿@using GurmeDefteriWebUI.Data
+@using GurmeDefteriWebUI.Models.Dto
+@model ScoredFood
+
+@Html.Partial("Components/PopupPartial")
+
+<head>
+    <style>
+        .position-relative {
+            position: absolute;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+
+            border-top: none;
+            z-index: 99;
+            left: 0;
+            right: 0;
+            background-color: #f1f1f1;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+            .autocomplete-items div {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #fff;
+                border-bottom: 1px solid #d4d4d4;
+            }
+
+                .autocomplete-items div:hover {
+                    background-color: #e9e9e9;
+                }
+
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container py-3">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h2 class="fw-bold mb-4 text-center">Yemek Skoru Ekle</h2>
+
+                        <form asp-action="AddScoredFood" asp-controller="ScoredFood" method="post" enctype="multipart/form-data">
+
+                            <input asp-for="ScoredFoodID" type="hidden" value='1' />
+
+                            <div class="mb-3">
+                                <label for="userMail" class="form-label">Kullanıcı Email:</label>
+                                <input asp-for="Email" type="text" class="form-control" id="userMail" placeholder="Kullanıcı mail'ini giriniz" oninput="suggestEmails()">
+                                <div id="emailSuggestions" class="autocomplete-items"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="foodName" class="form-label">Yemek Adı:</label>
+                                <input asp-for="Foodname" type="text" class="form-control" id="foodName" placeholder="Yemek adını giriniz" oninput="suggestFoods()">
+                                <div id="foodSuggestions" class="autocomplete-items"></div>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="foodScore" class="form-label">Yemek Skoru :</label>
+                                <input asp-for="Score" type="text" class="form-control" id="foodScore" placeholder="Yemek Skorunu giriniz 1-10 arasıdna olmalı">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <span>@error.ErrorMessage</span>
+            }
+        </div>
+    }
+    else if (TempData["isPopupVisible"] != null && (bool)TempData["isPopupVisible"] == true)
+    {
+        <script>
+            window.onload = function () {
+                resetFields();
+                showSuccessPopup();
+            };
+
+
+        </script>
+        { ViewData["isPopupVisible"] = false; }
+    }
+
+    <script>
+        function resetFields() {
+            document.getElementById('userMail').value = '';
+            document.getElementById('foodName').value = '';
+            document.getElementById('foodScore').value = 0;
+        }
+    </script>
+    <script>
+        function suggestEmails() {
+            var input = document.getElementById('userMail');
+            var filter = input.value.toLowerCase();
+            var suggestions = @Html.Raw(Json.Serialize(ViewData["UsersMails"]));
+            var emailSuggestions = document.getElementById('emailSuggestions');
+
+            emailSuggestions.innerHTML = '';
+
+            if (filter.length === 0) {
+                emailSuggestions.style.display = 'none';
+                return false;
+            }
+
+            var count = 0;
+
+            suggestions.forEach(function (item) {
+                if (item.toLowerCase().startsWith(filter) && count < 3) {
+                    var suggestion = document.createElement('div');
+                    suggestion.innerHTML = "<strong>" + item.substr(0, filter.length) + "</strong>";
+                    suggestion.innerHTML += item.substr(filter.length);
+                    suggestion.innerHTML += "<input type='hidden' value='" + item + "'>";
+                    suggestion.addEventListener('click', function () {
+                        input.value = this.getElementsByTagName('input')[0].value;
+                        emailSuggestions.innerHTML = '';
+                    });
+                    emailSuggestions.appendChild(suggestion);
+                    count++;
+                }
+            });
+
+            if (count > 0) {
+                emailSuggestions.style.display = 'block';
+                input.parentNode.appendChild(emailSuggestions); 
+            } else {
+                emailSuggestions.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        function suggestFoods() {
+            var input = document.getElementById('foodName');
+            var filter = input.value.toLowerCase();
+            var suggestions = @Html.Raw(Json.Serialize(ViewData["FoodNames"]));
+            var foodSuggestions = document.getElementById('foodSuggestions');
+
+            foodSuggestions.innerHTML = '';
+
+            if (filter.length === 0) {
+                foodSuggestions.style.display = 'none';
+                return false;
+            }
+
+            var count = 0;
+
+            suggestions.forEach(function (item) {
+                if (item.toLowerCase().startsWith(filter) && count < 3) {
+                    var suggestion = document.createElement('div');
+                    suggestion.innerHTML = "<strong>" + item.substr(0, filter.length) + "</strong>";
+                    suggestion.innerHTML += item.substr(filter.length);
+                    suggestion.innerHTML += "<input type='hidden' value='" + item + "'>";
+                    suggestion.addEventListener('click', function () {
+                        input.value = this.getElementsByTagName('input')[0].value;
+                        foodSuggestions.innerHTML = '';
+                    });
+                    foodSuggestions.appendChild(suggestion);
+                    count++;
+                }
+            });
+
+            if (count > 0) {
+                foodSuggestions.style.display = 'block';
+                input.parentNode.appendChild(foodSuggestions); 
+            } else {
+                foodSuggestions.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+
+        function handleFocusChange(event) {
+            if (event.type === "focus") {
+                foodSuggestions.style.display = 'none';
+                emailSuggestions.style.display = 'none';
+            } else if (event.type === "blur") {
+                console.log("Element lost focus:", event.target);
+            }
+        }
+
+        function addFocusAndBlurListeners() {
+            const formElements = document.querySelectorAll("input, textarea, select");
+            formElements.forEach(element => {
+                element.addEventListener("focus", handleFocusChange);
+                element.addEventListener("blur", handleFocusChange);
+            });
+        }
+        window.addEventListener("DOMContentLoaded", addFocusAndBlurListeners);
+    </script>
+</body>
+</html>

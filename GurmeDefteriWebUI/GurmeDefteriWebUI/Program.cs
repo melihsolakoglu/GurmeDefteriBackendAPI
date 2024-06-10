@@ -36,14 +36,16 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = ".NetCoreMvc.Session";
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturum süresi
+    options.IdleTimeout = TimeSpan.FromMinutes(30); 
     options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
+    options.Cookie.IsEssential = true;  
 });
 
 builder.Services.AddScoped<IFoodModelStatePropCheck, FoodModelStatePropCheck>();
 builder.Services.AddScoped<IUserModelStatePropCheck, UserModelStatePropCheck>();
+builder.Services.AddScoped<IScoredFoodModelStatePropCheck, ScoredFoodModelStatePropCheck>();
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddMvc(options =>
 {
     options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => "Girilen deðer geçersiz.");

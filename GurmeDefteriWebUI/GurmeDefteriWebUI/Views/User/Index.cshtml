@@ -15,7 +15,7 @@
     {
         aspController="User",
         aspAction = "DeleteUser",
-        PropToReturn="mail"
+        PropToReturn="Id"
     
     };
 }
@@ -54,7 +54,7 @@
     <div class="container" style="display: flex;">
         <form class="container" asp-action="Index" asp-controller="User" method="post">
             <div class="search-container">
-                <input asp-for="searcKey" type="text" id="searchBar" class="form-control" placeholder="Aramak İstediğiniz Kullanıcıyı Giriniz...">
+                <input asp-for="searchKey" type="text" id="searchBar" class="form-control" placeholder="Aramak İstediğiniz Kullanıcıyı Giriniz...">
                 <button type="submit" class="search-btn">Ara</button>
             </div>
             <input asp-for="page" type="hidden" value=1 />
@@ -67,12 +67,13 @@
         <h1>Gösterilebilecek Kullanıcı Yok :/</h1>
         return;
     }
+    <div style="overflow-x:auto;">
     <table style="text-align: center;">
         <tr>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Ad</th>
+            <th>Yaş</th>
             <th>Email</th>
-            <th>Role</th>
+            <th>Rol</th>
             <th>Güncelle</th>
             <th>Sil</th>
         </tr>
@@ -90,12 +91,12 @@
                         <i class="fa-solid fa-cog" style="font-size:24px;color:mediumaquamarine;"></i>
                     </a>
                 </td>
-                <td>  <button type="submit" class="btn btn-transparent" style="color:red ;" onclick="confirmDelete('@user.Email')"><i class=" fa-solid fa-trash style="font-size:24px;color:white;"></i></td>
+                    <td>  <button type="submit" class="btn btn-transparent" style="color:red ;" onclick="confirmDelete('@user.Id','@user.Email')"><i class=" fa-solid fa-trash style="font-size:24px;color:white;"></i></td>
                
             </tr>
         }
     </table>
-
+    </div>
     <footer>
         @Html.Partial("Components/PaginationFooter", pageModel)
         @Html.Partial("Components/RemoveObjectPopUp", removeObjectPopUpModel)

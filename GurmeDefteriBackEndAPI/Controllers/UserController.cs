@@ -4,6 +4,7 @@ using GurmeDefteriBackEndAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using GurmeDefteriBackEndAPI.Models.ViewModel;
 
 namespace GurmeDefteriBackEndAPI.Controllers
 {
@@ -13,10 +14,12 @@ namespace GurmeDefteriBackEndAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly DailyActivityCounterService _dailyActivityCounterService; 
 
-        public UserController()
+        public UserController(DailyActivityCounterService dailyActivityCounterService)
         {
             _userService = new UserService();
+            _dailyActivityCounterService = dailyActivityCounterService;
         }
 
 
@@ -33,7 +36,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description= foodItem.Description
                 };
             });
 
@@ -58,7 +62,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 Country = foodItem.Country,
                 ImageBytes = foodItem.Image,
                 Id = foodItem.Id.ToString(),
-                Category = foodItem.Category
+                Category = foodItem.Category,
+                Description= foodItem.Description
             };
 
             return Ok(foodItemWithImage);
@@ -84,7 +89,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description = foodItem.Description
                 };
             });
 
@@ -105,6 +111,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+            
         [HttpDelete("DeleteUser")]
         public IActionResult DeleteUser(string userId)
         {
@@ -119,6 +126,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
         [HttpPost("AddUser")]
         public IActionResult AddUser(User newUser)
         {
@@ -133,6 +141,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
         [HttpGet("GetUserById")]
         public ActionResult<User> GetUserById(string userId)
         {
@@ -174,6 +183,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
             };
             return Ok(userAPI);
         }
+
         [HttpGet("GetScoredFoodsByUserId")]
         public IActionResult GetScoredFoodsByUserId(string userId, int page = 1, int pageSize = 10)
         {
@@ -250,7 +260,6 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
 
-
         [HttpGet("GetFoodsWithPagebyPage")]
         public async Task<ActionResult<List<FoodItemWithImageBytes>>> GetFoodsAsync(int page = 1, int pageSize = 30)
         {
@@ -270,7 +279,8 @@ namespace GurmeDefteriBackEndAPI.Controllers
                     Country = foodItem.Country,
                     ImageBytes = foodItem.Image,
                     Id = foodItem.Id.ToString(),
-                    Category = foodItem.Category
+                    Category = foodItem.Category,
+                    Description= foodItem.Description
                 };
             });
 
@@ -278,12 +288,14 @@ namespace GurmeDefteriBackEndAPI.Controllers
 
             return Ok(foodListWithImages.ToList());
         }
+
         [HttpPost("AddScoredFoods")]
         public IActionResult AddScoredFoods(ScoredFoods scoredFoods)
         {
             try
             {
                 _userService.AddScoredFoods(scoredFoods);
+                _dailyActivityCounterService.IncrementFoodRatedCount();
                 return Ok("Scored foods added successfully");
             }
             catch (Exception ex)
@@ -291,6 +303,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("UpdateScoredFood")]
         public IActionResult UpdateScoredFood(string userId, string foodId, int score)
         {
@@ -304,6 +317,7 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet("CheckScoredFood")]
         public IActionResult CheckScoredFood(string userId, string foodId)
         {
@@ -317,12 +331,14 @@ namespace GurmeDefteriBackEndAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet("GetFoodScoreSuggestion")]
         public async Task<IActionResult> GetFoodScoreSuggestion(string userId)
         {
             try
             {
                 var result = await _userService.GetFoodScoreSuggestion(userId);
+                _dailyActivityCounterService.IncrementFoodSuggestedCount();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -331,14 +347,64 @@ namespace GurmeDefteriBackEndAPI.Controllers
             }
         }
 
+        [HttpGet("UnscoredFoodsByUserIdAndCategory")]
+        public IActionResult UnscoredFoodsByUserIdAndCategory(string userId, string category, int page = 1, int pageSize = 10)
+        {
+            var unscoredFoods = _userService.GetUnscoredFoodsByUserIdAndCategory(userId, category, page, pageSize);
 
+            if (unscoredFoods == null || unscoredFoods.Count == 0)
+            {
+                return NotFound();
+            }
 
+            return Ok(unscoredFoods);
+        }
 
+        [HttpGet("GetScoredFoodsByUserIdAndCategory")]
+        public IActionResult GetScoredFoodsByUserIdAndCategory(string userId, string category, int page = 1, int pageSize = 10)
+        {
+            var scoredFoods = _userService.GetScoredFoodsByUserIdAndCategory(userId, category, page, pageSize);
 
+            if (scoredFoods == null || scoredFoods.Count == 0)
+            {
+                return NotFound();
+            }
 
+            return Ok(scoredFoods);
+        }
 
-
-
-
+        [HttpGet("CheckUserIdExistsInScoredFoods")]
+        public IActionResult CheckUserIdExistsInScoredFoods(string userId)
+        {
+            var exists = _userService.CheckUserIdExistsInScoredFoods(userId);
+            return Ok(exists);
+        }
+        [HttpPost("GetFoodExpectedScore")]
+        public async Task<IActionResult> GetFoodExpectedScore([FromBody] GetFoodExpectedScoreRequest request)
+        {
+            try
+            {
+                var score = await _userService.GetFoodExpectedScore(request.UserId, request.FoodId);
+                return Ok(score);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

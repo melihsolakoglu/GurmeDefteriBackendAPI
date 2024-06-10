@@ -1,18 +1,27 @@
 ﻿using GurmeDefteriWebUI.Helpers;
 using GurmeDefteriWebUI.Models.Dto;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
+using System.Net.Http.Headers;
+using System.Xml.Linq;
 
 namespace GurmeDefteriWebUI.Services
 {
-    public class UserService
+    public class UserService 
     {
         private readonly HttpClient _httpClient;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public UserService()
         {
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(ApiConstants.ApiUrl + "Admin/")
-            };        
+            };
+
+            _httpContextAccessor = new HttpContextAccessor();
+            var jwtToken = _httpContextAccessor.HttpContext.Request.Cookies["JwtCookie"];
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
         }
         public async Task<List<User>> GetPagedUserAsync(int page, int pageSize)
         {
@@ -80,10 +89,10 @@ namespace GurmeDefteriWebUI.Services
             }
         }
 
-        public async Task<string> GetPageCountUseryNameAsync(int pageSize, string foodname)
+        public async Task<string> GetPageCountUseryNameAsync(int pageSize, string username)
         {
 
-            string apiUrl = $"GetPageCountUserByName?pageSize={pageSize}&name={foodname}";
+            string apiUrl = $"GetPageCountUserByName?pageSize={pageSize}&name={username}";
 
             try
             {
@@ -125,7 +134,7 @@ namespace GurmeDefteriWebUI.Services
         {
             var requestData = new
             {
-                userModel.Name,
+                Name =char.ToUpper(userModel.Name[0]) + userModel.Name.Substring(1),
                 userModel.Age,
                 userModel.Email,
                 userModel.Password,
@@ -148,7 +157,7 @@ namespace GurmeDefteriWebUI.Services
             var requestData = new
             { 
                 id=userModel.Id,
-                name=userModel.Name,
+                name = char.ToUpper(userModel.Name[0]) + userModel.Name.Substring(1),
                 age=userModel.Age,
                 email=userModel.Email,
                 password=userModel.Password,

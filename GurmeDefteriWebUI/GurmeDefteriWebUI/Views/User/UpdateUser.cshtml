@@ -2,7 +2,7 @@
 @using GurmeDefteriWebUI.Models.Dto
 @model User
 
-@Html.Partial("PopupPartial")
+@Html.Partial("Components/PopupPartial")
 
 <head>
 
@@ -13,7 +13,7 @@
             <div class="col-lg-6">
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
-                        <h2 class="fw-bold mb-4 text-center">Kullancı Ekle</h2>
+                        <h2 class="fw-bold mb-4 text-center">Kullancı Güncelle</h2>
 
                         <form asp-action="UpdateUser" asp-controller="User" method="post" enctype="multipart/form-data">
 
@@ -48,7 +48,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #6a11cb; font-family: Arial, sans-serif; color: white; font-weight: bold; border: 2px solid black;">Güncelle</button>
                         </form>
                     </div>
                 </div>
