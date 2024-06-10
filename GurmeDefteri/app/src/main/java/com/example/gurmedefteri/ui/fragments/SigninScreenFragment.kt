@@ -2,6 +2,7 @@ package com.example.gurmedefteri.ui.fragments
 
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -16,6 +17,7 @@ import com.example.gurmedefteri.databinding.FragmentSigninScreenBinding
 import com.example.gurmedefteri.ui.viewmodels.SigninScreenViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class SigninScreenFragment : Fragment() {
@@ -64,6 +66,7 @@ class SigninScreenFragment : Fragment() {
                 everythingOk = false
                 alert("Email Hatası","Lütfen Email Adresinizi Kontrole Edin")
             }
+
             if(!(name.length >2) &&everythingOk){
                 everythingOk = false
                 alert("İsim Hatası","İsim En Az 2 Harf Olmalıdır")
@@ -96,10 +99,45 @@ class SigninScreenFragment : Fragment() {
                 everythingOk = false
                 alert("Parola Hatası", "Parola en az 8 karakterden oluşmalı ve içinde şunlar bulunmalıdır: büyük harf, küçük harf ve sayı")
             }
+
+
+
+
+            viewModel.getUserByMail(email)
             if(everythingOk){
-                val user = NewUser(name,email,pass,"User",age)
-                viewModel.addUser(user)
+
+                viewModel.isThereMail.observe(viewLifecycleOwner){
+                    Log.d("said",it.toString())
+                    try {
+                        if(it == "yes"){
+                            everythingOk = false
+                            alert("Email Hatası","Bu Email İle Zaten Bir Kullanıcı Mevcut")
+                            viewModel.isThereMail.value = ""
+                        }else if(it == "no"){
+                            viewModel.addUser.value = true
+                        }else{
+
+                        }
+
+                    }catch (e:Exception){
+
+                    }
+                }
             }
+
+            viewModel.addUser.observe(viewLifecycleOwner){
+                if(it){
+                    if(everythingOk){
+                        val user = NewUser(name,email,pass,"User",age)
+                        viewModel.addUser(user)
+                    }
+                }
+
+            }
+
+
+
+
 
         }
 

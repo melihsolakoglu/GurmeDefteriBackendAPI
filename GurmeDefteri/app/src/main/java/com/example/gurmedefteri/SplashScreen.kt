@@ -41,6 +41,7 @@ class SplashScreen : AppCompatActivity() {
         val middleAnimation = AnimationUtils.loadAnimation(this,R.anim.middle_animation)
         val bottomAnimation = AnimationUtils.loadAnimation(this,R.anim.bottom_animation)
 
+        var changedOk = true
         binding.imageView5.startAnimation(topAnimation)
         binding.MiddleTextView.startAnimation(middleAnimation)
         binding.BottomTextView.startAnimation(bottomAnimation)
@@ -55,17 +56,31 @@ class SplashScreen : AppCompatActivity() {
             if (!isInternetAvailable()) {
                 showNoInternetDialog()
             } else {
-                viewModel.getLoggedIn.observe(this, Observer { loggedIn ->
-                    Log.d("said", loggedIn.toString())
-                    if (loggedIn) {
-                        startActivity(homeIntent)
-                    } else {
-                        startActivity(loginIntent)
+                viewModel.userPass.observe(this,Observer{pass->
+                    viewModel.loginControl()
+
+                })
+                viewModel.loggedOk.observe(this, Observer { loggedIn ->
+                    if(loggedIn){
+                        if(changedOk){
+                            changedOk =false
+                            startActivity(homeIntent)
+                        }
+                    }else{
+                        if(changedOk){
+
+                            changedOk =false
+                            startActivity(loginIntent)
+                        }
                     }
                     finish()
                 })
+
+
             }
         }, splashScreenTimeOut.toLong())
+
+
 
     }
 
@@ -78,7 +93,7 @@ class SplashScreen : AppCompatActivity() {
     private fun showNoInternetDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("No Internet Connection")
-        builder.setMessage("Siktir Git İnternetini Bağla Mk Fakiri.")
+        builder.setMessage("Lütfen İnternet Bağlantınızı Kontrol Edin.")
         builder.setPositiveButton("OK") { dialog: DialogInterface, _: Int ->
             dialog.dismiss()
             finish()

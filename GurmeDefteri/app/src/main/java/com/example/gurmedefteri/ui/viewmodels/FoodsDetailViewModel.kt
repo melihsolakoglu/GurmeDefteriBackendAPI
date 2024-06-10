@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.gurmedefteri.data.datastore.UserPreferences
+import com.example.gurmedefteri.data.entity.AverageScoreRequest
+import com.example.gurmedefteri.data.entity.AverageScoreResponse
+import com.example.gurmedefteri.data.entity.Food
 import com.example.gurmedefteri.data.entity.NewUser
 import com.example.gurmedefteri.data.entity.ScoredFoods
 import com.example.gurmedefteri.data.repository.ApiServicesRepository
@@ -31,6 +34,12 @@ class FoodsDetailViewModel @Inject constructor(
     var scored = MutableLiveData<Boolean>().apply { value = false }
     var succes = MutableLiveData<Boolean>()
 
+    var checkScoredFoodOk= MutableLiveData<Boolean>().apply { value = false }
+    var getAverageScoreOk= MutableLiveData<Boolean>().apply { value = false }
+    val AverageScoreFood = MutableLiveData<Int>()
+    var isLoading= MutableLiveData<Boolean>()
+
+
     init {
         viewModelScope.launch {
             userPreferences.getUserId().collect { id ->
@@ -39,22 +48,68 @@ class FoodsDetailViewModel @Inject constructor(
         }
 
     }
+
+    fun getAverageScoredFood(userId: String?, foodId: String){
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val request = AverageScoreRequest(userId.toString(), foodId)
+                val response: Response<ResponseBody> = krepo.getAverageScoredFood(request)
+                val averageScoreResponse = response.body()
+                if (response.isSuccessful) {
+                    val averageScoreResponse = response.body()?.string()
+
+                    val intValue = averageScoreResponse?.substringBefore(".")?.toIntOrNull()
+
+                    if (intValue != null) {
+                        AverageScoreFood.value = intValue!!
+                        scored.value=false
+
+                    } else {
+                    }
+
+                } else {
+                    scored.value=true
+                    val errorBody = response.errorBody()?.string()
+
+                }
+
+            }catch (e:Exception){
+
+                Log.d("ERROR", "Request failed", e)
+                scored.value=true
+            }
+            getAverageScoreOk.value =true
+            isLoading.value =true
+
+        }
+    }
+
+
     fun checkScoredFood(userId: String?, foodId: String){
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response: Response<ResponseBody> = krepo.checkScoredFood(userId.toString(),foodId)
                 if (response.isSuccessful){
                     val responseBody = response.body()?.string()
-                    Log.d("said","aha geldi lah $responseBody")
                     scoreViewModel.value = responseBody?.toInt()
-                    Log.d("said","çeviri ${scoreViewModel.value}")
+
+                    if(responseBody?.toInt() == 0){
+                        scored.value = false
+                    }else{
+                        scored.value = true
+                    }
                 }else{
 
+                    scored.value = false
                 }
 
             }catch (e:Exception){
 
+                scored.value = false
             }
+
+            checkScoredFoodOk.value =true
+            isLoading.value =true
         }
     }
 
@@ -69,7 +124,6 @@ class FoodsDetailViewModel @Inject constructor(
                     val responseBody = response.body()?.string()
                     succes.value = true
                     scoreViewModel.value = score
-                    Log.d("Said",responseBody.toString())
                 } else {
                     Log.e("API_ERROR", "Response not successful: ${response.errorBody()?.string()}")
                 }
@@ -84,7 +138,6 @@ class FoodsDetailViewModel @Inject constructor(
                 val response:Response<ResponseBody> = krepo.updateScoredFoods(userId.value.toString(), foodId, score)
                 if(response.isSuccessful){
                     val responseBody = response.body()?.string()
-                    Log.d("Said",responseBody.toString())
                 }else{
 
                     Log.e("API_ERROR", "Response not successful: ${response.errorBody()?.string()}")

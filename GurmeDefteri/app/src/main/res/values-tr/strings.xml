@@ -18,5 +18,17 @@
     <string name="returnLogin">Giriş Yap!</string>
     <string name="delete">SİL</string>
     <string name="updateUser">GÜNCELLE</string>
+    <string name="didntFind">YİYECEK BULUNAMADI</string>
+    <string name="didntFindScoredFood">OYLANMIŞ YİYECEK BULUNAMADI</string>
+    <string name="homePage">Ana Sayfa</string>
+    <string name="scoredFood">Oylanmış Yiyecekler</string>
+    <string name="profile">Profil</string>
+    <string name="profileSettings">Profil Ayarları</string>
+    <string name="logout">Çıkış Yap</string>
+    <string name="mainFood">Ana Yemekler</string>
+    <string name="soapFood">Çorbalar</string>
+    <string name="desertFood">Tatlılar</string>
+    <string name="drinkFood">İçecekler</string>
+
 
 </resources>

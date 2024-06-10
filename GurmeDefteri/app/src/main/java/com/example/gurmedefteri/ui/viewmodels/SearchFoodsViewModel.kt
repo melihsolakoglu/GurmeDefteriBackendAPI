@@ -32,5 +32,14 @@ class SearchFoodsViewModel @Inject constructor (var krepo: ApiServicesRepository
     }.flow.cachedIn(viewModelScope)
 
 
+    fun anan(query:String){
+        foodsssList = Pager(PagingConfig(1)) {
+            SearchFoodsPagination(krepo, query)
+        }.flow.cachedIn(viewModelScope)
+    }
+
+
+
+
 
 }

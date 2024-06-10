@@ -6,86 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProfileFragment">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="272dp"
-        android:layout_marginTop="1608dp"
-        android:text="Çıkış Yap"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/profile_name"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edit_text_input"
-        android:drawableStart="@drawable/person"
-        android:drawablePadding="5dp"
-        android:ems="10"
-        android:hint="@string/FullName"
-        android:inputType="text"
-        android:maxLength="50"
-        android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_email" />
-
-    <EditText
-        android:id="@+id/profile_email"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="120dp"
-        android:background="@drawable/edit_text_input"
-        android:drawableStart="@drawable/email"
-        android:drawablePadding="5dp"
-        android:ems="10"
-        android:hint="@string/Email"
-        android:inputType="text"
-        android:paddingStart="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/profile_name"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="@+id/profile_name"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/profile_age"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edit_text_input"
-        android:drawableStart="@drawable/date"
-        android:drawablePadding="5dp"
-        android:ems="10"
-        android:hint="@string/Age"
-        android:inputType="number"
-        android:maxLength="3"
-        android:paddingStart="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/profile_email"
-        app:layout_constraintStart_toStartOf="@+id/profile_email"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
-
-    <EditText
-        android:id="@+id/profile_password"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edit_text_input"
-        android:drawableStart="@drawable/ic_lock_login"
-        android:drawableEnd="@drawable/password_eye_2"
-        android:drawablePadding="2dp"
-        android:ems="10"
-        android:hint="@string/Password"
-        android:inputType="textPassword"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/profile_age"
-        app:layout_constraintStart_toStartOf="@+id/profile_age"
-        app:layout_constraintTop_toBottomOf="@+id/profile_age" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonUpdateUser"
         android:layout_width="150dp"
@@ -112,5 +32,112 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonUpdateUser"
         app:layout_constraintTop_toTopOf="@+id/buttonUpdateUser" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/progress_card_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:cardBackgroundColor="#ECE0F4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="1608dp"
+        android:text="Çıkış Yap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/profile_name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text_input"
+        android:drawableStart="@drawable/person"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="@string/FullName"
+        android:inputType="text"
+        android:maxLength="50"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_email" />
+
+    <EditText
+        android:id="@+id/profile_email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/edit_text_input"
+        android:drawableStart="@drawable/email"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="@string/Email"
+        android:inputType="text"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_name"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/profile_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/profile_age"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text_input"
+        android:drawableStart="@drawable/date"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="@string/Age"
+        android:inputType="number"
+        android:maxLength="3"
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_email"
+        app:layout_constraintStart_toStartOf="@+id/profile_email"
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+
+    <EditText
+        android:id="@+id/profile_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text_input"
+        android:drawableStart="@drawable/ic_lock_login"
+        android:drawableEnd="@drawable/password_eye_2"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="@string/Password"
+        android:inputType="textPassword"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_age"
+        app:layout_constraintStart_toStartOf="@+id/profile_age"
+        app:layout_constraintTop_toBottomOf="@+id/profile_age" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="115dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

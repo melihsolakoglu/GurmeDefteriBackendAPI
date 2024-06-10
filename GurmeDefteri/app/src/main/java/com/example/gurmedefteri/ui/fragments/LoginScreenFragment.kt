@@ -35,7 +35,7 @@ class LoginScreenFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginScreenBinding.inflate(inflater, container, false)
 
-        logInPass =binding.loginScreenPasswordTextview
+        logInPass = binding.loginScreenPasswordTextview
 
         logInPass.setOnTouchListener { v, event ->
             val DRAWABLE_END = 2
@@ -83,10 +83,31 @@ class LoginScreenFragment : Fragment() {
             }
 
         }
+        viewModel.viewModelPassword.observe(viewLifecycleOwner){
+            try {
+                val pass = it
+                viewModel.setUserPass(pass)
+
+            }catch (e:Exception){
+                Log.d("ERROR",e.toString())
+            }
+
+        }
         viewModel.id.observe(viewLifecycleOwner){
             try {
+                Log.d("said1",it)
                 val id = it
-                viewModel.setUserEmail(id)
+                viewModel.setUserId(id)
+
+            }catch (e:Exception){
+                Log.d("ERROR",e.toString())
+            }
+
+        }
+        viewModel.Email.observe(viewLifecycleOwner){
+            try {
+                val email = it
+                viewModel.setUserEmail(email)
 
             }catch (e:Exception){
                 Log.d("ERROR",e.toString())

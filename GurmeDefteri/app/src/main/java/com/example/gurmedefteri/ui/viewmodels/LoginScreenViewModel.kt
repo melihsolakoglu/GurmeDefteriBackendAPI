@@ -22,7 +22,9 @@ class LoginScreenViewModel @Inject constructor (
     val succes = MutableLiveData<Boolean>()
     val loggedIn = MutableLiveData<Boolean>()
     val jwtToken = MutableLiveData<String>()
+    val viewModelPassword = MutableLiveData<String>()
     val id = MutableLiveData<String>()
+    val Email = MutableLiveData<String>()
 
     fun setLoggedIn(loggedIn : Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -34,25 +36,35 @@ class LoginScreenViewModel @Inject constructor (
             userPreferences.setJWTToken(jwtToken)
         }
     }
-    fun setUserEmail(id : String) {
+    fun setUserId(id : String) {
         viewModelScope.launch(Dispatchers.IO) {
             userPreferences.setUserId(id)
         }
     }
+    fun setUserPass(pass:String){
+        viewModelScope.launch(Dispatchers.IO){
+            userPreferences.setUserPass(pass)
+        }
+    }
+    fun setUserEmail(email:String){
+        viewModelScope.launch(Dispatchers.IO){
+            userPreferences.setUserEmail(email)
+        }
+    }
     fun getUserByMail(userEmail:String){
         CoroutineScope(Dispatchers.Main).launch {
-
             try {
                 val response: Response<User> = krepo.getUserByMail(userEmail)
                 if (response.isSuccessful) {
-                    val anan = response.body()?.id
-                    if(anan != null){
-                        id.value = anan.toString()
+                    val getId = response.body()?.id
+                    if(getId != null){
+                        id.value = getId.toString()
                         succes.value = true
                     }
                 } else {
                     val errorCode = response.code()
                     Log.d("Error",errorCode.toString())
+                    Log.d("Error","2")
                 }
             } catch (e: Exception) {
                 Log.d("ERROR", "Request failed", e)
@@ -68,6 +80,8 @@ class LoginScreenViewModel @Inject constructor (
                 if (response.isSuccessful) {
                     val responseBody = response.body().toString()
                     jwtToken.value = responseBody
+                    Email.value = username
+                    viewModelPassword.value = password
                     loggedIn.value = true
                     getUserByMail(username)
 
@@ -75,6 +89,7 @@ class LoginScreenViewModel @Inject constructor (
                     loggedIn.value = false
                     val errorCode = response.code()
                     Log.d("Error",errorCode.toString())
+                    Log.d("Error","1")
                 }
             } catch (e: Exception) {
                 Log.d("ERROR", "Request failed", e)

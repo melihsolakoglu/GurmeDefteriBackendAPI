@@ -12,11 +12,8 @@ class SearchFoodsPagination(private val repository: ApiServicesRepository, priva
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Food> {
         return try {
             val currentPage = params.key ?: 1
-            Log.d("said","ananıSikim")
             val response = repository.getFoodSearchByPage(query,currentPage, 6)
-            Log.d("said","ananıSikim1")
             val data = response.body() ?: return LoadResult.Error(Exception("Response body is null"))
-            Log.d("said","ananıSikim2")
             if (data.isEmpty()) {
                 return LoadResult.Page(
                     data = emptyList(),
@@ -31,10 +28,8 @@ class SearchFoodsPagination(private val repository: ApiServicesRepository, priva
                 )
             }
         } catch (e: Exception) {
-            Log.d("said", "hata 1")
             LoadResult.Error(e)
         } catch (httpE: HttpException) {
-            Log.d("said", "hata 2")
             LoadResult.Error(httpE)
         }
     }

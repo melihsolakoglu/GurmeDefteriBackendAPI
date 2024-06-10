@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.gurmedefteri.Login
 import com.example.gurmedefteri.R
 import com.example.gurmedefteri.SplashScreen
 import com.example.gurmedefteri.databinding.FragmentLogoutBinding
@@ -30,7 +31,7 @@ class LogoutFragment : Fragment() {
             try {
                 val loggedOut = it
                 if(loggedOut){
-                    val intent = Intent(activity, SplashScreen::class.java)
+                    val intent = Intent(activity, Login::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                     activity?.finish()

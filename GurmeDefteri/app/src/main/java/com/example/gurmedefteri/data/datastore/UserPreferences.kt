@@ -1,6 +1,7 @@
 package com.example.gurmedefteri.data.datastore
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -21,10 +22,14 @@ class UserPreferences (context: Context){
         val LoggedIn = booleanPreferencesKey("LOGGED_CONTROL_KEY")
         val JWTToken = stringPreferencesKey("JWT_TOKEN_KEY")
         val Id = stringPreferencesKey("USER_ID")
+        val Password = stringPreferencesKey("USER_PASS")
+        val Email = stringPreferencesKey("USER_EMAIL")
 
         const val DEFAULT_LOGGED_IN = false
         const val DEFAULT_JWT_TOKEN = ""
         const val DEFAULT_USER_ID = ""
+        const val DEFAULT_USER_PASS = ""
+        const val DEFAULT_USER_EMAIL = ""
     }
 
     suspend fun setLoggedIn(loggedInBool: Boolean) {
@@ -44,7 +49,17 @@ class UserPreferences (context: Context){
             preferences[Id] = id
         }
     }
+    suspend fun setUserPass(pass: String){
+        dataStore.edit { preferences ->
+            preferences[Password] = pass
+        }
+    }
 
+    suspend fun setUserEmail(email: String){
+        dataStore.edit { preferences ->
+            preferences[Email] = email
+        }
+    }
     fun getLoggedIn(): Flow<Boolean> {
         return dataStore.data
             .catch { exception ->
@@ -86,6 +101,34 @@ class UserPreferences (context: Context){
             }
             .map { preferences ->
                 val uiMode = preferences[Id] ?: DEFAULT_USER_ID
+                uiMode
+            }
+    }
+    fun getUserPass(): Flow<String> {
+        return dataStore.data
+            .catch { exception ->
+                if (exception is IOException) {
+                    emit(emptyPreferences())
+                } else {
+                    throw exception
+                }
+            }
+            .map { preferences ->
+                val uiMode = preferences[Password] ?: DEFAULT_USER_PASS
+                uiMode
+            }
+    }
+    fun getUserEmail(): Flow<String> {
+        return dataStore.data
+            .catch { exception ->
+                if (exception is IOException) {
+                    emit(emptyPreferences())
+                } else {
+                    throw exception
+                }
+            }
+            .map { preferences ->
+                val uiMode = preferences[Email] ?: DEFAULT_USER_EMAIL
                 uiMode
             }
     }

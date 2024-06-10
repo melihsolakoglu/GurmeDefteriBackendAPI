@@ -6,6 +6,7 @@ import com.example.gurmedefteri.data.datastore.UserPreferences
 import com.example.gurmedefteri.data.repository.ApiServicesRepository
 import com.example.gurmedefteri.retrofit.ApiUtils
 import com.example.gurmedefteri.retrofit.ApiService
+import com.example.gurmedefteri.retrofit.ScoreSuggestionApiService
 import com.example.gurmedefteri.ui.viewmodels.SearchFoodsViewModel
 import dagger.Module
 import dagger.Provides
@@ -26,14 +27,19 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideApiServicesDataSource(apiService:ApiService) : ApiServicesDataSource {
-        return ApiServicesDataSource(apiService)
+    fun provideApiServicesDataSource(apiService:ApiService , scoreSuggestionApiService: ScoreSuggestionApiService) : ApiServicesDataSource {
+        return ApiServicesDataSource(apiService, scoreSuggestionApiService)
     }
 
     @Provides
     @Singleton
     fun provideApiService() : ApiService {
         return ApiUtils.getApiService()
+    }
+    @Provides
+    @Singleton
+    fun provideScoreSuggestionApiService(): ScoreSuggestionApiService{
+        return ApiUtils.getScoreSuggestionApiServie()
     }
 
     @Provides

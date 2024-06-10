@@ -23,6 +23,7 @@ import com.example.gurmedefteri.data.entity.Food
 import com.example.gurmedefteri.databinding.FragmentSearchFoodsBinding
 import com.example.gurmedefteri.ui.adapters.LoadMoreAdapter
 import com.example.gurmedefteri.ui.adapters.MainFoodsAdapter
+import com.example.gurmedefteri.ui.adapters.MoreFoodsAdapter
 import com.example.gurmedefteri.ui.adapters.pagination.SearchFoodsPagination
 import com.example.gurmedefteri.ui.viewmodels.SearchFoodsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,7 @@ class SearchFoodsFragment : Fragment() {
     private lateinit var binding: FragmentSearchFoodsBinding
     private val searchViewModel: SearchFoodsViewModel by activityViewModels()
     @Inject
-    lateinit var mainFoodsAdapter: MainFoodsAdapter
+    lateinit var mainFoodsAdapter: MoreFoodsAdapter
     private var firstScreen =false
     private var firstQuery = true
 
@@ -70,7 +71,7 @@ class SearchFoodsFragment : Fragment() {
 
     private fun setupObservers() {
         searchViewModel.query.observe(viewLifecycleOwner) { newQuery ->
-            val newAdapter = MainFoodsAdapter()
+            val newAdapter = MoreFoodsAdapter()
             lifecycleScope.launch {
                 // RecyclerView temizleme işlemi
 
@@ -78,9 +79,7 @@ class SearchFoodsFragment : Fragment() {
                 // RecyclerView'un adapter'ını değiştir
                 binding.SearchFoodsRV.adapter = newAdapter
                 // Yeni verilerin yüklenmesi
-                searchViewModel.foodsssList = Pager(PagingConfig(1)) {
-                    SearchFoodsPagination(searchViewModel.krepo, newQuery)
-                }.flow.cachedIn(lifecycleScope)
+                searchViewModel.anan(newQuery)
 
                 setupLoadStateListener(newAdapter)
             }
@@ -106,7 +105,7 @@ class SearchFoodsFragment : Fragment() {
 
     }
 
-    private fun setupLoadStateListener(adapter: MainFoodsAdapter) {
+    private fun setupLoadStateListener(adapter: MoreFoodsAdapter) {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { loadStates ->
                 if (loadStates.refresh is LoadState.Loading) {

@@ -50,6 +50,10 @@ class ProfileFragment : Fragment() {
             false
         }
 
+        viewModel.isLoadingScreen.observe(viewLifecycleOwner){
+            onTasksCompleted()
+        }
+
         binding.button3.setOnClickListener {
             viewModel.logOut()
         }
@@ -206,6 +210,11 @@ class ProfileFragment : Fragment() {
                 viewModel.areYouSure.value=false
             }
             .show()
+    }
+
+    private fun onTasksCompleted() {
+        binding.progressBarProfile.visibility = View.GONE
+        binding.progressCardProfile.visibility = View.GONE
     }
 
 }

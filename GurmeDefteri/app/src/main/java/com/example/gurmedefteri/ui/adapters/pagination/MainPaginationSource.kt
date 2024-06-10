@@ -28,10 +28,8 @@ class MainPaginationSource (private val userId:String, private val repository: A
                 )
             }
         } catch (e: Exception) {
-            Log.d("said", "hata 1")
             LoadResult.Error(e)
         } catch (httpE: HttpException) {
-            Log.d("said", "hata 2")
             LoadResult.Error(httpE)
         }
     }

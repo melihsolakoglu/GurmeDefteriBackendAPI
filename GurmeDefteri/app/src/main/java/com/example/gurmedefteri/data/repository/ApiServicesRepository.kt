@@ -1,9 +1,12 @@
 package com.example.gurmedefteri.data.repository
 
 import com.example.gurmedefteri.data.datasource.ApiServicesDataSource
+import com.example.gurmedefteri.data.entity.AverageScoreRequest
+import com.example.gurmedefteri.data.entity.AverageScoreResponse
 import com.example.gurmedefteri.data.entity.Food
 import com.example.gurmedefteri.data.entity.NewUser
 import com.example.gurmedefteri.data.entity.ScoredFoods
+import com.example.gurmedefteri.data.entity.SuggestionFood
 import com.example.gurmedefteri.data.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -22,19 +25,14 @@ class ApiServicesRepository(var kds:ApiServicesDataSource) {
     suspend fun getAllFoods() : Response<List<Food>> = kds.getAllFoods()
     suspend fun getFoodByName(foodName:String) : Response<Food> = kds.getFoodByName(foodName)
     suspend fun getFoodsByPageWithUserId(userId:String, page:Int, pageSize:Int) : Response<List<Food>> = kds.getFoodsByPageWithUserId(userId,page,pageSize)
+    suspend fun getUnscoredCategorizeFoodsByPageWithUserId(userId:String,queryKey:String ,page:Int, pageSize:Int) : Response<List<Food>> = kds.getUnscoredCategorizeFoodsByPageWithUserId(userId,queryKey,page,pageSize)
+    suspend fun getScoredCategorizeFoodsByPageWithUserId(userId:String,queryKey:String ,page:Int, pageSize:Int) : Response<List<Food>> = kds.getScoredCategorizeFoodsByPageWithUserId(userId,queryKey,page,pageSize)
     suspend fun getFoodSearchByPage(query:String, page:Int, pageSize:Int) : Response<List<Food>> = kds.getFoodSearchByPage(query ,page, pageSize)
     suspend fun getScoredFoodsByUserId(userId:String, page:Int, pageSize:Int) : Response<List<Food>> = kds.getScoredFoodsByUserId(userId ,page, pageSize)
     suspend fun checkScoredFood(userId:String, foodId:String) : Response<ResponseBody> = kds.checkScoredFood(userId ,foodId)
     suspend fun deleteUser(userId:String):Response<ResponseBody> = kds.deleteUser(userId)
+    suspend fun getAverageScoredFood(request:AverageScoreRequest): Response<ResponseBody> = kds.getAverageScoredFood(request)
+    suspend fun getFoodScoreSuggestion(userId:String) : Response<SuggestionFood> = kds.getFoodScoreSuggestion(userId)
+    suspend fun checkUserIdExistsInScoredFoods(userId:String): Response<Boolean> = kds.checkUserIdExistsInScoredFoods(userId)
 
-
-    /*suspend fun kaydet(kisi_ad:String,kisi_tel:String) = kds.kaydet(kisi_ad, kisi_tel)
-
-    suspend fun guncelle(kisi_id:Int,kisi_ad:String,kisi_tel:String) = kds.guncelle(kisi_id, kisi_ad, kisi_tel)
-
-    suspend fun sil(kisi_id:Int) = kds.sil(kisi_id)
-
-    suspend fun kisileriYukle() : List<Kisiler> = kds.kisileriYukle()
-
-    suspend fun ara(aramaKelimesi:String) : List<Kisiler> = kds.ara(aramaKelimesi)*/
 }

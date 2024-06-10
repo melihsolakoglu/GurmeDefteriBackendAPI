@@ -16,19 +16,19 @@
         <item
             android:id="@+id/homepageFragment"
             android:icon="@drawable/baseline_home_30"
-            android:title="Home Page" />
+            android:title="@string/homePage" />
 
 
         <item
             android:id="@+id/scoredFoodFragment"
-            android:icon="@drawable/scored_hamburger"
-            android:title="Scored Foods" />
+            android:icon="@drawable/scored_hamburger_resized"
+            android:title="@string/scoredFood" />
 
 
         <item
             android:id="@+id/profileFragment"
-            android:icon="@drawable/person"
-            android:title="Profile Settings" />
+            android:icon="@drawable/person_resized_for_drawer"
+            android:title="@string/profileSettings" />
         <item
             android:id="@+id/foodsDetailFragment"
             android:icon="@drawable/ic_baseline_home_24"
@@ -37,6 +37,11 @@
             android:id="@+id/searchFoodsFragment"
             android:icon="@drawable/ic_baseline_home_24"
             android:visible="false" />
+        <item
+            android:id="@+id/moreFoodsFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Profile as"
+            android:visible="false"/>
 
 
     </group>
@@ -46,7 +51,7 @@
             <item
                 android:id="@+id/logoutFragment"
                 android:icon="@drawable/baseline_logout_24"
-                android:title="Logout">
+                android:title="@string/logout">
 
             </item>
         </menu>

@@ -31,7 +31,7 @@ class MainFoodsAdapter @Inject() constructor () :PagingDataAdapter<Food , MainFo
         holder.bind(getItem(position)!!)
         holder.setIsRecyclable(false)
         val layoutParams = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
-        layoutParams.marginStart = 32 // dp yerine px değeri
+        layoutParams.marginStart = 32
         layoutParams.marginEnd = 16
         holder.itemView.layoutParams = layoutParams
 
@@ -44,7 +44,7 @@ class MainFoodsAdapter @Inject() constructor () :PagingDataAdapter<Food , MainFo
             binding.apply {
                 textViewFoodName.text = item.name
                 val bitmap = base64ToBitmap(item.imageBytes)
-                val desiredWidth = 400
+                val desiredWidth = 600
                 val desiredHeight = 400
                 val resizedBitmap = Bitmap.createScaledBitmap(bitmap, desiredWidth, desiredHeight, true)
                 imageView2.setImageBitmap(resizedBitmap)

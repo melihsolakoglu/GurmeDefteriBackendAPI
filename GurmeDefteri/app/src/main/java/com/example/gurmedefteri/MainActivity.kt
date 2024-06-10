@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
         drawerLayout = binding.mainDrawerLayout
-        toolbar = binding.toolbar
+        toolbar = binding.toolbarMainActivity
 
 
         setSupportActionBar(toolbar)
@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
             val user = it
             try {
 
-                Log.d("said", user!!.name)
                 val name =findViewById<TextView>(R.id.drawer_name)
                 name.text = user?.name
                 val email =findViewById<TextView>(R.id.drawer_email)
@@ -89,7 +88,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
         }
 
         viewModel.getUserId.observe(this, Observer { Id ->
-            Log.d("said", Id.toString())
             UserId = Id
             viewModel.getUserById(UserId)
         })
@@ -97,14 +95,12 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
         drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
-                Log.d("said","drawertrue")
                 isDrawerOpened = true
             }
 
             override fun onDrawerClosed(drawerView: View) {
                 super.onDrawerClosed(drawerView)
 
-                Log.d("said","drawerfalse")
                 isDrawerOpened = false
             }
         })
@@ -139,7 +135,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
     }
     private fun setupObservers() {
         searchViewModel.query.observe(this, Observer { query ->
-            // Sorgu değiştiğinde yapılacak işlemler
         })
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -152,17 +147,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
 
 
 
-        /*val navigationView: NavigationView = findViewById(R.id.Navigation_bar_main)
-        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
-            when (item.itemId) {
-                R.id.nav_logout -> {
-                    // Logout işlemini burada yapın
-                    viewModel.logOut()
-                    true
-                }
-                else -> false
-            }
-        }*/
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
@@ -170,9 +154,10 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
                     searchItem.isVisible = true
                     toolbar.title = "GURME DEFTERİ"
                 }
+
                 R.id.profileFragment -> {
                     searchItem.isVisible = false
-                    toolbar.title = "PROFİLE"
+                    toolbar.title = getString(R.string.profile)
                 }
                 R.id.searchFoodsFragment -> {
                     searchItem.isVisible = true
@@ -180,11 +165,42 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
                 }
 
                 R.id.scoredFoodFragment -> {
-                    searchItem.isVisible = true
-                    toolbar.title = "SCORED FOODS"
+                    searchItem.isVisible = false
+                    toolbar.title = getString(R.string.scoredFood)
+                }
+                R.id.moreFoodsFragment ->{
+                    toggle.isDrawerIndicatorEnabled = false
+                    searchItem.isVisible = false
+                    isSearchVisible = true
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                    toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+                    toolbar.setNavigationOnClickListener {
+                        if(isSearchVisible ){
+                            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+                            closeSearchView()
+                            anan.value = 1
+                        }else{
+                            if (isDrawerOpened) {
+                                // Drawer açıksa, kapat
+                                drawerLayout.closeDrawer(GravityCompat.START)
+                                isDrawerOpened = false
+                                anan.value = 1
+                            } else {
+                                drawerLayout.openDrawer(GravityCompat.START)
+                                isDrawerOpened = true
+                                anan.value = 1
+                            }
+
+                        }
+
+
+
+
+                    }
+                    toggle.syncState()
                 }
                 R.id.foodsDetailFragment ->{
-                    toolbar.title = "FOOD DETAIL"
                     isOnAFood = true
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     searchItem.isVisible = false
@@ -195,12 +211,10 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
 
                         if(isSearchVisible){
                             if(isOnAFood){
-                                Log.d("said1", "5")
                                 navController.popBackStack()
                                 isOnAFood =false
                                 anan.value = 1
                             }else{
-                                Log.d("said1", "6")
                                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                                 closeSearchView()
                                 toggle.syncState()
@@ -208,7 +222,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
                             }
                         }else{
                             if (isOnAFood){
-                                Log.d("said1", "7")
                                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                                 navController.popBackStack()
                                 isOnAFood =false
@@ -217,14 +230,11 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
                                 anan.value = 1
                             }else{
                                 if (isDrawerOpened) {
-                                    Log.d("said1", "7")
                                     // Drawer açıksa, kapat
                                     drawerLayout.closeDrawer(GravityCompat.START)
                                     isDrawerOpened = false
                                     anan.value = 1
                                 } else {
-                                    Log.d("said1", "8")
-
                                     drawerLayout.openDrawer(GravityCompat.START)
                                     isDrawerOpened = true
                                     anan.value = 1
@@ -242,7 +252,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
         }
 
         searchView.setOnSearchClickListener {
-            // Menü tuşunu ve başlığı gizle
             toggle.isDrawerIndicatorEnabled = false
             isSearchVisible = true
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -251,18 +260,14 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
             toolbar.setNavigationOnClickListener {
                 if(isSearchVisible ){
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                    Log.d("said1", "1")
                     closeSearchView()
                     anan.value = 1
                 }else{
                     if (isDrawerOpened) {
-                        Log.d("said1", "2")
-                        // Drawer açıksa, kapat
                         drawerLayout.closeDrawer(GravityCompat.START)
                         isDrawerOpened = false
                         anan.value = 1
                     } else {
-                        Log.d("said1", "3")
                         drawerLayout.openDrawer(GravityCompat.START)
                         isDrawerOpened = true
                         anan.value = 1
@@ -279,8 +284,6 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
         }
 
         searchView.setOnCloseListener {
-            // Menü tuşunu ve başlığı geri getir
-            Log.d("said","anannnnnısikim")
             toggle.isDrawerIndicatorEnabled = true
             supportActionBar?.setDisplayShowTitleEnabled(true)
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -293,9 +296,7 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // Arama sorgusu yapıldığında işlemler
                 query?.let {
-                    Log.d("said","evet")
                     searchViewModel.query.value = it
                 }
                 return true
@@ -312,9 +313,7 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            // Geri düğmesine tıklanıldığında
             android.R.id.home -> {
-                // Geri tuşuna basılmış gibi davran
                 onBackPressed()
                 return true
             }
@@ -327,17 +326,14 @@ class MainActivity : AppCompatActivity() /*, NavigationView.OnNavigationItemSele
 
         if(isSearchVisible){
             if(isOnAFood){
-                Log.d("said", "1")
                 navController.popBackStack()
                 isOnAFood = false
             }else{
-                Log.d("said" ,"2")
                 closeSearchView()
                 anan.value = 1
             }
         }else{
             if (isOnAFood){
-                Log.d("said", "3")
 
                 closeSearchView()
                 isOnAFood =false

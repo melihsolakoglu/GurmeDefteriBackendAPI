@@ -29,13 +29,10 @@ class MainViewModel @Inject constructor(
         CoroutineScope(Dispatchers.Main).launch {
 
             try {
-                Log.d("said","mal")
                 val response: Response<User> = krepo.getUserById(userId)
                 if (response.isSuccessful) {
                     val anan = response?.body()
-                        Log.d("said","salak")
                         user.value = anan
-                        Log.d("said","geri")
                 } else {
                     val errorCode = response.code()
                     Log.d("Error",errorCode.toString())

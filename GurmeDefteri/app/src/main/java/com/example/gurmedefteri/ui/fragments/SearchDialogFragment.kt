@@ -32,7 +32,6 @@ class SearchDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        // Arama sonuçlarını yükle ve adaptere bağla
         val results = searchItems(query)
     }
 

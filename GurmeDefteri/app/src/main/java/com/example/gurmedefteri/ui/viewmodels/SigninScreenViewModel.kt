@@ -8,6 +8,7 @@ import androidx.navigation.Navigation
 import com.example.gurmedefteri.R
 import com.example.gurmedefteri.data.datastore.UserPreferences
 import com.example.gurmedefteri.data.entity.NewUser
+import com.example.gurmedefteri.data.entity.User
 import com.example.gurmedefteri.data.repository.ApiServicesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +24,8 @@ class SigninScreenViewModel @Inject constructor (
     private val krepo: ApiServicesRepository
 ) : ViewModel(){
     val succes = MutableLiveData<Boolean>()
+    val isThereMail = MutableLiveData<String>()
+    val addUser = MutableLiveData<Boolean>()
     fun addUser(user:NewUser){
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -37,6 +40,28 @@ class SigninScreenViewModel @Inject constructor (
             } catch (e: Exception) {
                 Log.d("ERROR", "Request failed", e)
             }
+        }
+    }
+
+
+    fun getUserByMail(userEmail:String){
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response: Response<User> = krepo.getUserByMail(userEmail)
+                if (response.isSuccessful) {
+                    isThereMail.value = "yes"
+
+                } else {
+                    isThereMail.value = "no"
+                    val errorCode = response.code()
+                    Log.d("Error",errorCode.toString())
+                    Log.d("Error","2")
+                }
+            } catch (e: Exception) {
+                Log.d("ERROR", "Request failed", e)
+            }
+
+
         }
     }
 

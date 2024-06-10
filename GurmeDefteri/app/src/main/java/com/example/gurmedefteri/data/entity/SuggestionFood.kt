@@ -5,4 +5,5 @@ data class SuggestionFood(val country: String = "",
                           val name: String = "",
                           val imageBytes: String = "",
                           val id: String = "",
-                          val category: String = "")
+                          val category: String = "",
+                          val description: String ="")
